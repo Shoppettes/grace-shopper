@@ -27,3 +27,5 @@ const Product = db.define('product', {
   },
   reviews: Sequelize.ARRAY(Sequelize.TEXT)
 })
+
+module.exports = Product;
