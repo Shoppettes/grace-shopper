@@ -19,7 +19,7 @@ const db = require('../db.js')
  * instead of: const User = require('../db/models/user')
  */
 
-User.hasOne(Cart);
+Use.hasOne(Cart);
 User.hasMany(Order);
 Product.hasMany(Category);
 Product.belongsToMany(Order, {as: 'Product', through:'OrderProducts'});
@@ -28,7 +28,6 @@ Cart.belongsTo(User);
 Cart.hasMany(Product);
 Order.hasOne(Cart);
 Order.belongsTo(User);
-
 
 module.exports = {
   User, Product, Category, Cart, Order, db
