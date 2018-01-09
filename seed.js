@@ -81,7 +81,11 @@ const products = [{
   isAvailable: true
 }];
 
-const categories = [];
+const categories = [{
+  type: 'color',
+  name: 'black',
+  productId: 1
+}];
 
 const carts = [{
   subTotal: 12.99,
