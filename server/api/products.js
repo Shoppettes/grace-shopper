@@ -32,12 +32,13 @@ router.put('/:name', (req, res, next) => {
       where: {name: req.params.name},
       returning: true
     })
-      .then( updatedProductArray => Product.findById( updatedProductArray[1][0].id, {include: [Category]}))
       .then( updatedProduct => res.json(updatedProduct))
       .catch(next)
 })
 
-//DELETE A PRODUCT BY ID
-router.delete('/', (req, res, next) => {
-
+//DELETE A PRODUCT BY NAME
+router.delete('/:name', (req, res, next) => {
+    Product.destroy({where: {name: req.params.name}})
+      .then( () => res.status(204).end())
+      .catch(next)
 })
