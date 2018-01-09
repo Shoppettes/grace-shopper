@@ -18,7 +18,7 @@ router.get('/:name', (req, res, next) => {
 })
 
 //CREATE A PRODUCT
-router.post('/:name', (req, res, next) => {
+router.post('/', (req, res, next) => {
     Product.create(req.body)
       .then( createdProduct => Product.findById( createdProduct.id, {include: [Category]}))
       .then( foundProduct => res.json(foundProduct))
