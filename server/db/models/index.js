@@ -29,5 +29,5 @@ Order.hasOne(User);
 
 
 module.exports = {
-  User
+  User, Product, Category, Cart, Order
 }
