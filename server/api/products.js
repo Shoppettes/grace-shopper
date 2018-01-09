@@ -27,8 +27,14 @@ router.post('/', (req, res, next) => {
 
 
 //UPDATE A PRODUCT BY NAME
-router.put('/', (req, res, next) => {
-
+router.put('/:name', (req, res, next) => {
+    Product.update(req.body, {
+      where: {name: req.params.name},
+      returning: true
+    })
+      .then( updatedProductArray => Product.findById( updatedProductArray[1][0].id, {include: [Category]}))
+      .then( updatedProduct => res.json(updatedProduct))
+      .catch(next)
 })
 
 //DELETE A PRODUCT BY ID
