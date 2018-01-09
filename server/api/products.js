@@ -9,12 +9,18 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:name', (req, res, next) => {
-  Product.findOne(req.params.name)
+  Product.findOne({ where: {name: req.params.name}})
     .then( foundProduct => res.json(foundProduct))
     .catch(next)
 })
 
-router.post('/', (req, res, next) => {
+router.get('/:id', (req, res, next) => {
+  Product.findById(req.params.id)
+    .then( foundProduct => res.json(foundProduct))
+    .catch(next)
+})
+
+router.post('/:name', (req, res, next) => {
 
 })
 
