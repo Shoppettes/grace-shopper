@@ -17,12 +17,11 @@ const Order = require('./order')
  * instead of: const User = require('../db/models/user')
  */
 
-User.hasOne(Cart);
 User.hasMany(Order);
 Product.hasMany(Category);
 Product.hasMany(Order);
 Category.hasMany(Product);
-Cart.hasOne(User);
+Cart.belongsTo(User);
 Cart.hasMany(Product);
 Order.hasOne(Cart);
 Order.hasOne(User);
