@@ -1,5 +1,3 @@
-import { read } from 'fs';
-
 const router = require('express').Router()
 module.exports = router
 
