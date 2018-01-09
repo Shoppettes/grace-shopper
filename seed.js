@@ -1,5 +1,5 @@
 /* Potentially update line 2 based on final decision on models */
-const { db, User, Product, Category, Cart, Order } = require('./server/models')
+const { db, User, Product, Category, Cart, Order } = require('./server/db/models')
 
 const users = [{
   email: '12345@gmail.com',
