@@ -6,23 +6,14 @@ const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
+    isEmail: true
   },
-  password: {
-    type: Sequelize.STRING
-  },
-  salt: {
-    type: Sequelize.STRING
-  },
-  googleId: {
-    type: Sequelize.STRING
-  },
-  firstName: {
-    type: Sequelize.STRING
-  },
-  lastName: {
-    type: Sequelize.STRING
-  },
+  password: Sequelize.STRING,
+  salt: Sequelize.STRING,
+  googleId: Sequelize.STRING,
+  firstName: Sequelize.STRING,
+  lastName: Sequelize.STRING,
   fullName: {
     type: Sequelize.VIRTUAL,
     get () {
@@ -30,23 +21,14 @@ const User = db.define('user', {
     }
   },
   isAdmin: {
-    type: Sequelize.BOOLEAN
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
-  shippingAddress: {
-    type: Sequelize.STRING
-  },
-  billingAddress: {
-    type: Sequelize.STRING
-  },
-  creditCardNumber: {
-    type: Sequelize.INTEGER
-  },
-  CCV: {
-    type: Sequelize.INTEGER
-  },
-  expirationDate: {
-    type: Sequelize.DATE
-  }
+  shippingAddress: Sequelize.STRING,
+  billingAddress: Sequelize.STRING,
+  creditCardNumber: Sequelize.INTEGER,
+  creditCardCCV: Sequelize.INTEGER,
+  creditCardExpDate: Sequelize.DATE
 })
 
 module.exports = User
