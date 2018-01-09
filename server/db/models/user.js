@@ -16,6 +16,36 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  firstName: {
+    type: Sequelize.STRING
+  },
+  lastName: {
+    type: Sequelize.STRING
+  },
+  fullName: {
+    type: Sequelize.VIRTUAL,
+    get () {
+      return this.firstName + ' ' + this.lastName;
+    }
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN
+  },
+  shippingAddress: {
+    type: Sequelize.STRING
+  },
+  billingAddress: {
+    type: Sequelize.STRING
+  },
+  creditCardNumber: {
+    type: Sequelize.INTEGER
+  },
+  CCV: {
+    type: Sequelize.INTEGER
+  },
+  expirationDate: {
+    type: Sequelize.DATE
   }
 })
 
