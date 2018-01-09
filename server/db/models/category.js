@@ -10,3 +10,5 @@ const Category = db.define('category', {
     allowNull: false
   }
 })
+
+module.exports = Category
