@@ -1,8 +1,14 @@
 /* global describe beforeEach it */
 
 const {expect} = require('chai')
-const db = require('../index')
+const db = require('../server/db')
 const User = db.model('user')
+
+/*
+const db = require('../db')
+const app = require('../index')
+const User = db.model('user')
+*/
 
 describe('User model', () => {
   beforeEach(() => {
