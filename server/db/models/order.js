@@ -8,7 +8,7 @@ const Order = db.define('order', {
   tax: Sequelize.INTEGER,
   shippingAddress: Sequelize.STRING,
   billingAddress: Sequelize.STRING,
-  creditCardNumber: Sequelize.INTEGER,
+  creditCardNumber: Sequelize.BIGINT,
   creditCardCCV: Sequelize.INTEGER,
   creditCardExpDate: Sequelize.DATE
 })

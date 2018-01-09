@@ -39,7 +39,7 @@ const User = db.define('user', {
     type: Sequelize.STRING
   },
   creditCardNumber: {
-    type: Sequelize.INTEGER
+    type: Sequelize.BIGINT
   },
   CCV: {
     type: Sequelize.INTEGER
