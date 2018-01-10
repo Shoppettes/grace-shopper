@@ -5,6 +5,4 @@ const db = new Sequelize(
   }
 )
 
-require('./models')
-
 module.exports = db

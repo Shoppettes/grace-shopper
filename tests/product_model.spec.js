@@ -1,7 +1,7 @@
 /* global describe beforeEach it */
 
 const {expect} = require('chai')
-const db = require('../server/testing-db')
+const db = require('../server/db')
 const Product = db.model('product')
 
 /*
@@ -31,23 +31,21 @@ describe('Product model', () => {
   })
 
   //Emptying the table after each spec
-  afterEach(function () {
-    return Promise.all([
-      Product.truncate({ cascade: true })
-    ]);
-  });
+  afterEach(() => {
+    return db.sync({force: true})
+  })
 
-  describe('Attribute definitions', () => {
+  describe('validations', () => {
 
 
       it('requires name, price, quantity, isAvailable', () => {
         return brush.save()
           .then( savedBrush => {
             expect(savedBrush.name).to.equal('Dino Wax')
-            expect(savedBrush.description).to.equal('Get super silkly smooth Dino hands with this coconut-based wax')
-            expect(savedBrush.price).to.equal(12.99)
-            expect(savedBrush.quantity).to.equal(82)
-            expect(savedBrush.isAvailable).to.equal(true)
+            expect(savedBrush.description).to.equal('Get super silkly smooth Dino hands with this coconut-based wax.')
+            expect(savedBrush.price).to.be.equal('12.99')
+            expect(savedBrush.quantity).to.be.equal('82.00')
+            expect(savedBrush.isAvailable).to.be.equal(true)
           })
       })
   }) //end describe('Attribute definitions')
