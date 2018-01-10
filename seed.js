@@ -1,5 +1,5 @@
 /* Potentially update line 2 based on final decision on models */
-const { db, User, Product, Category, Cart, Order } = require('./server/db/models')
+const { db, User, Product, Category, Cart, Order, Review } = require('./server/db/models')
 
 const users = [{
   email: '12345@gmail.com',
@@ -86,6 +86,16 @@ const products = [{
 const categories = [{
   type: 'color',
   name: 'black'
+}];
+
+const reviews = [{
+  text: 'helloo',
+  rating: 3,
+  productId: 1
+} , {
+  text: 'jkhfkjjs;lgk',
+  rating: 2,
+  productId: 1
 }];
 
 const carts = [{
@@ -175,6 +185,10 @@ const seed = () =>
   .then(() =>
   Promise.all(products.map(product =>
     Product.create(product))
+  ))
+  .then(() =>
+  Promise.all(reviews.map(review =>
+    Review.create(review))
   ))
 );
 
