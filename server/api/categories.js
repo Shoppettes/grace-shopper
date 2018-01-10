@@ -5,7 +5,7 @@ module.exports = router
 //get all categories
 router.get('/', (req, res, next) => {
   Category.findAll({include: [Product]})
-    .then(users => res.json(users))
+    .then(categories => res.json(categories))
     .catch(next)
 })
 
