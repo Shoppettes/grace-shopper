@@ -3,21 +3,21 @@ const {User, Product, Category} = require('../db/models')
 module.exports = router
 
 
-//GET ALL PRODUCTS
+// get all products
 router.get('/', (req, res, next) => {
     Product.findAll({include: [Category]})
       .then( foundProducts => res.json(foundProducts))
       .catch(next)
 })
 
-//GET PRODUCT BY NAME
+// get single product by name
 router.get('/:productName', (req, res, next) => {
   Product.findOne({include: [Category], where: {name: req.params.productName}})
     .then( foundProduct => res.json(foundProduct))
     .catch(next)
 })
 
-//CREATE A PRODUCT
+// create a new product
 router.post('/', (req, res, next) => {
     Product.create(req.body)
       .then( createdProduct => Product.findById( createdProduct.id, {include: [Category]}))
@@ -26,19 +26,19 @@ router.post('/', (req, res, next) => {
 })
 
 
-//UPDATE A PRODUCT BY NAME
-router.put('/:name', (req, res, next) => {
+// update a product by name
+router.put('/:productName', (req, res, next) => {
     Product.update(req.body, {
-      where: {name: req.params.name},
+      where: {name: req.params.productName},
       returning: true
     })
       .then( updatedProduct => res.json(updatedProduct))
       .catch(next)
 })
 
-//DELETE A PRODUCT BY NAME
-router.delete('/:name', (req, res, next) => {
-    Product.destroy({where: {name: req.params.name}})
+// delete a product by name
+router.delete('/:productName', (req, res, next) => {
+    Product.destroy({where: {name: req.params.productName}})
       .then( () => res.status(204).end())
       .catch(next)
 })
