@@ -2,6 +2,7 @@ const router = require('express').Router()
 const {User} = require('../db/models')
 module.exports = router
 
+// get all users
 router.get('/', (req, res, next) => {
   User.findAll()
     // right now this route returns all info for all users. This will need to be updated to 
@@ -11,7 +12,6 @@ router.get('/', (req, res, next) => {
 })
 
 //create user
-
 router.post('/', (req, res, next) => {
   User.create(req.body)
   .then(newUser => res.json(newUser))
@@ -24,8 +24,8 @@ router.delete('/:userId', (req, res, next) => {
   .then(() =>  res.sendStatus(204))
   .catch(next);
 })
-//edit user => create admin privileges or not
 
+//edit user => create admin privileges or not
 router.put('/:userId', (req, res, next) => {
   User.update(req.body, {
     where: {id: req.params.userId},
@@ -35,8 +35,7 @@ router.put('/:userId', (req, res, next) => {
   .catch(next)
 })
 
-//get all orders for a certain user
-
+// get all orders for a certain user
 router.get('/:userId/orders', (req, res, next) => {
   User.findById(req.params.userId, {include: [{model: Order}]})
   .then(userWithOrders => res.json(userWithOrders))
