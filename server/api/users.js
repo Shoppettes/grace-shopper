@@ -5,27 +5,27 @@ module.exports = router
 // get all users
 router.get('/', (req, res, next) => {
   User.findAll()
-    // right now this route returns all info for all users. This will need to be updated to 
+    // right now this route returns all info for all users. This will need to be updated to
     //include a security check for 'isAdmin'
     .then(users => res.json(users))
     .catch(next)
 })
 
-//create user
+// create user
 router.post('/', (req, res, next) => {
   User.create(req.body)
   .then(newUser => res.json(newUser))
   .catch(next);
 })
-//delete user
 
+//delete user
 router.delete('/:userId', (req, res, next) => {
   User.destroy({where: {id: req.params.userId}})
   .then(() =>  res.sendStatus(204))
   .catch(next);
 })
 
-//edit user => create admin privileges or not
+// edit user => create admin privileges or not
 router.put('/:userId', (req, res, next) => {
   User.update(req.body, {
     where: {id: req.params.userId},
@@ -41,4 +41,3 @@ router.get('/:userId/orders', (req, res, next) => {
   .then(userWithOrders => res.json(userWithOrders))
   .catch(next);
 })
-
