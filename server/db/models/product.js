@@ -17,7 +17,7 @@ const Product = db.define('product', {
     type: Sequelize.Sequelize.DECIMAL(10,2),
     allowNull: false
   },
-  isAvailable: {
+  isAvailable: { //must make hook to validate whether a product is in stock, otherwise it is set to false
     type: Sequelize.BOOLEAN,
     allowNull: false
   },

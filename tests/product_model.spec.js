@@ -15,30 +15,40 @@ describe('Product model', () => {
     return db.sync({force: true})
   })
 
-  describe('instanceMethods', () => {
-    describe('correctPassword', () => {
-      let brush
 
-      beforeEach(() => {
-        return Product.create({
-          name: 'Dino Wax',
-          description: 'Get super silkly smooth Dino hands with this coconut-based wax.',
-          price: 12.99,
-          quantity: 82,
-          isAvailable: true
-        })
-          .then( createdProduct => {
-            brush = createdProduct
+  let brush
+  beforeEach(() => {
+    return Product.create({
+      name: 'Dino Wax',
+      description: 'Get super silkly smooth Dino hands with this coconut-based wax.',
+      price: 12.99,
+      quantity: 82,
+      isAvailable: true
+    })
+      .then( createdProduct => {
+        brush = createdProduct
+      })
+  })
+
+  //Emptying the table after each spec
+  afterEach(function () {
+    return Promise.all([
+      Product.truncate({ cascade: true })
+    ]);
+  });
+
+  describe('Attribute definitions', () => {
+
+
+      it('requires name, price, quantity, isAvailable', () => {
+        return brush.save()
+          .then( savedBrush => {
+            expect(savedBrush.name).to.equal('Dino Wax')
+            expect(savedBrush.description).to.equal('Get super silkly smooth Dino hands with this coconut-based wax')
+            expect(savedBrush.price).to.equal(12.99)
+            expect(savedBrush.quantity).to.equal(82)
+            expect(savedBrush.isAvailable).to.equal(true)
           })
       })
-
-      it('returns true if the password is correct', () => {
-        expect(brush.correctPassword('bones')).to.be.equal(true)
-      })
-
-      it('returns false if the password is incorrect', () => {
-        expect(brush.correctPassword('bonez')).to.be.equal(false)
-      })
-    }) // end describe('correctPassword')
-  }) // end describe('instanceMethods')
-}) // end describe('Product model')
+  }) //end describe('Attribute definitions')
+}) //end describe('Product model')
