@@ -4,7 +4,7 @@ module.exports = router
 
 //get all categories
 router.get('/', (req, res, next) => {
-  Category.findAll()
+  Category.findAll({include: [Product]})
     .then(users => res.json(users))
     .catch(next)
 })
@@ -38,7 +38,7 @@ router.put('/:categoryId', (req, res, next) => {
 
 router.get('/:categoryId/products', (req, res, next) => {
   Category.findById(req.params.categoryId, {include: [{model: Product}]})
-  .then(categoryWithProducts => res.json(categoryWithProducts))
+  .then(categoryWithProducts => res.json(categoryWithProducts.products))
   .catch(next);
 })
 

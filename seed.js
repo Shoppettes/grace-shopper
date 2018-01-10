@@ -83,8 +83,7 @@ const products = [{
 
 const categories = [{
   type: 'color',
-  name: 'black',
-  productId: 1
+  name: 'black'
 }];
 
 const carts = [{
