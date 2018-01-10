@@ -60,7 +60,8 @@ const products = [{
   description: 'Get super silkly smooth Dino hands with this coconut-based wax.',
   price: 12.99,
   quantity: 82,
-  isAvailable: true
+  isAvailable: true,
+  cartId: 1
 } , {
   name: 'Dino Hair Creme',
   description: 'Get super silkly smooth Dino hair with this state-of-the-art hair creme.',
@@ -78,23 +79,32 @@ const products = [{
   description: 'Be the talk of the town with this all natural nail polish.',
   price: 12.99,
   quantity: 52,
-  isAvailable: true
+  isAvailable: true,
+  cartId: 2
 }];
 
 const categories = [];
 
 const carts = [{
   subTotal: 12.99,
-  total: 14.99
+  total: 14.99,
+  userId: 1,
+  orderId: 2
 }, {
   subTotal: 13.99,
-  total: 15.99
+  total: 15.99,
+  userId: 2,
+  orderId: 1
 } , {
   subTotal: 15.99,
-  total: 17.99
+  total: 17.99,
+  userId: 3,
+  orderId: 4
 } , {
   subTotal: 21.99,
-  total: 23.99
+  total: 23.99,
+  userId: 4,
+  orderId: 2
 }];
 
 const orders = [{
@@ -106,7 +116,8 @@ const orders = [{
   billingAddress: '183 Hello Street, Hampersville, MN, 70809',
   creditCardNumber: 6789123457891234,
   CCV: 123,
-  expirationDate: 08/18
+  expirationDate: 08/18,
+  userId: 1
 }, {
   subTotal: 13.99,
   total: 15.99,
@@ -116,7 +127,8 @@ const orders = [{
   billingAddress: '192 Hello Street, Hampersville, MN, 70809',
   creditCardNumber: 6798123457891243,
   CCV: 234,
-  expirationDate: 08/19
+  expirationDate: 08/19,
+  userId: 2
 } , {
   subTotal: 15.99,
   total: 17.99,
@@ -126,7 +138,8 @@ const orders = [{
   billingAddress: '194 Hiya Street, Hampersville, IA, 70243',
   creditCardNumber: 6798123443291243,
   CCV: 345,
-  expirationDate: 08/21
+  expirationDate: 08/21,
+  userId: 3
 } , {
   subTotal: 21.99,
   total: 23.99,
@@ -136,7 +149,8 @@ const orders = [{
   billingAddress: '128 Hey Street, Hampersville, RI, 73243',
   creditCardNumber: 6776523443291243,
   CCV: 3456,
-  expirationDate: 08/22
+  expirationDate: 08/22,
+  userId: 2
 }];
 
 const seed = () =>
@@ -144,21 +158,21 @@ const seed = () =>
     User.create(user))
   )
   .then(() =>
-  Promise.all(products.map(product =>
-    Product.create(product))
-  ))
-  .then(() =>
   Promise.all(categories.map(category =>
     Category.create(category))
-  ))
-  .then(() =>
-  Promise.all(carts.map(cart =>
-    Cart.create(cart))
   ))
   .then(() =>
   Promise.all(orders.map(order =>
     Order.create(order))
   )
+  .then(() =>
+  Promise.all(carts.map(cart =>
+    Cart.create(cart))
+  ))
+  .then(() =>
+  Promise.all(products.map(product =>
+    Product.create(product))
+  ))
 );
 
 const main = () => {
