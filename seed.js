@@ -67,7 +67,7 @@ const products = [{
   description: 'Get super silkly smooth Dino hair with this state-of-the-art hair creme.',
   price: 21.99,
   quantity: 68,
-  isAvailable: true
+  isAvailable: true,
 } , {
   name: 'Dino Brush',
   description: 'Spend hours brushing your scales with this special brush.',
@@ -75,8 +75,8 @@ const products = [{
   quantity: 54,
   isAvailable: true
 } , {
-  name: 'Dino Nail Polish',
-  description: 'Be the talk of the town with this all natural nail polish.',
+  name: 'Dino Talon Polish',
+  description: 'Be the talk of the town with this all natural talon polish.',
   price: 12.99,
   quantity: 52,
   isAvailable: true,
@@ -84,8 +84,18 @@ const products = [{
 }];
 
 const categories = [{
-  type: 'color',
-  name: 'black'
+  name: 'skincare',
+  options: ['exfoliants', 'sunscreens', 'body lotions'],
+}, {
+  name: 'hygiene',
+  options: ['dental care', 'body wash', 'deodorant']
+}, {
+  name: 'makeup',
+  options: ['eye makeup', 'lips', 'powders', 'scales', 'claws and talons'],
+  productId: 1
+}, {
+  name: 'hair',
+  options: ['creams and conditioners', 'shampoos']
 }];
 
 const carts = [{
@@ -161,10 +171,6 @@ const seed = () =>
     User.create(user))
   )
   .then(() =>
-  Promise.all(categories.map(category =>
-    Category.create(category))
-  ))
-  .then(() =>
   Promise.all(orders.map(order =>
     Order.create(order))
   )
@@ -176,11 +182,15 @@ const seed = () =>
   Promise.all(products.map(product =>
     Product.create(product))
   ))
+  .then(() =>
+  Promise.all(categories.map(category =>
+    Category.create(category))
+  ))
 );
 
 const main = () => {
   console.log('Syncing db...');
-  db.sync({ force: true })
+  db.sync({force: true})
     .then(() => {
       console.log('Seeding databse...');
       return seed();
