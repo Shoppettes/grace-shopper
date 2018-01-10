@@ -14,7 +14,7 @@ const Product = db.define('product', {
     allowNull: false
   },
   quantity: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.Sequelize.DECIMAL(10,2),
     allowNull: false
   },
   isAvailable: {

@@ -19,11 +19,11 @@ const db = require('../db.js')
  * instead of: const User = require('../db/models/user')
  */
 
-Use.hasOne(Cart);
+User.hasOne(Cart);
 User.hasMany(Order);
 Product.hasMany(Category);
-Product.belongsToMany(Order, {as: 'Product', through:'OrderProducts'});
-Category.belongsToMany(Product, {as: 'Category', through: 'ProductCategories'});
+Product.belongsToMany(Order, {as: 'Product', through: 'OrderProducts'});
+Category.belongsToMany(Product, { through: 'ProductCategories'});
 Cart.belongsTo(User);
 Cart.hasMany(Product);
 Order.hasOne(Cart);

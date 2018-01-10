@@ -9,11 +9,24 @@ const User = db.define('user', {
     allowNull: false,
     isEmail: true
   },
-  password: Sequelize.STRING,
-  salt: Sequelize.STRING,
-  googleId: Sequelize.STRING,
-  firstName: Sequelize.STRING,
-  lastName: Sequelize.STRING,
+  password: {
+    type: Sequelize.STRING
+  },
+  salt: {
+    type: Sequelize.STRING
+  },
+  googleId: {
+    type: Sequelize.STRING
+  },
+  facebookId: {
+    type: Sequelize.STRING
+  },
+  firstName: {
+    type: Sequelize.STRING
+  },
+  lastName: {
+    type: Sequelize.STRING
+  },
   fullName: {
     type: Sequelize.VIRTUAL,
     get () {
