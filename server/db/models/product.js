@@ -17,9 +17,14 @@ const Product = db.define('product', {
     type: Sequelize.Sequelize.DECIMAL(10,2),
     allowNull: false
   },
-  isAvailable: { //must make hook to validate whether a product is in stock, otherwise it is set to false
+  availability: { //must make hook to validate whether a product is in stock, otherwise it is set to false
     type: Sequelize.BOOLEAN,
-    allowNull: false
+    get() {
+      return this.quantity > 0 
+    },
+    set(availabilityBool) {
+      this.setDataValue('availability', availabilityBool)
+    }
   },
   imageURL: {
     type: Sequelize.STRING,

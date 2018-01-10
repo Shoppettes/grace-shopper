@@ -5,10 +5,6 @@ const Category = db.define('category', {
   name: {
     type: Sequelize.STRING,
     allowNull: false
-  },
-  options: {
-    type: Sequelize.ARRAY(Sequelize.STRING),
-    allowNull: false
   }
 })
 

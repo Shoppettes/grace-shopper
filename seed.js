@@ -83,20 +83,25 @@ const products = [{
   cartId: 2
 }];
 
-const categories = [{
-  name: 'skincare',
-  options: ['exfoliants', 'sunscreens', 'body lotions'],
-}, {
-  name: 'hygiene',
-  options: ['dental care', 'body wash', 'deodorant']
-}, {
-  name: 'makeup',
-  options: ['eye makeup', 'lips', 'powders', 'scales', 'claws and talons'],
-  productId: 1
-}, {
-  name: 'hair',
-  options: ['creams and conditioners', 'shampoos']
-}];
+const categories = [
+  {name: 'skincare' },
+  {name: 'body lotions'},
+  {name: 'exfoliants' }, 
+  {name: 'hygiene'},
+  {name: 'dental care'},
+  {name: 'makeup'},
+  {name: 'scales'}, 
+  {name:'claws and talons'},
+  {name: 'hair'},
+  {name: 'carnivore'},
+  {name: 'herbivore'},
+  {name: 'triassic'},
+  {name: 'jurassic'},
+  {name: 'cretaceous'},
+  {name: 'land-dwelling'},
+  {name: 'airborne'},
+  {name: 'water-dwelling'}
+];
 
 const carts = [{
   subTotal: 12.99,
@@ -122,7 +127,7 @@ const carts = [{
 
 const orders = [{
   subTotal: 12.99,
-  total: 14.99,
+  // total: 14.99,
   shippingCost: 2.99,
   tax: 1.99,
   shippingAddress: '156 Main Street, Hampersville, MN, 70809',
@@ -133,7 +138,7 @@ const orders = [{
   userId: 1
 }, {
   subTotal: 13.99,
-  total: 15.99,
+  // total: 15.99,
   shippingCost: 3.99,
   tax: 2.49,
   shippingAddress: '123 Main Street, Hampersville, MN, 70809',
@@ -144,7 +149,7 @@ const orders = [{
   userId: 2
 } , {
   subTotal: 15.99,
-  total: 17.99,
+  // total: 17.99,
   shippingCost: 3.99,
   tax: 3.49,
   shippingAddress: '182 75th Street, Hampersville, IA, 70243',
@@ -155,7 +160,7 @@ const orders = [{
   userId: 3
 } , {
   subTotal: 21.99,
-  total: 23.99,
+  // total: 23.99,
   shippingCost: 3.99,
   tax: 3.99,
   shippingAddress: '127 86th Street, Hampersville, RI, 70678',
