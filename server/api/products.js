@@ -11,8 +11,8 @@ router.get('/', (req, res, next) => {
 })
 
 //GET PRODUCT BY NAME
-router.get('/:name', (req, res, next) => {
-  Product.findOne({include: [Category], where: {name: req.params.name}})
+router.get('/:productName', (req, res, next) => {
+  Product.findOne({include: [Category], where: {name: req.params.productName}})
     .then( foundProduct => res.json(foundProduct))
     .catch(next)
 })
