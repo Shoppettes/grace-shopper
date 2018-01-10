@@ -34,26 +34,27 @@ describe('User routes', () => {
     })
     it('POST /api/users', (done) => {
       return request(app)
-        .post('/users')
+        .post('/api/users')
         .send(dino)
         .then(res => {
-          expect(res.body[0].email).to.be.equal(dinoEmail)
-        })
+          expect(res.body.email).to.be.equal(dinoEmail)
+        }, done())
       })
     it('PUT /api/users/:userId', () => {
       return request(app)
-        .put('/users/1')
-        .send({email: 'ilovedinos@me.me'})
+        .put('/api/users/1')
+        .send({'email': 'ilovedinos@me.me'})
         .then(res => {
-          expect(res.body[1][0].email).to.be.equal('ilovedinos@me.me')
+          expect(res.body.email).to.be.equal('ilovedinos@me.me')
         })
+    })
     it('DELETE /api/users/:userId', () => {
       return request(app)
-        .delete('/users/1')
-        .then(() => {
-          expect(res.status().to.be.equal(204))
+        .delete('/api/users/1')
+        .then((res) => {
+          expect(res.status).to.equal(204)
         })
-      })    
+   
     })
   }) // end describe('/api/users')
 }) // end describe('User routes')
