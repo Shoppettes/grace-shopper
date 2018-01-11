@@ -10,16 +10,16 @@ router.get('/', (req, res, next) => {
       .catch(next)
 })
 
-// get single product by name
+// get single product by name, including assoicated categories and photos
 router.get('/:productName', (req, res, next) => {
-  Product.findOne({include: [Category], where: {name: req.params.productName}})
+  Product.findOne({include: [Category, Photo], where: {name: req.params.productName}})
     .then( foundProduct => res.json(foundProduct))
     .catch(next)
 })
 
 // get single product by id -- not really sure if this is necessary; revisit after frontend buildout
 router.get('/:productId', (req, res, next) => {
-  Product.findOne({include: [Category], where: {id: req.params.productId}})
+  Product.findOne({include: [Category, Photo], where: {id: req.params.productId}})
     .then(foundProduct => res.json(foundProduct))
     .catch(next)
 })
@@ -31,7 +31,6 @@ router.post('/', (req, res, next) => {
       .then( foundProduct => res.json(foundProduct))
       .catch(next)
 })
-
 
 // update a product by name
 router.put('/:productId', (req, res, next) => {
