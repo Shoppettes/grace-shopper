@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
 
 // get a single order by id, including associated user and products
 router.get('/:orderId', (req, res, next) => {
-  Order.findAll({where: {id: req.params.orderId}} {include: [User, Purchase]})
+  Order.findById({include: [User, Product], where: {id: req.params.orderId}})
     .then(orders => res.json(orders))
     .catch(next)
 })
