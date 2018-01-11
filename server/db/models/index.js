@@ -1,10 +1,9 @@
-const User = require('./user');
-const Product = require('./product');
-const Category = require('./category');
-const Cart = require('./cart');
-const Order = require('./order');
-const Review = require('./review');
-const db = require('../db.js');
+const User = require('./user')
+const Product = require('./product')
+const Category = require('./category')
+const Order = require('./order')
+const Photo = require('./photo')
+const db = require('../db.js')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -20,18 +19,23 @@ const db = require('../db.js');
  * instead of: const User = require('../db/models/user')
  */
 
-User.hasOne(Cart);
+// User.hasOne(Cart);
 User.hasMany(Order);
 Product.hasMany(Category);
 Product.hasMany(Review);
 Review.belongsTo(Product);
 Product.belongsToMany(Order, {as: 'Product', through: 'OrderProducts'});
 Category.belongsToMany(Product, { through: 'ProductCategories'});
-Cart.belongsTo(User);
-Cart.hasMany(Product);
-Order.hasOne(Cart);
+// Cart.belongsTo(User);
+// Cart.hasMany(Product);
+// Order.hasOne(Cart);
 Order.belongsTo(User);
+Photo.belongsTo(Product);
 
 module.exports = {
+<<<<<<< HEAD
+  User, Product, Category, Order, Photo, db
+=======
   User, Product, Category, Cart, Order, Review, db
+>>>>>>> master
 }

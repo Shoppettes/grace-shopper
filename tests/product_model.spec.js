@@ -45,7 +45,7 @@ describe('Product model', () => {
             expect(savedBrush.description).to.equal('Get super silkly smooth Dino hands with this coconut-based wax.')
             expect(savedBrush.price).to.be.equal('12.99')
             expect(savedBrush.quantity).to.be.equal('82.00')
-            expect(savedBrush.isAvailable).to.be.equal(true)
+            expect(savedBrush.availability).to.be.equal(true)
           })
       })
   }) //end describe('Attribute definitions')
