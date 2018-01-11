@@ -6,20 +6,20 @@ module.exports = router
 // get all products
 router.get('/', (req, res, next) => {
     Product.findAll({include: [Category]})
-      .then( foundProducts => res.json(foundProducts))
+      .then(foundProducts => res.json(foundProducts))
       .catch(next)
 })
 
-// get single product by name, including assoicated categories and photos
+// get single product by name, including assoicated categories, photos, and reviews
 router.get('/:productName', (req, res, next) => {
-  Product.findOne({include: [Category, Photo], where: {name: req.params.productName}})
-    .then( foundProduct => res.json(foundProduct))
+  Product.findOne({include: [Category, Photo, Review], where: {name: req.params.productName}})
+    .then(foundProduct => res.json(foundProduct))
     .catch(next)
 })
 
-// get single product by id -- not really sure if this is necessary; revisit after frontend buildout
+// get single product by id, including assocated categories, photos, and reviews
 router.get('/:productId', (req, res, next) => {
-  Product.findOne({include: [Category, Photo], where: {id: req.params.productId}})
+  Product.findById({include: [Category, Photo, Review], where: {id: req.params.productId}})
     .then(foundProduct => res.json(foundProduct))
     .catch(next)
 })
@@ -27,8 +27,8 @@ router.get('/:productId', (req, res, next) => {
 // create a new product
 router.post('/', (req, res, next) => {
     Product.create(req.body)
-      .then( createdProduct => Product.findById( createdProduct.id, {include: [Category]}))
-      .then( foundProduct => res.json(foundProduct))
+      .then(createdProduct => Product.findById(createdProduct.id, {include: [Category]}))
+      .then(foundProduct => res.json(foundProduct))
       .catch(next)
 })
 
