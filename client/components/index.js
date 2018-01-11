@@ -3,6 +3,11 @@
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
-export {default as Main} from './main'
-export {default as UserHome} from './user-home'
-export {Login, Signup} from './auth-form'
+export {default as Navbar} from './Navbar.jsx'
+export {default as Sidebar} from './Sidebar.jsx'
+export {default as Footer} from './Footer.jsx'
+export {default as Home} from './Home.jsx'
+export {default as Products} from './Products.jsx'
+export {default as SingleProduct} from './SingleProduct.jsx'
+export {default as Checkout} from './Checkout.jsx'
+export {Login, Signup} from './AuthForm.jsx'
