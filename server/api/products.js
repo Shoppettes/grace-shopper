@@ -17,6 +17,13 @@ router.get('/:productName', (req, res, next) => {
     .catch(next)
 })
 
+// get single product by id -- not really sure if this is necessary; revisit after frontend buildout
+router.get('/:productId', (req, res, next) => {
+  Product.findOne({include: [Category], where: {id: req.params.productId}})
+    .then(foundProduct => res.json(foundProduct))
+    .catch(next)
+})
+
 // create a new product
 router.post('/', (req, res, next) => {
     Product.create(req.body)
@@ -27,7 +34,7 @@ router.post('/', (req, res, next) => {
 
 
 // update a product by name
-router.put('/:productName', (req, res, next) => {
+router.put('/:productId', (req, res, next) => {
     Product.update(req.body, {
       where: {name: req.params.productName},
       returning: true
@@ -37,7 +44,7 @@ router.put('/:productName', (req, res, next) => {
 })
 
 // delete a product by name
-router.delete('/:productName', (req, res, next) => {
+router.delete('/:productId', (req, res, next) => {
     Product.destroy({where: {name: req.params.productName}})
       .then( () => res.status(204).end())
       .catch(next)
