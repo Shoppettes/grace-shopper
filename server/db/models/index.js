@@ -1,7 +1,6 @@
 const User = require('./user')
 const Product = require('./product')
 const Category = require('./category')
-// const Cart = require('./cart')
 const Order = require('./order')
 const Photo = require('./photo')
 const db = require('../db.js')
@@ -23,6 +22,8 @@ const db = require('../db.js')
 // User.hasOne(Cart);
 User.hasMany(Order);
 Product.hasMany(Category);
+Product.hasMany(Review);
+Review.belongsTo(Product);
 Product.belongsToMany(Order, {as: 'Product', through: 'OrderProducts'});
 Category.belongsToMany(Product, { through: 'ProductCategories'});
 // Cart.belongsTo(User);
@@ -32,5 +33,9 @@ Order.belongsTo(User);
 Photo.belongsTo(Product);
 
 module.exports = {
+<<<<<<< HEAD
   User, Product, Category, Order, Photo, db
+=======
+  User, Product, Category, Cart, Order, Review, db
+>>>>>>> master
 }
