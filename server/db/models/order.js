@@ -23,13 +23,13 @@ const Order = db.define('order', {
   'shipped' means the order has been shipped but receipt has not been completed
   'completed' means the order has been shipped/picked up and reciept has been confirmed
   */
-  dateTimeOrderCreated: Sequelize.literal('CURRENT_TIMESTAMP'),
-  estimatedShipDate: {
-    type: Sequelize.VIRTUAL,
-    get() {
-       this.dateTimeOrderCreated + 10;
-    }
-  }
+  // dateTimeOrderCreated: Sequelize.literal('CURRENT_TIMESTAMP'),
+  // estimatedShipDate: {
+  //   type: Sequelize.VIRTUAL,
+  //   get() {
+  //      this.dateTimeOrderCreated + 10;
+  //   }
+  // }
   //,
   //shipDate: {
   //   type: Sequelize.VIRTUAL, 
