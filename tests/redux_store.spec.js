@@ -16,8 +16,7 @@ describe('action creators', () => {
     })
     describe('getAllProducts', () => {
         it ('returns expected action', () => {
-            const allProductsAction = {type: 'GET_ALL_PRODUCTS', products: productsArr};
-            expect(getAllProducts(allProductsAction)).to.be.deep.equal({
+            expect(getAllProducts(productsArr)).to.be.deep.equal({
                 type: 'GET_ALL_PRODUCTS',
                 products: productsArr
             })
@@ -26,8 +25,7 @@ describe('action creators', () => {
     describe('setChosenProduct', () => {
         it ('returns expected action', () => {
             const chosenProduct = productsArr[0];
-            const chosenProductAction = {type: 'SET_CHOSEN_PRODUCT', product: chosenProduct};
-            expect(setChosenProduct(chosenProductAction)).to.be.deep.equal({
+            expect(setChosenProduct(chosenProduct)).to.be.deep.equal({
                 type: 'SET_CHOSEN_PRODUCT',
                 product: chosenProduct
             })
@@ -35,11 +33,9 @@ describe('action creators', () => {
     })
     describe('addToCart', () => {
         it ('returns expected action', () => {
-            const purchaseToAdd = newPurchase;
-            const addToCartAction = {type: 'ADD_TO_CART', purchase: purchaseToAdd};
-            expect(addToCart(addToCartAction)).to.be.deep.equal({
+            expect(addToCart(newPurchase)).to.be.deep.equal({
                 type: ADD_TO_CART,
-                purchase: purchaseToAdd
+                purchase: newPurchase
             })
         })
     })
