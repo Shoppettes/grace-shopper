@@ -1,11 +1,11 @@
 import {expect} from 'chai'
 // import {createStore} from 'redux'
-//import actions 
+//import actions
 // import store from '../../client/store'
-import {GET_ALL_PRODUCTS, SET_CHOSEN_PRODUCT, GET_ALL_CATEGORIES, SET_CHOSEN_CATEGORY, 
+import {GET_ALL_PRODUCTS, SET_CHOSEN_PRODUCT, GET_ALL_CATEGORIES, SET_CHOSEN_CATEGORY,
     GET_CART, ADD_TO_CART, DELETE_FROM_CART,  ADD_REVIEW, getAllProducts, setChosenProduct,
-    addToCart
- } from '../client/store'  
+    addToCart, getProductsFromDb
+ } from '../client/store/products'
 
 describe('action creators', () => {
     let productsArr, cartArr, newPurchase;

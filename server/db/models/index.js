@@ -4,6 +4,7 @@ const Category = require('./category')
 const Order = require('./order')
 const Photo = require('./photo')
 const db = require('../db.js')
+const Review = require('./review')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -33,9 +34,5 @@ Order.belongsTo(User);
 Photo.belongsTo(Product);
 
 module.exports = {
-<<<<<<< HEAD
-  User, Product, Category, Order, Photo, db
-=======
-  User, Product, Category, Cart, Order, Review, db
->>>>>>> master
+  User, Product, Category, Order, Photo, Review, db
 }
