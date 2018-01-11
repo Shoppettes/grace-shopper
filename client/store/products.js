@@ -13,14 +13,11 @@ const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
  /**
  * INITIAL STATE
  */
-const products = []
+const defaultProducts = []
  /**
  * ACTION CREATORS
  */
-const getAllProducts = (AllProducts) => ({
-  type: GET_ALL_PRODUCTS,
-  AllProducts
-})
+export const getAllProducts = (products) => ({type: GET_ALL_PRODUCTS, products})
 
 
  /**
@@ -28,15 +25,15 @@ const getAllProducts = (AllProducts) => ({
  */
 export const getProductsFromDb = () =>
   dispatch => axios.get('/api/products')
-    .then( allProducts => dispatch(getAllProducts(allProducts)))
+    .then( products => dispatch(getAllProducts(products)))
     .catch(err => console.log(err))
  /**
  * REDUCER
  */
-export default function (state = products, action){
+export default function (state = defaultProducts, action){
   switch (action.type) {
     case GET_ALL_PRODUCTS:
-      return action.AllProducts
+      return action.products
     default:
       return state
   }
