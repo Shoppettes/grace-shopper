@@ -13,7 +13,7 @@ Order.belongsTo(User);
 
 //many to many
 Order.belongsToMany(Product, {through: OrderProduct});
-Product.belongsToMany(Order, {through: OrderProducts});
+Product.belongsToMany(Order, {through: OrderProduct});
 
 //many to many
 Category.belongsToMany(Product, {through: 'ProductCategories'});
