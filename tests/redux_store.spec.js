@@ -43,19 +43,19 @@ import {GET_ALL_PRODUCTS, SET_CHOSEN_PRODUCT, GET_ALL_CATEGORIES, SET_CHOSEN_CAT
 
   }) //end Action Creator tests
 
-  describe('thunk creators', () => {
-    let productsArr, chosenProduct;
-    beforeEach('Create test products array, chosenProduct', () => {
-        productsArr = [{'name': 'dino nail polish'}]
-        chosenProduct = {'name': 'dino nail polish'}
-    })
-    describe('deleteChosenProductFromDb', () => {
-      it ('deletes a chosenProduct from the products array', () => {
-        deleteChosenProduct(chosenProduct)
-        productsArr = getAllProducts(productsArr).productsArr
-        expect(chosenProduct).to.be.deep.equal([])
-      })
-    })
-  }) //end thunk creator tests
+  // describe('thunk creators', () => {
+  //   let productsArr, chosenProduct;
+  //   beforeEach('Create test products array, chosenProduct', () => {
+  //       productsArr = [{'name': 'dino nail polish'}]
+  //       chosenProduct = {'name': 'dino nail polish'}
+  //   })
+  //   describe('deleteChosenProductFromDb', () => {
+  //     it ('deletes a chosenProduct from the products array', () => {
+  //       deleteChosenProduct(chosenProduct)
+  //       productsArr = getAllProducts(productsArr).productsArr
+  //       expect(chosenProduct).to.be.deep.equal([])
+  //     })
+  //   })
+  // }) //end thunk creator tests
  }) //end Redux Archtechture tests
 
