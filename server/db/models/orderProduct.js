@@ -9,7 +9,7 @@ OrderProduct.prototype.decrementQuantity = function () {
   quantity = this.quantity--;
 }
 
-OrderProduct.prototype.decrementQuantity = function () {
+OrderProduct.prototype.incrementQuantity = function () {
   quantity = this.quantity++;
 }
 
