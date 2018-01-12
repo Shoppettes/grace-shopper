@@ -5,8 +5,10 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import products from './products'
 import user from './user'
 import chosenProduct from './chosenProduct'
+import categories from './categories'
+import chosenCategory from './chosenCategory'
 
-export const reducer = combineReducers({products, chosenProduct, user, currentOrder})
+export const reducer = combineReducers({ products, chosenProduct, user, categories, chosenCategory})
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware, loggingMiddleware
@@ -18,3 +20,5 @@ export * from './products'
 export * from './chosenProduct'
 export * from './user'
 export * from './currentOrder'
+export * from './categories'
+export * from './chosenCategory'
