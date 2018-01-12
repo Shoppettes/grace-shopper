@@ -18,7 +18,7 @@ export const setChosenProduct = chosenProduct => ({type: SET_CHOSEN_PRODUCT, cho
 /**
  * THUNK CREATORS
  */
-export const getChosenProductFromDb = Product => dispatch => axios.get(`api/products/${Product.id}`)
+export const getChosenProductFromDb = ProductId => dispatch => axios.get(`api/products/${ProductId}`)
   .then( res => dispatch(setChosenProduct(res.data)))
   .catch( err => console.log(err))
 
