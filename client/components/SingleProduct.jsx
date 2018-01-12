@@ -1,9 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { getChosenProductFromDb } from '../store'
 
 
 const singleProduct = (props) => {
-  let product = props.chosenProduct;
+  let { chosenProduct, setProduct} = props
+  setProduct(props.match.params.id)
+  //let product = chosenProduct;
   return (
     <div>
       <span>Product Name</span>
@@ -27,9 +30,12 @@ const mapState = ({chosenProduct}) => {
 
 const mapDispatch = (dispatch) => {
   return {
-
+    setProduct(productId) {
+      dispatch(getChosenProductFromDb(productId))
+    }
   }
 };
 
 export default connect(mapState, mapDispatch)(singleProduct);
+
 
