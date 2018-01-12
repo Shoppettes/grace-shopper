@@ -1,11 +1,13 @@
 import {expect} from 'chai'
-// import {createStore} from 'redux'
+import {createStore} from 'redux'
 //import actions
 // import store from '../../client/store'
 import {GET_ALL_PRODUCTS, SET_CHOSEN_PRODUCT, GET_ALL_CATEGORIES, SET_CHOSEN_CATEGORY,
     GET_CART, ADD_TO_CART, DELETE_FROM_CART,  ADD_REVIEW, getAllProducts, setChosenProduct,
     addToCart, getProductsFromDb
  } from '../client/store/products'
+ import {reducer} from '../client/store'
+ 
 
 describe('action creators', () => {
     let productsArr, cartArr, newPurchase;
@@ -40,4 +42,33 @@ describe('action creators', () => {
         })
     })
 
+})
+
+describe('Main reducer', () => {
+    let testStore;
+    beforeEach('Create mock store', () => {
+        testStore = createStore(reducer);
+    })
+    it('has expected initial state', () => {
+        expect(testStore.getState()).to.be.deep.equal({
+            user: {},
+            products: [],
+            // chosenCategory: {},
+            // chosenProduct: {},
+            // currentReview: '',
+            // cart: []
+        })
+    })
+    describe('products sub-reducer', () => {
+        it('gets products array from the db via a thunk',() => {
+           const store = testStore;
+           const expectedAction = 'getAllProducts'
+
+           return store.dispatch(getAllProducts())
+           .then(() => {
+               const actualAction = store.getActions().map(action => action.type)
+               expect(actualAction).to.eql(expectedAction)
+           })
+        })
+    })
 })
