@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'redux';
+import {getCurrentOrder} from '../store'
 
 class Checkout extends Component => {
   constructor(props) {
