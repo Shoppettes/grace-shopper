@@ -23,3 +23,4 @@ Photo.belongsTo(Product);
 module.exports = {
   Category, Order, Photo, Product, Review, User, db
 }
+
