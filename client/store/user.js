@@ -25,17 +25,17 @@ export const fetchCurrentUser = () =>
   dispatch =>
     axios.get('/auth/me')
       .then(res =>
-        dispatch(getUser(res.data || defaultUser)))
+        dispatch(setCurrentUser(res.data || defaultUser)))
       .catch(err => console.log(err))
 
 export const auth = (email, password, method) =>
   dispatch =>
     axios.post(`/auth/${method}`, { email, password })
       .then(res => {
-        dispatch(getUser(res.data))
+        dispatch(setCurrentUser(res.data))
         history.push('/home')
       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
-        dispatch(getUser({error: authError}))
+        dispatch(setCurrentUser({error: authError}))
       })
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
@@ -43,7 +43,7 @@ export const logout = () =>
   dispatch =>
     axios.post('/auth/logout')
       .then(_ => {
-        dispatch(removeUser())
+        dispatch(clearCurrentUser())
         history.push('/login')
       })
       .catch(err => console.log(err))
@@ -53,9 +53,9 @@ export const logout = () =>
  */
 export default function (state = defaultUser, action) {
   switch (action.type) {
-    case GET_USER:
+    case SET_CURRENT_USER:
       return action.currentUser
-    case REMOVE_USER:
+    case CLEAR_CURRENT_USER:
       return defaultUser
     default:
       return state
