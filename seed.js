@@ -1,5 +1,5 @@
 /* Potentially update line 2 based on final decision on models */
-const { db, User, Product, Category, Cart, Order, Review } = require('./server/db/models')
+const { db, User, Product, Category, Order, Review } = require('./server/db/models')
 
 const users = [{
   email: '12345@gmail.com',
@@ -80,8 +80,7 @@ const products = [{
   description: 'Impress all the lady dinos with this fashionable bow tie.',
   price: 12.99,
   quantity: 82,
-  isAvailable: true,
-  cartId: 1
+  isAvailable: true
 } , {
   name: 'Brontasaurus bike',
   description: 'This classic dino bike will always be in style! Comes with an adjustable seat for all leg lengths.',
@@ -270,6 +269,10 @@ const seed = () =>
   .then(() =>
   Promise.all(products.map(product =>
     Product.create(product))
+  ))
+  .then(() =>
+  Promise.all(categories.map(category =>
+    Category.create(category))
   ))
   .then(() =>
   Promise.all(reviews.map(review =>

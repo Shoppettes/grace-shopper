@@ -42,7 +42,7 @@ Product.prototype.calculateRating = function(product){
   })
     .then(reviews => {
       let tot = 0;
-       for (i = 0; i < reviews.length; i++) {
+       for (let i = 0; i < reviews.length; i++) {
           tot += reviews.rating;
        }
        return tot / reviews.length;

@@ -6,9 +6,9 @@ import user from './user'
 import products from './products'
 
 export const reducer = combineReducers({user, products})
+
 const middleware = composeWithDevTools(applyMiddleware(
-  thunkMiddleware,
-  createLogger({collapsed: true})
+  thunkMiddleware, loggingMiddleware
 ))
 const store = createStore(reducer, middleware)
 
