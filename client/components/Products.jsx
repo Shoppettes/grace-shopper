@@ -18,7 +18,7 @@ import {fetchCurrentUser, getProductsFromDb} from '../store';
 //     quantity: 82,
 //     isAvailable: true,
 //     imgUrl: '<img src="../../public/dino-pics/dino-bow-tie.jpeg" />'
-  
+
 //   }
 // ]
   // , {
@@ -33,21 +33,21 @@ import {fetchCurrentUser, getProductsFromDb} from '../store';
   //   description: 'Perfect for the gentleman dino, carnivore or herbivore.',
   //   price: 33.99,
   //   quantity: 54,
-  //   isAvailable: true, 
+  //   isAvailable: true,
   //   imgUrl: '<a href="http://tinypic.com?ref=21ah4rl" target="_blank"><img src="http://i65.tinypic.com/21ah4rl.jpg" border="0" alt="dino stealing top hat"></a>'
   // } , {
   //   name: 'Tea-rex',
   //   description: 'Entertain your friends or just relax at home with this calming tea blend.',
   //   price: 5.99,
   //   quantity: 52,
-  //   isAvailable: true, 
+  //   isAvailable: true,
   //   imgUrl: '<a href="http://tinypic.com?ref=2s9twty" target="_blank"><img src="http://i66.tinypic.com/2s9twty.jpg" border="0" alt="dinosaurs drinking tea"></a>'
   // }, {
   //   name: 'CAKE',
   //   description: 'Perfect for any and all special occasion! Yum!',
   //   price: 19.99,
   //   quantity: 90,
-  //   isAvailable: true, 
+  //   isAvailable: true,
   //   imgUrl: '<a href="http://tinypic.com?ref=107wgol" target="_blank"><img src="http://i65.tinypic.com/107wgol.jpg" border="0" alt="baby dinosaur eating birthday cake"></a>"></a>'
   // }
 // ];
@@ -62,12 +62,13 @@ const Products = (props) => {
       <div className="row">
       {products.data && products.data.map(product => (
         <div className="col-xs-4" key={product.id}>
-        <a className="thumbnail" href="#"> 
+        <a className="thumbnail" href="#">
           <img src= {product.imgUrl}/>
           <div className="caption">
             <h5>
               <span>{product.name}</span>
             </h5>
+            <button>Add item to cart.</button>
           </div>
         </a>
       </div>
@@ -85,12 +86,14 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    getChosenProduct() {
-      dispatch(getChosenProductFromDb())
+    // getChosenProduct() {
+    //   dispatch(getChosenProductFromDb())
+    // },
+    addToDb() {
+      dispatch(addOrderProductToDb())
     },
-
     addToCart() {
-      dispatch()
+      dispatch(addOrderProductToCart())
     }
   }
 }
@@ -115,6 +118,6 @@ const mapDispatch = (dispatch) => {
 
 export default connect(mapState, mapDispatch)(Products);
 
-/*     
+/*
 
 */
