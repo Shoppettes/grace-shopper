@@ -1,5 +1,5 @@
 /* Potentially update line 2 based on final decision on models */
-const { db, User, Product, Category, Cart, Order, Review } = require('./server/db/models')
+const { db, User, Product, Category, Order, Review } = require('./server/db/models')
 
 const users = [{
   email: '12345@gmail.com',
@@ -60,8 +60,7 @@ const products = [{
   description: 'Get super silkly smooth Dino hands with this coconut-based wax.',
   price: 12.99,
   quantity: 82,
-  isAvailable: true,
-  cartId: 1
+  isAvailable: true
 } , {
   name: 'Dino Hair Creme',
   description: 'Get super silkly smooth Dino hair with this state-of-the-art hair creme.',

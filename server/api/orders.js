@@ -19,13 +19,14 @@ router.get('/:orderId', (req, res, next) => {
 // create a new order
 router.post('/', (req, res, next) => {
   Order.create(req.body)
+  .then(createdOrder => Order.findById(createdOrder.id, {include: [User, Product]}))
   .then(newOrder => res.status(201).json(newOrder))
   .catch(next);
 })
 
 // delete an order by id
 router.delete('/:orderId', (req, res, next) => {
-  Order.destroy({where: {id: req.params.orderId}})
+  Order.destroy({where: {id: req.params.orderId}}, {include: [User, Product]})
   .then(() =>  res.sendStatus(204))
   .catch(next);
 })
@@ -35,7 +36,7 @@ router.put('/:orderId', (req, res, next) => {
   Order.update(req.body, {
     where: {id: req.params.orderId},
     returning: true
-  })
+  }, {include: [User, Product]})
   .then(updatedOrder => res.status(201).json(updatedOrder))
   .catch(next)
 })
