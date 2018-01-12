@@ -12,10 +12,11 @@ User.hasMany(Order);
 Order.belongsTo(User);
 
 //many to many
-Product.belongsToMany(Order, {as: 'Product', through: OrderProduct});
-
+Order.belongsToMany(Order, {through: OrderProduct});
+Order.belongsToMany(Order, {through: OrderProduct});
 //many to many
 Category.belongsToMany(Product, {through: 'ProductCategories'});
+Product.belongsToMany(Category, {through: 'ProductCategories'});
 
 //one to many: product to review
 Product.hasMany(Review);
