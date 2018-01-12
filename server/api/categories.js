@@ -5,14 +5,14 @@ module.exports = router
 // get all categories
 router.get('/', (req, res, next) => {
   Category.findAll({include: [Product]})
-    .then(categories => res.json(categories))
+    .then(categories => res.status(200).json(categories))
     .catch(next)
 })
 
 // create category : allowed for just admins
 router.post('/', (req, res, next) => {
   Category.create(req.body)
-  .then(newCategory => res.json(newCategory))
+  .then(newCategory => res.status(201).json(newCategory))
   .catch(next);
 })
 
@@ -29,13 +29,13 @@ router.put('/:categoryId', (req, res, next) => {
     where: {id: req.params.categoryId},
     returning: true
   })
-  .then(updatedCategory => res.json(updatedCategory))
+  .then(updatedCategory => res.status(201).json(updatedCategory))
   .catch(next)
 })
 
 // get all products that have the same category
 router.get('/:categoryId/products', (req, res, next) => {
   Category.findById(req.params.categoryId, {include: [{model: Product}]})
-  .then(categoryWithProducts => res.json(categoryWithProducts.products))
+  .then(categoryWithProducts => res.status(200).json(categoryWithProducts.products))
   .catch(next);
 })

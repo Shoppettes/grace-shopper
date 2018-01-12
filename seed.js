@@ -197,6 +197,10 @@ const seed = () =>
     Product.create(product))
   ))
   .then(() =>
+  Promise.all(categories.map(category =>
+    Category.create(category))
+  ))
+  .then(() =>
   Promise.all(reviews.map(review =>
     Review.create(review))
 ));
