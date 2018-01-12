@@ -4,8 +4,8 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
-const GET_USER = 'GET_USER'
-const REMOVE_USER = 'REMOVE_USER'
+const SET_CURRENT_USER = 'SET_CURRENT_USER'
+const CLEAR_CURRENT_USER = 'CLEAR_CURRENT_USER'
 
 /**
  * INITIAL STATE
@@ -15,8 +15,8 @@ const defaultUser = {}
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GET_USER, user})
-const removeUser = () => ({type: REMOVE_USER})
+ export const setCurrentUser = currentUser => ({type: SET_CURRENT_USER, currentUser});
+ export const clearCurrentUser = () => ({type: CLEAR_CURRENT_USER})
 
 /**
  * THUNK CREATORS
@@ -54,7 +54,7 @@ export const logout = () =>
 export default function (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
-      return action.user
+      return action.currentUser
     case REMOVE_USER:
       return defaultUser
     default:
