@@ -72,9 +72,10 @@ const Products = (props) => {
           <div className="caption">
             <h5>
               <span>{product.name}</span>
+              <span>{product.price}</span>
             </h5>
-            // this is dependent upon logic commented above
             <button onClick={clickHandler(orderId, product.id)}>Add item to cart.</button>
+            <Link to={`/products/${product.id}`}>See more</Link>
           </div>
         </a>
       </div>

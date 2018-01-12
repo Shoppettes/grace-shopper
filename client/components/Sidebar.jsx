@@ -8,4 +8,8 @@ const Sidebar = () => {
   )
 };
 
+// const mapStateToProps() {
+
+// }
+
 export default Sidebar;

@@ -50,6 +50,7 @@ const mapDispatch = (dispatch) => {
     loadInitialData () {
       dispatch(fetchCurrentUser())
       dispatch(getProductsFromDb())
+      
     }
   }
 }
