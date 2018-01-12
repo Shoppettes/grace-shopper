@@ -9,7 +9,8 @@ import {GET_ALL_PRODUCTS, SET_CHOSEN_PRODUCT, GET_ALL_CATEGORIES, SET_CHOSEN_CAT
  import {reducer} from '../client/store'
  
 
-describe('action creators', () => {
+ describe('Redux architechture', () => {
+  describe('action creators', () => {
     let productsArr, cartArr, newPurchase;
     beforeEach('Create test products array, purchase object, cart array', () => {
         productsArr = [{'name': 'dino nail polish'}]
@@ -20,7 +21,7 @@ describe('action creators', () => {
         it ('returns expected action', () => {
             expect(getAllProducts(productsArr)).to.be.deep.equal({
                 type: 'GET_ALL_PRODUCTS',
-                products: productsArr
+                productsArr
             })
         })
     })
@@ -29,7 +30,7 @@ describe('action creators', () => {
             const chosenProduct = productsArr[0];
             expect(setChosenProduct(chosenProduct)).to.be.deep.equal({
                 type: 'SET_CHOSEN_PRODUCT',
-                product: chosenProduct
+                chosenProduct
             })
         })
     })
