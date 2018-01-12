@@ -28,5 +28,9 @@ Product.hasMany(Photo);
 Photo.belongsTo(Product);
 
 module.exports = {
+<<<<<<< HEAD
  Category, Order, Photo, Product, Review, User, OrderProduct, db
+=======
+Category, Order, Photo, Product, Review, User, OrderProduct, db
+>>>>>>> c015847de4e3803322e9f4421987e1d1a009e3f9
 }

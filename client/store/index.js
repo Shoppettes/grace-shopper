@@ -19,5 +19,6 @@ export default store
 export * from './products'
 export * from './chosenProduct'
 export * from './user'
+export * from './currentOrder'
 export * from './categories'
 export * from './chosenCategory'
