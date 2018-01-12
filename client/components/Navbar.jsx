@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {NavLink, withRouter} from 'react-router-dom';
-import {logout} from '../store/auth';
+import {logout} from '../store/user';
 
 // This component is currently throwing an error that id is undefined because there is no current user on state
 
@@ -62,7 +62,7 @@ class Navbar extends Component {
 
 const mapState = (state, props) => {
   return {
-    currentUser: state.currentUser
+    currentUser: state.user
   }
 }
 

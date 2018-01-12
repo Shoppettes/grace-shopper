@@ -4,8 +4,8 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
-const GET_USER = 'GET_USER'
-const REMOVE_USER = 'REMOVE_USER'
+const SET_CURRENT_USER = 'SET_CURRENT_USER'
+const CLEAR_CURRENT_USER = 'CLEAR_CURRENT_USER'
 
 /**
  * INITIAL STATE
@@ -15,27 +15,27 @@ const defaultUser = {}
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GET_USER, user})
-const removeUser = () => ({type: REMOVE_USER})
+ export const setCurrentUser = currentUser => ({type: SET_CURRENT_USER, currentUser});
+ export const clearCurrentUser = () => ({type: CLEAR_CURRENT_USER})
 
 /**
  * THUNK CREATORS
  */
-export const me = () =>
+export const fetchCurrentUser = () =>
   dispatch =>
     axios.get('/auth/me')
       .then(res =>
-        dispatch(getUser(res.data || defaultUser)))
+        dispatch(setCurrentUser(res.data || defaultUser)))
       .catch(err => console.log(err))
 
 export const auth = (email, password, method) =>
   dispatch =>
     axios.post(`/auth/${method}`, { email, password })
       .then(res => {
-        dispatch(getUser(res.data))
+        dispatch(setCurrentUser(res.data))
         history.push('/home')
       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
-        dispatch(getUser({error: authError}))
+        dispatch(setCurrentUser({error: authError}))
       })
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
@@ -43,7 +43,7 @@ export const logout = () =>
   dispatch =>
     axios.post('/auth/logout')
       .then(_ => {
-        dispatch(removeUser())
+        dispatch(clearCurrentUser())
         history.push('/login')
       })
       .catch(err => console.log(err))
@@ -53,9 +53,9 @@ export const logout = () =>
  */
 export default function (state = defaultUser, action) {
   switch (action.type) {
-    case GET_USER:
-      return action.user
-    case REMOVE_USER:
+    case SET_CURRENT_USER:
+      return action.currentUser
+    case CLEAR_CURRENT_USER:
       return defaultUser
     default:
       return state
