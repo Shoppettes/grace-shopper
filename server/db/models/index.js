@@ -12,10 +12,12 @@ User.hasMany(Order);
 Order.belongsTo(User);
 
 //many to many
-Product.belongsToMany(Order, {as: 'Product', through: OrderProduct});
+Order.belongsToMany(Product, {through: OrderProduct});
+Product.belongsToMany(Order, {through: OrderProducts});
 
 //many to many
 Category.belongsToMany(Product, {through: 'ProductCategories'});
+Product.belongsToMany(Category, {through: 'ProductCategories'});
 
 //one to many: product to review
 Product.hasMany(Review);
@@ -26,6 +28,6 @@ Product.hasMany(Photo);
 Photo.belongsTo(Product);
 
 module.exports = {
-  Category, Order, Photo, Product, Review, User, db
+ Category, Order, Photo, Product, Review, User, db
 }
 

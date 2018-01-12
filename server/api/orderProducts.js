@@ -21,7 +21,7 @@ router.put('/:orderId/:productId', (req, res, next) => {
 })
 
 // delete a particular product from a particular order
-router.put('/:orderId/:productId', (req, res, next) => {
+router.delete('/:orderId/:productId', (req, res, next) => {
   OrderProduct.findOne({where: {orderId: req.params.orderId}, {productId: req.params.productId}})
     .then(orderProductInstance => {
       orderProductInstance.destroy()

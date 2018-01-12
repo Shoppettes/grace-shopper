@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-
+import {getChosenProductFromDb} from '../store'
 /**
  * import React, {Component} from 'react';
 import {connect} from 'react-redux';
@@ -17,9 +17,10 @@ import {fetchCurrentUser, getProductsFromDb} from '../store';
 //     price: 12.99,
 //     quantity: 82,
 //     isAvailable: true,
-//     imgUrl: '../../public/dino-pics/dino-bow-tie.jpeg'
+//     imgUrl: '<img src="../../public/dino-pics/dino-bow-tie.jpeg" />'
   
-//   } 
+//   }
+// ]
   // , {
   //   name: 'Brontasaurus bike',
   //   description: 'This classic dino bike will always be in style! Comes with an adjustable seat for all leg lengths.',
@@ -59,19 +60,18 @@ const Products = (props) => {
     <div>
       <h3>This is the Products component.</h3>
       <div className="row">
-        {products.data && products.data.map(product => (
-          <div className="col-xs-4" key={product.id}>
-            <a className="thumbnail" href="#"> 
-              <img src= {product.imgUrl}/>
-              <div className="caption">
-                <h5>
-                  <span>{product.name}</span>
-                </h5>
-              </div>
-            </a>
+      {products.data && products.data.map(product => (
+        <div className="col-xs-4" key={product.id}>
+        <a className="thumbnail" href="#"> 
+          <img src= {product.imgUrl}/>
+          <div className="caption">
+            <h5>
+              <span>{product.name}</span>
+            </h5>
           </div>
-        ))}
-      
+        </a>
+      </div>
+      ))}
       </div>
     </div>
   )
@@ -83,9 +83,17 @@ const mapState = (state) => {
   }
 }
 
-// const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch) => {
+  return {
+    getChosenProduct() {
+      dispatch(getChosenProductFromDb())
+    },
 
-// }
+    addToCart() {
+      dispatch()
+    }
+  }
+}
 /**const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
@@ -105,4 +113,8 @@ const mapDispatch = (dispatch) => {
 
 // export default connect(null, mapDispatch)(Root) */
 
-export default connect(mapState)(Products);
+export default connect(mapState, mapDispatch)(Products);
+
+/*     
+
+*/
