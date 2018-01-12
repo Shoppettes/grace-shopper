@@ -5,13 +5,6 @@ const Order = db.define('order', {
   subtotal: Sequelize.DECIMAL(10, 2),
   shippingCost: Sequelize.DECIMAL(10, 2),
   tax: Sequelize.FLOAT,
-  // total: {
-  //   type: Sequelize.VIRTUAL,
-  //   get() {
-
-  //   }
-  // },
-  // shippingAddress: {Sequelize.STRING},
   billingAddress: Sequelize.STRING,
   shippingAddress: Sequelize.STRING,
   creditCardNumber: Sequelize.BIGINT,
@@ -26,12 +19,20 @@ const Order = db.define('order', {
   orderDate: {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW
-  }
+  },
+  deliveryDate: Sequelize.DATE
 }, {getterMethods: {
     estimatedShippingDate: function(){
-       let retDate = new Date(new Date().setDate(this.orderDate.getDate() + 10));
+       let retDate = new Date(new Date().setDate(this.orderDate.getDate() + 2));
        return retDate;
-    }
+    },
+    estimatedDeliveryDate: function(){
+      let retDate = new Date(new Date().setDate(this.orderDate.getDate() + 10));
+      return retDate;
+   },
+   totalPrice: function(){
+    return this.subTotal + this.shippingCost + this.tax;
+ }
 }
 })
 
