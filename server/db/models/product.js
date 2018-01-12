@@ -21,7 +21,7 @@ const Product = db.define('product', {
   availability: { //must make hook to validate whether a product is in stock, otherwise it is set to false
     type: Sequelize.BOOLEAN,
     get() {
-      return this.quantity > 0 
+      return this.quantity > 0
     },
     set(availabilityBool) {
       this.setDataValue('availability', availabilityBool)
@@ -30,8 +30,7 @@ const Product = db.define('product', {
   imageURL: {
     type: Sequelize.STRING,
     // default: some_default_image_in_public_folder
-  },
-  photos: Sequelize.ARRAY(Sequelize.TEXT)
+  }
 })
 
 //calculates the average rating of the product

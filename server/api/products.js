@@ -6,28 +6,34 @@ module.exports = router
 // get all products
 router.get('/', (req, res, next) => {
     Product.findAll({include: [Category]})
-      .then( foundProducts => res.json(foundProducts))
+      .then(foundProducts => res.json(foundProducts))
       .catch(next)
 })
 
-// get single product by name
+// get single product by name, including assoicated categories, photos, and reviews
 router.get('/:productName', (req, res, next) => {
-  Product.findOne({include: [Category], where: {name: req.params.productName}})
-    .then( foundProduct => res.json(foundProduct))
+  Product.findOne({include: [Category, Photo, Review], where: {name: req.params.productName}})
+    .then(foundProduct => res.json(foundProduct))
+    .catch(next)
+})
+
+// get single product by id, including assocated categories, photos, and reviews
+router.get('/:productId', (req, res, next) => {
+  Product.findById({include: [Category, Photo, Review], where: {id: req.params.productId}})
+    .then(foundProduct => res.json(foundProduct))
     .catch(next)
 })
 
 // create a new product
 router.post('/', (req, res, next) => {
     Product.create(req.body)
-      .then( createdProduct => Product.findById( createdProduct.id, {include: [Category]}))
-      .then( foundProduct => res.json(foundProduct))
+      .then(createdProduct => Product.findById(createdProduct.id, {include: [Category]}))
+      .then(foundProduct => res.json(foundProduct))
       .catch(next)
 })
 
-
 // update a product by name
-router.put('/:productName', (req, res, next) => {
+router.put('/:productId', (req, res, next) => {
     Product.update(req.body, {
       where: {name: req.params.productName},
       returning: true
@@ -37,7 +43,7 @@ router.put('/:productName', (req, res, next) => {
 })
 
 // delete a product by name
-router.delete('/:productName', (req, res, next) => {
+router.delete('/:productId', (req, res, next) => {
     Product.destroy({where: {name: req.params.productName}})
       .then( () => res.status(204).end())
       .catch(next)

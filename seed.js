@@ -86,11 +86,11 @@ const products = [{
 const categories = [
   {name: 'skincare' },
   {name: 'body lotions'},
-  {name: 'exfoliants' }, 
+  {name: 'exfoliants' },
   {name: 'hygiene'},
   {name: 'dental care'},
   {name: 'makeup'},
-  {name: 'scales'}, 
+  {name: 'scales'},
   {name:'claws and talons'},
   {name: 'hair'},
   {name: 'carnivore'},
@@ -140,10 +140,11 @@ const orders = [{
   // total: 14.99,
   shippingCost: 2.99,
   tax: 1.99,
-  shippingAddress: '156 Main Street, Hampersville, MN, 70809',
+  shippingAddress: '156 asla Street, Hampersville, MN, 70809',
   billingAddress: '183 Hello Street, Hampersville, MN, 70809',
   creditCardNumber: 6789123457891234,
   CCV: 123,
+  orderDate:new Date(),
   expirationDate: 08/18,
   userId: 1
 }, {
@@ -151,11 +152,12 @@ const orders = [{
   // total: 15.99,
   shippingCost: 3.99,
   tax: 2.49,
-  shippingAddress: '123 Main Street, Hampersville, MN, 70809',
+  shippingAddress: '123 aaa Street, Hampersville, MN, 70809',
   billingAddress: '192 Hello Street, Hampersville, MN, 70809',
   creditCardNumber: 6798123457891243,
   CCV: 234,
   expirationDate: 08/19,
+  orderDate:new Date() + 1,
   userId: 2
 } , {
   subTotal: 15.99,
@@ -178,6 +180,7 @@ const orders = [{
   creditCardNumber: 6776523443291243,
   CCV: 3456,
   expirationDate: 08/22,
+  orderDate:new Date("October 13, 2014 11:13:00"),
   userId: 2
 }];
 
@@ -188,10 +191,6 @@ const seed = () =>
   .then(() =>
   Promise.all(orders.map(order =>
     Order.create(order))
-  )
-  .then(() =>
-  Promise.all(carts.map(cart =>
-    Cart.create(cart))
   ))
   .then(() =>
   Promise.all(products.map(product =>
@@ -200,7 +199,7 @@ const seed = () =>
   .then(() =>
   Promise.all(reviews.map(review =>
     Review.create(review))
-);
+));
 
 const main = () => {
   console.log('Syncing db...');
