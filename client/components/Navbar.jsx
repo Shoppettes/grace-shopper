@@ -62,7 +62,7 @@ class Navbar extends Component {
 
 const mapState = (state, props) => {
   return {
-    currentUser: state.currentUser
+    currentUser: state.auth
   }
 }
 
