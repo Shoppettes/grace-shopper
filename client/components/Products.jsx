@@ -54,21 +54,29 @@ import {fetchCurrentUser, getProductsFromDb} from '../store';
 
 
 const Products = (props) => {
-  const {products} = props;
-  console.log('products ', products)
+  const {products, order, addToDb, addToCart, isLoggedIn, category} = props;
+
+  // conditionally rendering the clickHandler and assigning first arg based on whether user logged in
+  // addToDb (thunk) and addToCart (action) not actually created yet
+  const clickHandler = isLoggedIn ? addToDb : addToCart;
+  const orderId = isLoggedIn ? order.id : null;
+  const renderedProducts = category.id ? products.filter(product => product.category.id === category.id) : products;
+  
   return (
     <div>
       <h3>This is the Products component.</h3>
       <div className="row">
-      {products.data && products.data.map(product => (
+      {renderedProducts.data && renderedProducts.data.map(product => (
         <div className="col-xs-4" key={product.id}>
         <a className="thumbnail" href="#">
           <img src= {product.imgUrl}/>
           <div className="caption">
             <h5>
               <span>{product.name}</span>
+              <span>{product.price}</span>
             </h5>
-            <button>Add item to cart.</button>
+            <button onClick={clickHandler(orderId, product.id)}>Add item to cart.</button>
+            <Link to={`/products/${product.id}`}>See more</Link>
           </div>
         </a>
       </div>
@@ -80,41 +88,29 @@ const Products = (props) => {
 
 const mapState = (state) => {
   return {
-    products: state.products
+    products: state.products,
+    // we haven't tested isLoggedIn yet
+    isLoggedIn: !!state.user.id,
+    category: state.chosenCategory
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    // getChosenProduct() {
-    //   dispatch(getChosenProductFromDb())
-    // },
+    // neither of these functions is defined yet, we are using them as placeholders
     addToDb() {
-      dispatch(addOrderProductToDb())
+      dispatch(addOrderProductToDb({orderId: 7, productId: 8}))
+      // this is what we think addOrderProductToDb should do
+      // check for existing order associated with the current users
+      // if yes, create new instance on OrderProduct model with current product and associated users
+      // if not, create a new order, then create a new instance on OrderProduct model with current product and associated users
     },
     addToCart() {
       dispatch(addOrderProductToCart())
     }
   }
 }
-/**const mapState = (state) => {
-  return {
-    // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
-    // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.auth.currentUser
-  }
-}
 
-const mapDispatch = (dispatch) => {
-  return {
-    loadInitialData () {
-      dispatch(fetchCurrentUser())
-      dispatch(getProductsFromDb())
-    }
-  }
-}
-
-// export default connect(null, mapDispatch)(Root) */
 
 export default connect(mapState, mapDispatch)(Products);
 

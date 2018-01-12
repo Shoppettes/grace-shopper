@@ -4,7 +4,7 @@ import {Router, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from '../history';
 import {Navbar, Sidebar, Footer, Home, Products, SingleProduct, Checkout} from '../components';
-import {fetchCurrentUser, getProductsFromDb} from '../store';
+import {fetchCurrentUser, getProductsFromDb, getAllCategoriesFromDb} from '../store';
 
 
 class Root extends Component {
@@ -50,6 +50,8 @@ const mapDispatch = (dispatch) => {
     loadInitialData () {
       dispatch(fetchCurrentUser())
       dispatch(getProductsFromDb())
+      dispatch(getAllCategoriesFromDb())
+
     }
   }
 }

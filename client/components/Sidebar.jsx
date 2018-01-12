@@ -1,11 +1,23 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {Products} from '../components'
+import {Link} from 'react-router-dom'
 
-const Sidebar = () => {
+export const Sidebar = (props) => {
+  const {categories} = props
   return (
     <div>
-      <span>This is the SideBar component.</span>
+      {categories && categories.map(category => <div key={category.id}><Link to="/products">{category.name}</Link></div>)}
     </div>
   )
 };
 
-export default Sidebar;
+const mapState = (state) => {
+  return {
+    categories: state.categories
+  }
+  
+}
+
+
+export default connect(mapState, null)(Sidebar);

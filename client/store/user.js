@@ -23,7 +23,7 @@ const defaultUser = {}
  */
 export const fetchCurrentUser = () =>
   dispatch =>
-    axios.get('/auth/me')
+    axios.get('/auth/local/me')
       .then(res =>
         dispatch(setCurrentUser(res.data || defaultUser)))
       .catch(err => console.log(err))
