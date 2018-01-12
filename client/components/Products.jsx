@@ -54,18 +54,19 @@ import {fetchCurrentUser, getProductsFromDb} from '../store';
 
 
 const Products = (props) => {
-  const {products, order, addToDb, addToCart, isLoggedIn} = props;
+  const {products, order, addToDb, addToCart, isLoggedIn, category} = props;
 
   // conditionally rendering the clickHandler and assigning first arg based on whether user logged in
   // addToDb (thunk) and addToCart (action) not actually created yet
   const clickHandler = isLoggedIn ? addToDb : addToCart;
-  const orderId = isLoggedIn ? order.id : null
-
+  const orderId = isLoggedIn ? order.id : null;
+  const renderedProducts = category.id ? products.filter(product => product.category.id === category.id) : products;
+  
   return (
     <div>
       <h3>This is the Products component.</h3>
       <div className="row">
-      {products.data && products.data.map(product => (
+      {renderedProducts.data && renderedProducts.data.map(product => (
         <div className="col-xs-4" key={product.id}>
         <a className="thumbnail" href="#">
           <img src= {product.imgUrl}/>
@@ -89,7 +90,8 @@ const mapState = (state) => {
   return {
     products: state.products,
     // we haven't tested isLoggedIn yet
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    category: state.chosenCategory
   }
 }
 
