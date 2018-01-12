@@ -54,44 +54,119 @@ const users = [{
   CCV: 3456,
   expirationDate: 08/22
 }];
-
+const photos = [{
+  imgUrl: '<a href="http://tinypic.com?ref=ae9st0" target="_blank"><img src="http://i67.tinypic.com/ae9st0.jpg" border="0" alt="dinosaur with bow tie"></a>'
+}, {
+  imgUrl: '<a href="http://tinypic.com?ref=2nrm1rq" target="_blank"><img src="http://i63.tinypic.com/2nrm1rq.jpg" border="0" alt="dinosaur riding bike"></a>'
+}, {
+  imgUrl: '<a href="http://tinypic.com?ref=21ah4rl" target="_blank"><img src="http://i65.tinypic.com/21ah4rl.jpg" border="0" alt="dino stealing top hat"></a>'
+}, {
+  imgUrl: '<a href="http://tinypic.com?ref=k0k7lk" target="_blank"><img src="http://i64.tinypic.com/k0k7lk.jpg" border="0" alt="dinosaur with top hat 1"></a>'
+}, {
+  imgUrl: '<a href="http://tinypic.com?ref=2s9twty" target="_blank"><img src="http://i66.tinypic.com/2s9twty.jpg" border="0" alt="dinosaurs drinking tea"></a>'
+}, {
+  imgUrl: '<a href="http://tinypic.com?ref=2ltlsnp" target="_blank"><img src="http://i66.tinypic.com/2ltlsnp.jpg" border="0" alt="multiple dino hats"></a>'
+}, {
+  imgUrl: '<a href="http://tinypic.com?ref=ixaxqe" target="_blank"><img src="http://i66.tinypic.com/ixaxqe.jpg" border="0" alt="lady dino beauty products"></a>'
+}, {
+  imgUrl: '<a href="http://tinypic.com?ref=2llko4i" target="_blank"><img src="http://i67.tinypic.com/2llko4i.jpg" border="0" alt="dinosaur eating birthday cake"></a>'
+}, {
+  imgUrl: '<a href="http://tinypic.com?ref=2jbtv2v" target="_blank"><img src="http://i66.tinypic.com/2jbtv2v.jpg" border="0" alt="dinosaur eating chocolate cake"></a>'
+}, {
+  imgUrl: '<a href="http://tinypic.com?ref=107wgol" target="_blank"><img src="http://i65.tinypic.com/107wgol.jpg" border="0" alt="baby dinosaur eating birthday cake"></a>"></a>'
+}];
 const products = [{
-  name: 'Dino Wax',
-  description: 'Get super silkly smooth Dino hands with this coconut-based wax.',
+  name: 'Dino bow tie',
+  description: 'Impress all the lady dinos with this fashionable bow tie.',
   price: 12.99,
   quantity: 82,
   isAvailable: true
 } , {
-  name: 'Dino Hair Creme',
-  description: 'Get super silkly smooth Dino hair with this state-of-the-art hair creme.',
-  price: 21.99,
+  name: 'Brontasaurus bike',
+  description: 'This classic dino bike will always be in style! Comes with an adjustable seat for all leg lengths.',
+  price: 199.99,
   quantity: 68,
   isAvailable: true,
 } , {
-  name: 'Dino Brush',
-  description: 'Spend hours brushing your scales with this special brush.',
-  price: 23.99,
+  name: 'Triceri-top hat',
+  description: 'Perfect for the gentleman dino, carnivore or herbivore.',
+  price: 33.99,
   quantity: 54,
   isAvailable: true
 } , {
-  name: 'Dino Talon Polish',
-  description: 'Be the talk of the town with this all natural talon polish.',
-  price: 12.99,
+  name: 'Tea-rex',
+  description: 'Entertain your friends or just relax at home with this calming tea blend.',
+  price: 5.99,
   quantity: 52,
   isAvailable: true,
   cartId: 2
-}];
+}, {
+  name: 'CAKE',
+  description: 'Perfect for any and all special occasion! Yum!',
+  price: 19.99,
+  quantity: 90,
+  isAvailable: true,
+  cartId: 3
+}, {
+  name: 'First aid kit',
+  description: 'Accidents happen, especially when you live in the Jurassic age. Help your boo-boos heal faster!',
+  price: 6.00,
+  quantity: 31,
+  isAvailable: true,
+  cartId: 1
+
+},{
+  name: 'Stegosaurus skateboard',
+  description: 'You need the coolest wheels of any age, and we have them. ',
+  price: 48.00,
+  quantity: 25,
+  isAvailable: true
+
+}, {
+  name: 'Lovely Lady Dino Lipstick',
+  description: 'You need the coolest wheels of any age, and we have them. ',
+  price: 48.00,
+  quantity: 46,
+  isAvailable: true,
+  cartId: 1
+}, {
+  name: 'PIZZA',
+  description: 'Need we say more? We think this is the best part of being a dinosaur in the modern age.',
+  price: 5.00,
+  quantity: 99,
+  isAvailable: true,
+  cartId: 2
+}, {
+  name: 'Moto-saurus',
+  description: 'Vrrooom vroom party starter! You are the coolest dino and you know it. Show it off with this hot set of two wheels.',
+  price: 555.00,
+  quantity: 15,
+  isAvailable: true
+}, {
+  name: 'Beauty kit',
+  description: 'Lady and gentleman dinos will both be thrilled with how they look after using this Dino-store beauty kit.',
+  price: 25.50,
+  quantity: 45,
+  isAvailable: true,
+  cartId: 1
+}, 
+{
+  name: 'Socks',
+  description: 'Are your cold-blooded feetsies feeling a bit chilly? Get these socks and put them on your feet. Or head.',
+  price: 4.50,
+  quantity: 67,
+  isAvailable: true,
+  cartId: 1
+}
+
+
+];
 
 const categories = [
-  {name: 'skincare' },
-  {name: 'body lotions'},
-  {name: 'exfoliants' },
-  {name: 'hygiene'},
-  {name: 'dental care'},
-  {name: 'makeup'},
-  {name: 'scales'},
-  {name:'claws and talons'},
-  {name: 'hair'},
+  {name: 'beauty products' },
+  {name: 'food'},
+  {name: 'gentleman dino' },
+  {name: 'modern dino'},,
   {name: 'carnivore'},
   {name: 'herbivore'},
   {name: 'triassic'},
