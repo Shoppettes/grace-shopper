@@ -13,8 +13,6 @@ class Navbar extends Component {
   }
 
   render () {
-    const {children, handleClick, isLoggedIn} = this.props
-
     return (
       <div>
         <span>This is the NavBar component.</span>
@@ -62,7 +60,7 @@ class Navbar extends Component {
 }
 
 
-const mapState = (state) => {
+const mapState = (state, props) => {
   return {
     currentUser: state.currentUser
   }
