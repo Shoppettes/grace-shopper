@@ -19,13 +19,12 @@ const defaultProducts = []
  */
 export const getAllProducts = (products) => ({type: GET_ALL_PRODUCTS, products})
 
-
  /**
  * THUNK CREATORS
  */
 export const getProductsFromDb = () =>
   dispatch => axios.get('/api/products')
-    .then( products => dispatch(getAllProducts(products)))
+    .then(products => dispatch(getAllProducts(products)))
     .catch(err => console.log(err))
  /**
  * REDUCER
