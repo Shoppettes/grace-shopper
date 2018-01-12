@@ -56,32 +56,79 @@ const users = [{
 }];
 
 const products = [{
-  name: 'Dino Wax',
-  description: 'Get super silkly smooth Dino hands with this coconut-based wax.',
+  name: 'Dino bow tie',
+  description: 'Impress all the lady dinos with this fashionable bow tie.',
   price: 12.99,
   quantity: 82,
   isAvailable: true,
   cartId: 1
 } , {
-  name: 'Dino Hair Creme',
-  description: 'Get super silkly smooth Dino hair with this state-of-the-art hair creme.',
-  price: 21.99,
+  name: 'Brontasaurus bike',
+  description: 'This classic dino bike will always be in style! Comes with an adjustable seat for all leg lengths.',
+  price: 199.99,
   quantity: 68,
   isAvailable: true,
 } , {
-  name: 'Dino Brush',
-  description: 'Spend hours brushing your scales with this special brush.',
-  price: 23.99,
+  name: 'Triceri-top hat',
+  description: 'Perfect for the gentleman dino, carnivore or herbivore.',
+  price: 33.99,
   quantity: 54,
   isAvailable: true
 } , {
-  name: 'Dino Talon Polish',
-  description: 'Be the talk of the town with this all natural talon polish.',
-  price: 12.99,
+  name: 'Tea-rex',
+  description: 'Entertain your friends or just relax at home with this calming tea blend.',
+  price: 5.99,
   quantity: 52,
   isAvailable: true,
   cartId: 2
-}];
+}, {
+  name: 'CAKE',
+  description: 'Perfect for any and all special occasion! Yum!',
+  price: 19.99,
+  quantity: 90,
+  isAvailable: true,
+  cartId: 2
+}, {
+  name: 'First aid kit',
+  description: 'Accidents happen, especially when you live in the Jurassic age. Help your boo-boos heal faster!',
+  price: 6.00,
+  quantity: 31,
+  isAvailable: true,
+  cartId: 2
+
+},{
+  name: 'Stegosaurus skateboard',
+  description: 'You need the coolest wheels of any age, and we have them. ',
+  price: 48.00,
+  quantity: 25,
+  isAvailable: true,
+  cartId: 2
+
+}, {
+  name: 'Lovely Lady Dino Lipstick',
+  description: 'You need the coolest wheels of any age, and we have them. ',
+  price: 48.00,
+  quantity: 46,
+  isAvailable: true,
+  cartId: 2
+}, {
+  name: 'PIZZA',
+  description: 'Need we say more? We think this is the best part of being a dinosaur in the modern age.',
+  price: 5.00,
+  quantity: 99,
+  isAvailable: true,
+  cartId: 2
+}, {
+  name: 'Moto-saurus',
+  description: 'Vrrooom vroom party starter! You are the coolest dino and you know it. Show it off with this hot set of two wheels.',
+  price: 555.00,
+  quantity: 15,
+  isAvailable: true,
+  cartId: 2
+}
+
+
+];
 
 const categories = [
   {name: 'skincare' },
