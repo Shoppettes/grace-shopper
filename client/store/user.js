@@ -21,7 +21,7 @@ const defaultUser = {}
 /**
  * THUNK CREATORS
  */
-export const me = () =>
+export const fetchCurrentUser = () =>
   dispatch =>
     axios.get('/auth/me')
       .then(res =>
