@@ -34,7 +34,7 @@ const mapDispatch = (dispatch) => {
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter(connect(mapState, mapDispatch)(Home))
+export default withRouter(connect(null, mapDispatch)(Home))
 
 /**
  * PROP TYPES
@@ -42,5 +42,5 @@ export default withRouter(connect(mapState, mapDispatch)(Home))
 Home.propTypes = {
   children: PropTypes.object,
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  // isLoggedIn: PropTypes.bool.isRequired
 }

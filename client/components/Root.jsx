@@ -4,7 +4,7 @@ import {Router, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from '../history';
 import {Navbar, Sidebar, Footer, Home, Products, SingleProduct, Checkout} from '../components';
-import {me} from '../store';
+import {fetchCurrentUser, getProductsFromDb} from '../store';
 
 
 class Root extends Component {
@@ -20,7 +20,7 @@ class Root extends Component {
         <span>This is the Root component.</span>
         <Router history={history}>
           <div>
-            <Navbar />
+          <Navbar />
             <Sidebar />
             <Footer />
             <Switch>
@@ -36,28 +36,30 @@ class Root extends Component {
   }
 }
 
+
 const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.auth.currentUser
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
-      dispatch(me())
+      dispatch(fetchCurrentUser())
+      dispatch(getProductsFromDb())
     }
   }
 }
 
-export default connect(mapState, mapDispatch)(Root)
+export default connect(null, mapDispatch)(Root)
 
 /**
  * PROP TYPES
  */
 Root.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  // isLoggedIn: PropTypes.bool.isRequired
 }

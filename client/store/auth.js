@@ -1,19 +1,21 @@
 import axios from 'axios';
 
+const defaultCurrentUser = {};
+
 const SET_CURRENT_USER = 'SET_CURRENT_USER';
 const CLEAR_CURRENT_USER = 'CLEAR_CURRENT_USER';
 
-const setCurrentUser = currentUser => ({type: SET_CURRENT_USER, currentUser});
-const clearCurretUser = () => ({type: CLEAR_CURRENT_USER})
+export const setCurrentUser = currentUser => ({type: SET_CURRENT_USER, currentUser});
+export const clearCurrentUser = () => ({type: CLEAR_CURRENT_USER})
 
-export default function reducer (currentUser = {}, action) {
+export default function reducer (state = defaultCurrentUser, action) {
   switch(action.type) {
     case SET_CURRENT_USER:
       return action.currentUser;
     case CLEAR_CURRENT_USER:
       return {};
     default:
-      return currentUser;
+      return state;
   }
 }
 
