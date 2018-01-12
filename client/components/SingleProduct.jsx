@@ -4,8 +4,8 @@ import { getChosenProductFromDb } from '../store'
 
 
 const singleProduct = (props) => {
-  let { chosenProduct, setProduct} = props
-  setProduct(props.match.params.id)
+  let { chosenProduct, setProduct} = props;
+  setProduct(props.match.params.id);
   //let product = chosenProduct;
   return (
     <div>
