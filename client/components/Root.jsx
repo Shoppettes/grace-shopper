@@ -20,7 +20,6 @@ class Root extends Component {
     return (
       <div>
         <span>This is the Root component.</span>
-        <span>{this.props.products.map(product => product.name)}</span>
         <Router history={history}>
           <div>
           <Navbar />
@@ -45,7 +44,6 @@ const mapState = (state) => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.currentUser,
-    products: state.products
   }
 }
 
@@ -62,7 +60,7 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Root)
+export default connect(null, mapDispatch)(Root)
 
 /**
  * PROP TYPES

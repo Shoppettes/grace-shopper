@@ -55,7 +55,7 @@ import {fetchCurrentUser, getProductsFromDb} from '../store';
 
 
 const Products = (props) => {
-  const {cart, currentOrder, category, products, handleButton} = props;
+  const {cart, currentOrder, category, products, clickHandler} = props;
   // conditionally rendering the clickHandler and assigning first arg based on whether user logged in
   // addToDb (thunk) and addToCart (action) not actually created yet
   //const clickHandler = isLoggedIn ? addToDb : addToCart;
@@ -65,15 +65,6 @@ const Products = (props) => {
   return (
     <div>
       <h3>This is the Products component.</h3>
-      {cart && cart.map(product => (
-        <div key={product.id}>
-          Name: {product.name}
-          Price: {product.price}
-          Amount: {product.OrderProducts.quantity}
-          ------
-        </div>
-        )
-      )}
 
       <div className="row">
       {products && products.map(product => (
@@ -85,7 +76,7 @@ const Products = (props) => {
               <span>{product.name}</span>
               <span>{product.price}</span>
             </h5>
-            <button onClick={handleButton(currentOrder.id, product.id, cart)}>Add item to cart.</button>
+            <button onClick={clickHandler.bind(currentOrder.id, product.id, cart)}>Add item to cart.</button>
             <Link to={`/products/${product.id}`}>See more</Link>
           </div>
         </a>
@@ -108,7 +99,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handleButton (orderId, productId, cart) {
+    clickHandler (orderId, productId, cart) {
       if (!cart.find( product => product.id == productId)) dispatch(createOrderProductInstance({orderId, productId}))
       else dispatch(updateCartProduct(orderId, productId, 'increment'))
     }
