@@ -19,12 +19,10 @@ class Root extends Component {
     const {isLoggedIn} = this.props
     return (
       <div>
-        <span>This is the Root component.</span>
         <Router history={history}>
           <div>
           <Navbar />
             <Sidebar />
-            <Footer />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/products" component={Products} />
@@ -32,6 +30,7 @@ class Root extends Component {
               <Route path="/checkout" component={MyStoreCheckout} />
               <Route path="/cart" component={Cart} />
             </Switch>
+            <Footer />
           </div>
         </Router>
       </div>
@@ -74,45 +73,3 @@ Root.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
   // isLoggedIn: PropTypes.bool.isRequired
 }
-
-/*
-const {
-  CardElement,
-  StripeProvider,
-  Elements,
-  injectStripe,
-} = ReactStripeElements
-
-class _CardForm extends React.Component {
-  render() {
-    return (
-      <form onSubmit={() => this.props.stripe.createToken().then(payload => console.log(payload))}>
-        <CardElement />
-        <button>Pay</button>
-      </form>
-    )
-  }
-}
-const CardForm = injectStripe(_CardForm)
-
-class Checkout extends React.Component {
-  render() {
-    return (
-      <div className="Checkout">
-        <h1>Available Elements</h1>
-        <Elements>
-          <CardForm />
-        </Elements>
-      </div>
-    )
-  }
-}
-
-const App = () => {
-  return (
-    <StripeProvider apiKey="pk_RXwtgk4Z5VR82S94vtwmam6P8qMXQ">
-      <Checkout />
-    </StripeProvider>
-  )
-}
-ReactDOM.render(<App />, document.querySelector('.App'))*/

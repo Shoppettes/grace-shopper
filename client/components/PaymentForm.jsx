@@ -34,6 +34,7 @@ class PaymentRequestForm extends React.Component {
     }
   
     render() {
+      console.log('payment request props', this.props)
       return this.state.canMakePayment ? (
         <PaymentRequestButtonElement
           paymentRequest={this.state.paymentRequest}

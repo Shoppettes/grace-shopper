@@ -1,11 +1,16 @@
 import React from 'react';
 import {injectStripe, CardElement} from 'react-stripe-elements';
 import {connect} from 'react-redux'
-import AddressSection from './AddressSection.jsx';
 
 
 class CheckoutForm extends React.Component {
-  handleSubmit = (ev) => {
+  constructor(props) { /*this.props is the stripe object: 
+  
+    */
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  handleSubmit(ev) {
     // We don't want to let default form submission happen here, which would refresh the page.
     ev.preventDefault();
 
@@ -20,6 +25,7 @@ class CheckoutForm extends React.Component {
   }
 
   render() {
+    console.log('props', this.props)
     return (
       <form onSubmit={this.handleSubmit}>
         <CardElement />
