@@ -12,6 +12,7 @@ router.post('/login', (req, res, next) => {
       } else if (!user.correctPassword(password)) {
         res.status(401).send('Incorrect password')
       } else {
+        // user is now assigned to req.user on the session
         req.login(user, err => (err ? next(err) : res.json(user)))
       }
     })
@@ -35,7 +36,7 @@ router.post('/signup', (req, res, next) => {
 })
 
 router.post('/logout', (req, res) => {
-  req.logout()
+  req.logout();
   res.redirect('/')
 })
 

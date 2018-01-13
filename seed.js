@@ -75,6 +75,7 @@ const photos = [{
 }, {
   imgUrl: '<a href="http://tinypic.com?ref=107wgol" target="_blank"><img src="http://i65.tinypic.com/107wgol.jpg" border="0" alt="baby dinosaur eating birthday cake"></a>"></a>'
 }];
+
 const products = [{
   name: 'Dino bow tie',
   description: 'Impress all the lady dinos with this fashionable bow tie.',
@@ -121,7 +122,6 @@ const products = [{
   price: 48.00,
   quantity: 25,
   isAvailable: true
-
 }, {
   name: 'Lovely Lady Dino Lipstick',
   description: 'You need the coolest wheels of any age, and we have them. ',
@@ -149,7 +149,7 @@ const products = [{
   quantity: 45,
   isAvailable: true,
   cartId: 1
-}, 
+},
 {
   name: 'Socks',
   description: 'Are your cold-blooded feetsies feeling a bit chilly? Get these socks and put them on your feet. Or head.',
@@ -157,10 +157,7 @@ const products = [{
   quantity: 67,
   isAvailable: true,
   cartId: 1
-}
-
-
-];
+}];
 
 const categories = [
   {name: 'beauty products' },
@@ -187,28 +184,6 @@ const reviews = [{
   productId: 1
 }];
 
-const carts = [{
-  subTotal: 12.99,
-  total: 14.99,
-  userId: 1,
-  orderId: 2
-}, {
-  subTotal: 13.99,
-  total: 15.99,
-  userId: 2,
-  orderId: 1
-} , {
-  subTotal: 15.99,
-  total: 17.99,
-  userId: 3,
-  orderId: 4
-} , {
-  subTotal: 21.99,
-  total: 23.99,
-  userId: 4,
-  orderId: 2
-}];
-
 const orders = [{
   subTotal: 12.99,
   // total: 14.99,
@@ -232,7 +207,8 @@ const orders = [{
   CCV: 234,
   expirationDate: 08/19,
   orderDate:new Date() + 1,
-  userId: 2
+  userId: 2,
+  orderStatus: 'pending'
 } , {
   subTotal: 15.99,
   // total: 17.99,
@@ -245,7 +221,7 @@ const orders = [{
   expirationDate: 08/21,
   userId: 3
 } , {
-  subTotal: 21.99,
+  subtotal: 21.99,
   // total: 23.99,
   shippingCost: 3.99,
   tax: 3.99,
