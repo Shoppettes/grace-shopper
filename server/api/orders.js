@@ -1,4 +1,6 @@
 const router = require('express').Router()
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op;
 const {Order, User, Product} = require('../db/models')
 module.exports = router
 
@@ -18,8 +20,17 @@ router.get('/:orderId', (req, res, next) => {
 
 // create a new order
 router.post('/', (req, res, next) => {
-  Order.create(req.body)
-  .then(createdOrder => Order.findById(createdOrder.id, {include: [User, Product]}))
+  Order.findOrCreate({
+    where: {
+      userId: req.body.userId,
+      [Op.or]: [{orderStatus: 'pending'}, {orderStatus: 'awaiting payment'}]
+    }
+  })
+  .spread(function(foundOrder, createdOrder){
+    if (foundOrder) return foundOrder
+    else return createdOrder
+  })
+  .then( order => Order.findById( order.id, {include: [User, Product]}))
   .then(newOrder => res.status(201).json(newOrder))
   .catch(next);
 })
