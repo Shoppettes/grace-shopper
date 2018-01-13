@@ -9,9 +9,8 @@ import {fetchCurrentUser, getProductsFromDb, getAllCategoriesFromDb, findOrCreat
 
 class Root extends Component {
   componentDidMount () {
-    let user = {id: 1, name: 'John'}
-    this.props.loadInitialData(user)
-    this.props.loadCartData(1)
+    this.props.loadInitialData()
+    // this.props.loadCartData(1)
   }
 
 
@@ -19,7 +18,6 @@ class Root extends Component {
     const {isLoggedIn} = this.props
     return (
       <div>
-        <span>This is the Root component.</span>
         <Router history={history}>
           <div>
           <Navbar />
@@ -46,7 +44,7 @@ const mapState = (state) => {
   return {
     // Being 'logged in' means state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.currentUser,
+    isLoggedIn: !!state.user.id,
     currentOrder: state.currentOrder,
     products: state.products,
     categories: state.categories
