@@ -27,6 +27,8 @@ class Root extends Component {
             <Footer />
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/createaccount" component={CreateAccount}>
+              <Route exact path="/login" component={Login}>
               <Route exact path="/products" component={Products} />
               <Route path="/products/:productId" component={SingleProduct} />
               <Route path="/checkout" component={Checkout} />
