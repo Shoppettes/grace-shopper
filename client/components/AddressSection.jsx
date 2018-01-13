@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {AddressElement} from 'react-stripe-elements';
 
-class AddressSection extends Component {
+export default class AddressSection extends Component {
     render() {
         return (
             <label>
@@ -11,5 +11,3 @@ class AddressSection extends Component {
         )
     }
 }
-
-export default AddressSection;

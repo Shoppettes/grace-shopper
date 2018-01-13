@@ -1,8 +1,8 @@
 import React from 'react';
-import {injectStripe} from 'react-stripe-elements';
+import {injectStripe, CardElement} from 'react-stripe-elements';
 import {connect} from 'react-redux'
 import AddressSection from './AddressSection.jsx';
-import CardSection from './CardSection.jsx';
+
 
 class CheckoutForm extends React.Component {
   handleSubmit = (ev) => {
@@ -11,7 +11,7 @@ class CheckoutForm extends React.Component {
 
     // Within the context of `Elements`, this call to createToken knows which Element to
     // tokenize, since there's only one in this group.
-    this.props.stripe.createToken({name: 'Jenny Rosen'}).then(({token}) => {
+    this.props.stripe.createToken().then(({token}) => {
       console.log('Received Stripe token:', token);
     });
 
@@ -22,7 +22,7 @@ class CheckoutForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <CardSection />
+        <CardElement />
         <button>Confirm order</button>
       </form>
     );
@@ -30,5 +30,5 @@ class CheckoutForm extends React.Component {
 }
 
 
-//const Component = injectStripe(connect()(_CardForm));
 export default injectStripe(connect()(CheckoutForm));
+
