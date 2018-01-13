@@ -21,9 +21,8 @@ class Root extends Component {
       <div>
         <Router history={history}>
           <div>
-          <Navbar />
+            <Navbar />
             <Sidebar />
-            <Footer />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
@@ -33,6 +32,7 @@ class Root extends Component {
               <Route path="/products/:productId" component={SingleProduct} />
               <Route path="/checkout" component={Checkout} />
             </Switch>
+            <Footer />
           </div>
         </Router>
       </div>
