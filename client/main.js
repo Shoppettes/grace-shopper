@@ -10,7 +10,7 @@ import './socket'
 
 ReactDOM.render(
   <Provider store={store}>
-    <StripeProvider apiKey="pk_test_12345">
+    <StripeProvider apiKey="pk_test_4j8nxKms5tgqYitAFPPjBZ01">
       <Root />
     </StripeProvider>
   </Provider>,

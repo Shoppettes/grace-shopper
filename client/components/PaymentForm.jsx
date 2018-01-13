@@ -4,7 +4,7 @@ import {injectStripe} from 'react-stripe-elements';
 import AddressSection from './AddressSection';
 import CardSection from './CardSection';
 
-class checkoutForm extends Component {
+class PaymentForm extends Component {
     constructor() {
         super()
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -27,3 +27,5 @@ class checkoutForm extends Component {
         )
     }
 }
+
+export default injectStripe(PaymentForm)
