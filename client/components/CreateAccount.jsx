@@ -1,11 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {signup as signupFromReducer} from '../redux/auth'
-
-/* -----------------    COMPONENT     ------------------ */
+import {signup as signupFromReducer} from '../store'
 
 class Signup extends React.Component {
-
   constructor(props) {
     super(props);
     this.onSignupSubmit = this.onSignupSubmit.bind(this);
@@ -59,7 +56,7 @@ class Signup extends React.Component {
   }
 
   onSignupSubmit(event) {
-    event.preventDefault()
+    event.preventDefault();
     this.props.signup({
       email: event.target.email.value,
       password: event.target.password.value
@@ -67,16 +64,14 @@ class Signup extends React.Component {
   }
 }
 
-/* -----------------    CONTAINER     ------------------ */
+const mapState = null;
 
-const mapState = null
 const mapDispatch = function(dispatch) {
   return {
     signup (credentials) {
-      const action = signupFromReducer(credentials)
-      dispatch(action)
+      dispatch(signupFromReducer(credentials));
     }
   }
-}
+};
 
-export default connect(mapState, mapDispatch)(Signup)
+export default connect(mapState, mapDispatch)(CreateAccount);
