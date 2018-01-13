@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 const ReactScriptLoaderMixin = require('react-script-loader').ReactScriptLoaderMixin;
 
-let PaymentForm = React.createClass({ //found this 'createClass' syntax on DavidWalsh blog, not sure 
+let PaymentForm = React.createClass({ //found this 'createClass' syntax on DavidWalsh blog, not sure
     //exactly what it means and if it is outdated
     mixins: [ReactScriptLoaderMixin],
 
@@ -33,7 +33,20 @@ let PaymentForm = React.createClass({ //found this 'createClass' syntax on David
     },
 
     onSubmit: function(event) {
-        
+
+    },
+    render: function() {
+      if (this.state.stripeLoading) {
+        return <div>Loading</div>;
+      }
+      else if (this.state.stripeLoadingError) {
+        return <div>Error</div>;
+      }
+      else {
+        return <div>Loaded!</div>;
+      }
     }
+  });
+
 
 })
