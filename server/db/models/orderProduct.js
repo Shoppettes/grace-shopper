@@ -7,7 +7,10 @@ const OrderProduct = db.define('OrderProducts', {
     primaryKey: true,
     autoIncrement: true
 },
-  quantity: Sequelize.INTEGER
+  quantity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  }
 })
 
 OrderProduct.prototype.decrementQuantity = function () {
