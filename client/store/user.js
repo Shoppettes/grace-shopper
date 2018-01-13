@@ -24,9 +24,8 @@ export const signup = credentials => dispatch => // credentials is {email, passw
     .catch(err => console.error(`Signing up with ${credentials.email} and ${credentials.password} was unsuccessful.`))
 
 export const login = credentials => dispatch => // credentials is {email, password}
-  axios.put('/auth/local/login', credentials)
+  axios.post('/auth/local/login', credentials)
     .then(res => {
-      console.log(res.data)
       dispatch(setCurrentUser(res.data))
     })
     .catch(err => console.error(`Logging in with ${credentials.email} and ${credentials.password} was unsuccessful.`))
