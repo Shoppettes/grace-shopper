@@ -4,6 +4,7 @@ import {injectStripe} from 'react-stripe-elements';
 import AddressSection from './AddressSection';
 import CardSection from './CardSection';
 
+
 class PaymentForm extends Component {
     constructor() {
         super()
@@ -29,3 +30,4 @@ class PaymentForm extends Component {
 }
 
 export default injectStripe(PaymentForm)
+
