@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {signup as signupFromReducer} from '../store'
 
-class Signup extends React.Component {
+class CreateAccount extends React.Component {
   constructor(props) {
     super(props);
     this.onSignupSubmit = this.onSignupSubmit.bind(this);

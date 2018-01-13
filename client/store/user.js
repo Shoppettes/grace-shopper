@@ -13,7 +13,7 @@ const defaultUser = {}
  export const clearCurrentUser = () => ({type: CLEAR_CURRENT_USER})
 
 // thunk creator
-export const fetchLoggedInUser = () => dispatch =>
+export const fetchCurrentUser = () => dispatch =>
   axios.get('/auth/local/me')
     .then(res => dispatch(setCurrentUser(res.data || defaultUser)))
     .catch(err => console.error('Fetching the current user failed', err))
