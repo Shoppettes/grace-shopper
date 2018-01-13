@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {NavLink, withRouter} from 'react-router-dom';
-import {logout} from '../store/user';
+import {logout} from '../store';
 
 // This component is currently throwing an error that id is undefined because there is no current user on state
 
@@ -66,11 +66,10 @@ const mapState = (state, props) => {
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, ownProps) => {
   return {
     logout () {
-      const action = logout();
-      dispatch(action);
+      dispatch(logout());
       ownProps.history.push('/')
     }
   }
