@@ -73,11 +73,17 @@ const Products = (props) => {
           <img src= {product.imgUrl}/>
           <div className="caption">
             <h5>
-              <span>{product.name}</span>
-              <span>{product.price}</span>
+              <div>
+                <span>{product.name}</span>
+              </div>
+              <div>
+                <span>{product.price}</span>
+              </div>
             </h5>
             <button onClick={clickHandler.bind(this, currentOrder.id, product.id, cart)}>Add item to cart.</button>
+            <div>
             <Link to={`/products/${product.id}`}>See more</Link>
+            </div>
           </div>
         </a>
       </div>
