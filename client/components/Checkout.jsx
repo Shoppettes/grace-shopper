@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Elements} from 'react-stripe-elements'
-import PaymentForm from './PaymentForm'
+import InjectedCheckoutForm from './InjectedCheckoutForm'
 
 class Checkout extends Component  {
     render() {
         return (
             <Elements>
-                <PaymentForm />
+                <InjectedCheckoutForm />
             </Elements>
         )
     }

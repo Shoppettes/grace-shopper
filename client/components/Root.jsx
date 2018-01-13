@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {Router, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from '../history';
-import {Navbar, Sidebar, Footer, Home, Products, SingleProduct, Checkout, Cart, AddressSection, CardSection, PaymentForm, AuthForm} from '../components';
+import {Navbar, Sidebar, Footer, Home, Products, SingleProduct, Cart, AuthForm, MyStoreCheckout} from '../components';
 import {fetchCurrentUser, getProductsFromDb, getAllCategoriesFromDb, findOrCreateOrder, getCartByOrder} from '../store';
-import {StripeProvider} from 'react-stripe-elements'
+
 
 class Root extends Component {
   componentDidMount () {
@@ -29,7 +29,7 @@ class Root extends Component {
               <Route exact path="/" component={Home} />
               <Route exact path="/products" component={Products} />
               <Route path="/products/:productId" component={SingleProduct} />
-              <Route path="/checkout" component={Checkout} />
+              <Route path="/checkout" component={MyStoreCheckout} />
               <Route path="/cart" component={Cart} />
             </Switch>
           </div>
