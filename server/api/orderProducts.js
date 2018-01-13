@@ -22,23 +22,43 @@ router.post('/', (req, res, next) => {
   .catch(next);
 })
 
-// increment the quantity of a particular product in a particular order
+//update the orderProduct instance quantity
 router.put('/:orderId/:productId', (req, res, next) => {
- OrderProduct.findOne({where: {orderId: req.params.orderId, productId: req.params.productId}})
-   .then(orderProductInstance => {
-     orderProductInstance.incrementQuantity()
-   })
-   .catch(next)
+  OrderProduct.findOrCreate({
+    where: {
+      oderId: req.params.orderId,
+      productId: req.params.productId
+    }
+  })
+    .spread(function(foundOrderProduct, createdOrderProduct){
+        if (foundOrderProduct) return foundOrderProduct
+        else return createdOrderProduct
+    })
+    .then( orderProduct => {
+      if (req.query.increment) orderProduct.incrementQuantity()
+      else if (req.query.decrement) orderProduct.decrementQuantity()
+    })
+    .then( () => res.status(204).json('Update succesful.'))
+    .catch(next)
 })
 
-// decrement the quantity of a particular product in a particular orders
-router.put('/:orderId/:productId', (req, res, next) => {
- OrderProduct.findOne({where: {orderId: req.params.orderId, productId: req.params.productId}})
-   .then(orderProductInstance => {
-     orderProductInstance.decrementQuantity()
-   })
-   .catch(next)
-})
+// increment the quantity of a particular product in a particular order
+// router.put('/:orderId/:productId', (req, res, next) => {
+//  OrderProduct.findOne({where: {orderId: req.params.orderId, productId: req.params.productId}})
+//    .then(orderProductInstance => {
+//      orderProductInstance.incrementQuantity()
+//    })
+//    .catch(next)
+// })
+
+// // decrement the quantity of a particular product in a particular orders
+// router.put('/:orderId/:productId', (req, res, next) => {
+//  OrderProduct.findOne({where: {orderId: req.params.orderId, productId: req.params.productId}})
+//    .then(orderProductInstance => {
+//      orderProductInstance.decrementQuantity()
+//    })
+//    .catch(next)
+// })
 
 // delete a particular product from a particular order
 router.delete('/:orderId/:productId', (req, res, next) => {
