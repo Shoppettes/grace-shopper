@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {getChosenProductFromDb} from '../store'
+import {updateCartProduct, createOrderProductInstance} from '../store'
 /**
  * import React, {Component} from 'react';
 import {connect} from 'react-redux';
@@ -54,14 +54,14 @@ import {fetchCurrentUser, getProductsFromDb} from '../store';
 
 
 const Products = (props) => {
-  const {products, order, addToDb, addToCart, isLoggedIn, category} = props;
+  const {products, order, cart, clickHandler, isLoggedIn, category} = props;
 
   // conditionally rendering the clickHandler and assigning first arg based on whether user logged in
   // addToDb (thunk) and addToCart (action) not actually created yet
-  const clickHandler = isLoggedIn ? addToDb : addToCart;
-  const orderId = isLoggedIn ? order.id : null;
+  //const clickHandler = isLoggedIn ? addToDb : addToCart;
+  //const orderId = isLoggedIn ? order.id : null;
   const renderedProducts = category.id ? products.filter(product => product.category.id === category.id) : products;
-  
+
   return (
     <div>
       <h3>This is the Products component.</h3>
@@ -75,7 +75,7 @@ const Products = (props) => {
               <span>{product.name}</span>
               <span>{product.price}</span>
             </h5>
-            <button onClick={clickHandler(orderId, product.id)}>Add item to cart.</button>
+            <button onClick={clickHandler(order.id, product.id)}>Add item to cart.</button>
             <Link to={`/products/${product.id}`}>See more</Link>
           </div>
         </a>
@@ -91,12 +91,18 @@ const mapState = (state) => {
     products: state.products,
     // we haven't tested isLoggedIn yet
     isLoggedIn: !!state.user.id,
-    category: state.chosenCategory
+    category: state.chosenCategory,
+    cart: state.cart,
+    order: state.currentOrder
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, ownProps) => {
   return {
+    clickHandler (orderId, productId) {
+      if (!ownProps.cart.find( product => product.productId === productId)) dispatch(createOrderProductInstance({orderId, productId}))
+      else dispatch(updateCartProduct(orderId, productId, 'increment'))
+    },
     // neither of these functions is defined yet, we are using them as placeholders
     addToDb() {
       dispatch(addOrderProductToDb({orderId: 7, productId: 8}))
