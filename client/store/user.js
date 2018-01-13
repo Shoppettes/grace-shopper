@@ -20,13 +20,17 @@ export const fetchCurrentUser = () => dispatch =>
 
 export const signup = credentials => dispatch => // credentials is {email, password}
   axios.post('auth/local/signup', credentials)
-    .then(res => dispatch(setCurrentUser(res.data)))
+    .then(res => {
+      dispatch(setCurrentUser(res.data))
+      history.push('/')
+    })
     .catch(err => console.error(`Signing up with ${credentials.email} and ${credentials.password} was unsuccessful.`))
 
 export const login = credentials => dispatch => // credentials is {email, password}
   axios.post('/auth/local/login', credentials)
     .then(res => {
       dispatch(setCurrentUser(res.data))
+      history.push('/')
     })
     .catch(err => console.error(`Logging in with ${credentials.email} and ${credentials.password} was unsuccessful.`))
 

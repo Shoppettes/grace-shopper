@@ -66,7 +66,7 @@ class Login extends Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = null
+const mapState = null;
 
 const mapDispatch = function(dispatch) {
   return {
