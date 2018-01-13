@@ -6,11 +6,19 @@ module.exports = router
 router.get('/:orderId', (req, res, next) => {
 
 })
-
+//res.status(201).json(createdOrderProduct)
 //create an orderproduct
 router.post('/', (req, res, next) => {
   OrderProduct.create(req.body)
-  .then(createdOrderProduct => res.status(201).json(createdOrderProduct))
+  .then(createdOrderProduct => Order.findById(createdOrderProduct.orderId))
+  .then( foundProduct => ({
+    orderProductId: foundProduct.orderProducts.id,
+    orderId: foundProduct.orderProducts.orderId,
+    productId: foundProduct.id,
+    productName: foundProduct.name,
+    amount: foundProduct.orderProducts.quantity,
+    price: foundProduct.price
+  }))
   .catch(next);
 })
 

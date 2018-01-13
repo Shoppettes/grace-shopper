@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'redux';
 import {getCurrentOrder} from '../store'
 
-class Checkout extends Component => {
+class Checkout extends Component {
   constructor(props) {
     super(props);
   }
@@ -14,19 +14,21 @@ class Checkout extends Component => {
     // create reducer for currentOrder; create thunk that does a get request for orderId
   }
 
-  return (
+  render () {
+    return (
     <div>
       <span>This is the Checkout component.</span>
     </div>
   )
-};
+  }
+}
 
 
 const mapStateToProps = state => {
   return {
     user: state.currentUser
-    order:
-    isLoggedIn:
+    //order:
+    //isLoggedIn:
   }
 }
 
