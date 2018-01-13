@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import history from '../history';
 import {Navbar, Sidebar, Footer, Home, Products, SingleProduct, Checkout, Cart} from '../components';
 import {fetchCurrentUser, getProductsFromDb, getAllCategoriesFromDb, findOrCreateOrder, getCartByOrder} from '../store';
-
+import {StripeProvider} from 'react-stripe-elements'
 
 class Root extends Component {
   componentDidMount () {

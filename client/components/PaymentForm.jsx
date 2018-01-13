@@ -1,39 +1,29 @@
-import React from 'react';
-import {connect} from 'react-redux';
-const ReactScriptLoaderMixin = require('react-script-loader').ReactScriptLoaderMixin;
+import React, {Component} from 'react';
+import {injectStripe} from 'react-stripe-elements';
 
-let PaymentForm = React.createClass({ //found this 'createClass' syntax on DavidWalsh blog, not sure 
-    //exactly what it means and if it is outdated
-    mixins: [ReactScriptLoaderMixin],
+import AddressSection from './AddressSection';
+import CardSection from './CardSection';
 
-    getInitialState: function() {
-        return {
-            stripeLoading: true,
-            stripeLoadingError: false,
-            submitDisabled: false,
-            paymentError: null,
-            paymentComplete: false,
-            token: null
-        };
-    },
-
-    getScriptURL: function() {
-        return 'https://js.stripe.com/v2/';
-    },
-
-    onScriptLoaded: function() {
-        if(!PaymentForm.getStripeToken) {
-            Stripe.setPublishableKey('pk_test_4j8nxKms5tgqYitAFPPjBZ01');
-            this.setState({ stripeLoading: false,stripeLoadingError: false});
-        }
-    },
-
-    onScriptError: function() {
-        this.setState({ stripeLoading: false, stripeLoadingError: true})
-    },
-
-    onSubmit: function(event) {
-        
+class checkoutForm extends Component {
+    constructor() {
+        super()
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-})
+    handleSubmit= (ev) => {
+        ev.preventDefault();
+        this.props.stripe.createToken({name: 'Test User'}).then(({token}) => {
+            console.log('Received Stripe token: ', token)
+        })
+    }
+
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <AddressSection />
+                <CardSection />
+                <button>Confirm Order</button>
+            </form>
+        )
+    }
+}
