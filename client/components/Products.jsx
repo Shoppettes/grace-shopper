@@ -55,15 +55,13 @@ import {fetchCurrentUser, getProductsFromDb} from '../store';
 
 
 const Products = (props) => {
-  console.log('Flag: ', props)
-  const {products, order, cart, clickHandler, isLoggedIn, category} = props;
-
+  const {cart, currentOrder, category, products, handleButton} = props;
   // conditionally rendering the clickHandler and assigning first arg based on whether user logged in
   // addToDb (thunk) and addToCart (action) not actually created yet
   //const clickHandler = isLoggedIn ? addToDb : addToCart;
   //const orderId = isLoggedIn ? order.id : null;
-  let renderedProducts = category.id ? products.filter(product => product.category.id === category.id) : products;
-  console.log('Flag2: ', products)
+  //let renderedProducts = category.id ? products.filter(product => product.category.id === category.id) : products;
+  //clickHandler(1, 3, cart)
   return (
     <div>
       <h3>This is the Products component.</h3>
@@ -71,11 +69,29 @@ const Products = (props) => {
         <div key={product.id}>
           Name: {product.name}
           Price: {product.price}
-          Amount: {product.orderProducts.quantity}
+          Amount: {product.OrderProducts.quantity}
           ------
         </div>
         )
       )}
+
+      <div className="row">
+      {products && products.map(product => (
+        <div className="col-xs-4" key={product.id}>
+        <a className="thumbnail" href="#">
+          <img src= {product.imgUrl}/>
+          <div className="caption">
+            <h5>
+              <span>{product.name}</span>
+              <span>{product.price}</span>
+            </h5>
+            <button onClick={handleButton(currentOrder.id, product.id, cart)}>Add item to cart.</button>
+            <Link to={`/products/${product.id}`}>See more</Link>
+          </div>
+        </a>
+      </div>
+      ))}
+      </div>
 
     </div>
   )
@@ -83,32 +99,30 @@ const Products = (props) => {
 
 const mapState = (state) => {
   return {
-    products: state.products,
-    // we haven't tested isLoggedIn yet
-    isLoggedIn: !!state.user.id,
-    category: state.chosenCategory,
+    currentOrder: state.currentOrder,
     cart: state.cart,
-    order: state.currentOrder
+    products: state.products,
+    category: state.category
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    clickHandler (orderId, productId, cart) {
-      if (!cart.find( product => product.id === productId)) dispatch(createOrderProductInstance({orderId, productId}))
+    handleButton (orderId, productId, cart) {
+      if (!cart.find( product => product.id == productId)) dispatch(createOrderProductInstance({orderId, productId}))
       else dispatch(updateCartProduct(orderId, productId, 'increment'))
-    },
+    }
     // neither of these functions is defined yet, we are using them as placeholders
-    addToDb() {
-      dispatch(addOrderProductToDb({orderId: 7, productId: 8}))
+    // addToDb() {
+    //   dispatch(addOrderProductToDb({orderId: 7, productId: 8}))
       // this is what we think addOrderProductToDb should do
       // check for existing order associated with the current users
       // if yes, create new instance on OrderProduct model with current product and associated users
       // if not, create a new order, then create a new instance on OrderProduct model with current product and associated users
-    },
-    addToCart() {
-      dispatch(addOrderProductToCart())
-    }
+    //},
+    // addToCart() {
+    //   dispatch(addOrderProductToCart())
+    // }
   }
 }
 

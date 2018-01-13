@@ -11,7 +11,10 @@ router.get('/:orderId', (req, res, next) => {
 router.post('/', (req, res, next) => {
   OrderProduct.create(req.body)
   .then(createdOrderProduct => Order.findById(createdOrderProduct.orderId, {include: [Product]}))
-  .then( foundOrder => res.status(201).json(foundOrder.products))
+  .then( foundOrder => {
+    let productArray = foundOrder.products
+    return res.status(201).json(productArray)
+  })
   .catch(next);
 })
 
