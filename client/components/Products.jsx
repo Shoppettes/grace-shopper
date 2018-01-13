@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
+import { Link } from 'react-router-dom'
 import {updateCartProduct, createOrderProductInstance} from '../store'
 /**
  * import React, {Component} from 'react';
@@ -54,34 +55,28 @@ import {fetchCurrentUser, getProductsFromDb} from '../store';
 
 
 const Products = (props) => {
+  console.log('Flag: ', props)
   const {products, order, cart, clickHandler, isLoggedIn, category} = props;
 
   // conditionally rendering the clickHandler and assigning first arg based on whether user logged in
   // addToDb (thunk) and addToCart (action) not actually created yet
   //const clickHandler = isLoggedIn ? addToDb : addToCart;
   //const orderId = isLoggedIn ? order.id : null;
-  const renderedProducts = category.id ? products.filter(product => product.category.id === category.id) : products;
-
+  let renderedProducts = category.id ? products.filter(product => product.category.id === category.id) : products;
+  console.log('Flag2: ', products)
   return (
     <div>
       <h3>This is the Products component.</h3>
-      <div className="row">
-      {renderedProducts.data && renderedProducts.data.map(product => (
-        <div className="col-xs-4" key={product.id}>
-        <a className="thumbnail" href="#">
-          <img src= {product.imgUrl}/>
-          <div className="caption">
-            <h5>
-              <span>{product.name}</span>
-              <span>{product.price}</span>
-            </h5>
-            <button onClick={clickHandler(order.id, product.id)}>Add item to cart.</button>
-            <Link to={`/products/${product.id}`}>See more</Link>
-          </div>
-        </a>
-      </div>
-      ))}
-      </div>
+      {cart && cart.map(product => (
+        <div key={product.id}>
+          Name: {product.name}
+          Price: {product.price}
+          Amount: {product.orderProducts.quantity}
+          ------
+        </div>
+        )
+      )}
+
     </div>
   )
 };
@@ -97,10 +92,10 @@ const mapState = (state) => {
   }
 }
 
-const mapDispatch = (dispatch, ownProps) => {
+const mapDispatch = (dispatch) => {
   return {
-    clickHandler (orderId, productId) {
-      if (!ownProps.cart.find( product => product.productId === productId)) dispatch(createOrderProductInstance({orderId, productId}))
+    clickHandler (orderId, productId, cart) {
+      if (!cart.find( product => product.id === productId)) dispatch(createOrderProductInstance({orderId, productId}))
       else dispatch(updateCartProduct(orderId, productId, 'increment'))
     },
     // neither of these functions is defined yet, we are using them as placeholders

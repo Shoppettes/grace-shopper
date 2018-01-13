@@ -56,7 +56,7 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatch)(Root)
+export default connect(mapState, mapDispatch)(Root)
 
 /**
  * PROP TYPES
