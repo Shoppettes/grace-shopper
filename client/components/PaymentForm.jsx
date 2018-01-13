@@ -1,3 +1,7 @@
+import React from 'react'
+import {injectStripe} from 'react-stripe-elements';
+import {connect} from 'react-redux'
+
 class PaymentRequestForm extends React.Component {
     constructor(props) {
       super(props);
@@ -46,5 +50,6 @@ class PaymentRequestForm extends React.Component {
       ) : null;
     }
   }
-  export default injectStripe(PaymentRequestForm);
+
+  export default injectStripe(connect()(PaymentRequestForm));
 
