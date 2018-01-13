@@ -4,13 +4,14 @@ import {Router, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from '../history';
 import {Navbar, Sidebar, Footer, Home, Products, SingleProduct, Checkout, Cart} from '../components';
-import {fetchCurrentUser, getProductsFromDb, getAllCategoriesFromDb, findOrCreateOrder} from '../store';
+import {fetchCurrentUser, getProductsFromDb, getAllCategoriesFromDb, findOrCreateOrder, getCartByOrder} from '../store';
 
 
 class Root extends Component {
   componentDidMount () {
     let user = {id: 1, name: 'John'}
     this.props.loadInitialData(user)
+    this.props.loadCartData(1)
   }
 
 
@@ -57,6 +58,9 @@ const mapDispatch = (dispatch) => {
       dispatch(getProductsFromDb())
       dispatch(getAllCategoriesFromDb())
       dispatch(findOrCreateOrder(user))
+    },
+    loadCartData (orderId) {
+      dispatch(getCartByOrder(orderId))
     }
   }
 }

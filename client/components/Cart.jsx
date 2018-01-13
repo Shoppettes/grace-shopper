@@ -1,11 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
-import {updateCartProduct, getCartByOrder} from '../store'
+import {updateCartProduct, getCartByOrder, getCart} from '../store'
 
 export const cartView = (props) => {
-  const {cart, currentOrder, getCart} = props
-
+  const {cart, currentOrder, uploadCart} = props
   return (
     <div>
 
@@ -25,17 +24,17 @@ export const cartView = (props) => {
   )
 };
 
-const mapState = (state, ownProps) => {
+const mapState = (state) => {
   console.log(state)
   return {
     currentOrder: state.currentOrder,
-    cart: getCart(1)
+    cart: state.cart
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    getCart (orderId) {
+    uploadCart(orderId) {
       dispatch(getCartByOrder(orderId))
     }
   }
