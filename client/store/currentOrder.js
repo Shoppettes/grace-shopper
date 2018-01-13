@@ -13,15 +13,14 @@ const defaultOrder = {}
  export const clearCurrentOrder = () => ({type: CLEAR_CURRENT_ORDER});
 
 // thunk creators
-export const findOrCreateOrder = currentUser => dispatch => //sets Order to defaultOrder after creation
- axios.post('api/orders', {userId: currentUser.id})
-  .then(res => dispatch(setCurrentOrder(res.data)))
-  .catch(err => console.log(err))
-
-//  export const getCurrentOrder = order => dispatch =>
-//   axios.get(`api/orders/${order.id}`)
-//     .then(res => dispatch(setCurrentOrder(res.data)))
-//     .catch(err => console.log(err))
+export function findOrCreateOrder (currentUser) {
+  console.log('!!!!!!', currentUser)
+  return function (dispatch) {
+  axios.post('api/orders', {userId: currentUser.id})
+    .then(res => dispatch(setCurrentOrder(res.data)))
+    .catch(err => console.log(err))
+  }
+}
 
 // reducer
 export default function (state = defaultOrder, action) {

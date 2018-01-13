@@ -9,8 +9,9 @@ import {fetchCurrentUser, getProductsFromDb, getAllCategoriesFromDb, findOrCreat
 
 class Root extends Component {
   componentDidMount () {
-    this.props.loadInitialData()
-    // this.props.loadCartData(1)
+    this.props.loadInitialData();
+    console.log('!!!!!!', this.props)
+    this.props.isLoggedIn ? this.props.loadOrder(this.props.currentUser) : this.props.loadOrder({})
   }
 
 
@@ -45,6 +46,7 @@ const mapState = (state) => {
     // Being 'logged in' means state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
+    currentUser: state.user,
     currentOrder: state.currentOrder,
     products: state.products,
     categories: state.categories
@@ -57,10 +59,9 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchCurrentUser())
       dispatch(getProductsFromDb())
       dispatch(getAllCategoriesFromDb())
-      // dispatch(findOrCreateOrder(user))
     },
-    loadCartData (orderId) {
-      // dispatch(getCartByOrder(orderId))
+    loadOrder (user) {
+      dispatch(findOrCreateOrder(user))
     }
   }
 }
