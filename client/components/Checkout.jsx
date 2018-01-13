@@ -22,12 +22,11 @@ class Checkout extends Component {
   }
 };
 
-
 const mapStateToProps = state => {
   return {
-    user: state.currentUser,
-    order: {},
-    isLoggedIn: {}
+    user: state.currentUser
+    //order:
+    //isLoggedIn:
   }
 }
 

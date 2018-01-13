@@ -1,4 +1,5 @@
 import axios from 'axios'
+//import { currentId } from 'async_hooks';
 
 // action types
 const SET_CURRENT_ORDER = 'SET_CURRENT_ORDER'
@@ -12,10 +13,15 @@ const defaultOrder = {}
  export const clearCurrentOrder = () => ({type: CLEAR_CURRENT_ORDER});
 
 // thunk creators
- export const getCurrentOrder = order => dispatch =>
-  axios.get(`api/orders/${order.id}`)
-    .then(res => dispatch(setCurrentOrder(res.data)))
-    .catch(err => console.log(err))
+export const findOrCreateOrder = currentUser => dispatch => //sets Order to defaultOrder after creation
+ axios.post('api/orders', {userId: currentUser.id})
+  .then(res => dispatch(setCurrentOrder(res.data)))
+  .catch(err => console.log(err))
+
+//  export const getCurrentOrder = order => dispatch =>
+//   axios.get(`api/orders/${order.id}`)
+//     .then(res => dispatch(setCurrentOrder(res.data)))
+//     .catch(err => console.log(err))
 
 // reducer
 export default function (state = defaultOrder, action) {
