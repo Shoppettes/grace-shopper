@@ -25,7 +25,10 @@ export const signup = credentials => dispatch => // credentials is {email, passw
 
 export const login = credentials => dispatch => // credentials is {email, password}
   axios.put('/auth/local/login', credentials)
-    .then(res => dispatch(setCurrentUser(res.data)))
+    .then(res => {
+      console.log(res.data)
+      dispatch(setCurrentUser(res.data))
+    })
     .catch(err => console.error(`Logging in with ${credentials.email} and ${credentials.password} was unsuccessful.`))
 
 export const logout = () => dispatch =>
