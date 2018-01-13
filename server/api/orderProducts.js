@@ -30,7 +30,7 @@ router.put('/:orderId/:productId', (req, res, next) => {
     })
     .then( foundOrder => {
       let updatedProduct = foundOrder.products.find( product => product.id == req.params.productId)
-      res.send(updatedProduct)
+      res.status(220).json(updatedProduct)
       //return res.status(201).json(updatedProduct)
     })
     .catch(next);
