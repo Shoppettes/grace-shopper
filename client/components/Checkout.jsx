@@ -24,15 +24,3 @@ class Checkout extends Component  {
 
 export default Checkout;
 
-class Checkout extends React.Component {
-  render() {
-    return (
-      <div className="Checkout">
-        <h1>Available Elements</h1>
-        <Elements>
-          <CardForm />
-        </Elements>
-      </div>
-    )
-  }
-}
