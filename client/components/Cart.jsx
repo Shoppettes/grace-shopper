@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import {updateCartProduct, getCartByOrder, getCart} from '../store'
 
 export const cartView = (props) => {
-  const {cart, currentOrder, uploadCart} = props
+  const {cart, currentOrder, uploadCart, clickHandler} = props
   return (
     <div>
 
@@ -15,6 +15,7 @@ export const cartView = (props) => {
         Name: {product.name} <br/>
         Price: {product.price}<br/>
         Amount: {product.OrderProducts.quantity}<br/>
+        <button onClick={clickHandler.bind(this, currentOrder.id, product.id, cart)}>Remove</button>
         ------<br/>
       </div>
       )
@@ -36,6 +37,9 @@ const mapDispatch = dispatch => {
   return {
     uploadCart(orderId) {
       dispatch(getCartByOrder(orderId))
+    },
+    clickHandler (orderId, productId, cart) {
+       dispatch(updateCartProduct(orderId, productId, 'decrement'))
     }
   }
 }

@@ -33,7 +33,7 @@ export const getCartByOrder = (orderId) => dispatch =>
     .catch( err => console.log(err))
 
  export const updateCartProduct = (orderId, productId, actionToTake) => dispatch =>
-  axios.put(`api/orderProducts/${orderId}/${productId}?${actionToTake}`)
+  axios.put(`api/orderProducts/${orderId}/${productId}?${actionToTake}=true`)
     .then( res => dispatch(updateProductAmount(res.data)))
     .catch(err => console.log(err))
 
@@ -49,9 +49,9 @@ export default function (state = defaultCart, action) {
      return action.cart
    case UPDATE_PRODUCT_AMOUNT:
      return state.map( product => {
-       if ( product.id === action.cartProduct.id) return action.cartProduct
+       if ( product.id === action.cartProduct.id && action.cartProduct.OrderProducts.quantity > 0) return action.cartProduct
        else return product
-     })
+      })
    default:
      return state
  }

@@ -11,7 +11,7 @@ class Root extends Component {
   componentDidMount () {
     let user = {id: 1, name: 'John'}
     this.props.loadInitialData(user)
-    this.props.loadCartData(1)
+    this.props.loadCartData(2)
   }
 
 
