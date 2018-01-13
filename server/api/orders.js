@@ -20,18 +20,12 @@ router.get('/:orderId', (req, res, next) => {
 
 // create a new order
 router.post('/', (req, res, next) => {
-  Order.findOrCreate({
-    where: {
-      userId: req.body.userId,
-      orderStatus: 'pending'
-    }
+  Order.findOrCreate({where: {userId: req.body.userId, orderStatus: 'pending'}})
+  .spread((order, created) => {
+    return order;
   })
-  .spread(function(foundOrder, createdOrder){
-    if (foundOrder) return foundOrder
-    else return createdOrder
-  })
-  .then(order => Order.findById( order.id, {include: [User, Product]}))
-  .then(newOrder => res.status(201).json(newOrder))
+  .then(order => Order.findById(order.dataValues.id, {include: [User, Product]}))
+  .then(order => res.status(201).json(order))
   .catch(next);
 })
 
