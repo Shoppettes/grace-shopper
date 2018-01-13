@@ -10,7 +10,7 @@ router.get('/:orderId', (req, res, next) => {
 //create an orderproduct
 router.post('/', (req, res, next) => {
   OrderProduct.create(req.body)
-  .then(createdOrderProduct => Order.findById(createdOrderProduct.orderId))
+  .then(createdOrderProduct => Order.findById(createdOrderProduct.orderId, {include: [Product]}))
   .then( foundOrder => res.status(201).json(foundOrder.products))
   .catch(next);
 })
@@ -26,11 +26,12 @@ router.put('/:orderId/:productId', (req, res, next) => {
     .then( orderProduct => {
       if (req.query.increment) orderProduct.incrementQuantity()
       else if (req.query.decrement) orderProduct.decrementQuantity()
-      return Order.findById(orderProduct.orderId)
+      return Order.findById(req.params.orderId, {include: [Product]})
     })
     .then( foundOrder => {
-      let updatedProduct = foundOrder.products.find(product => product.id === req.body.productId)
-      return res.status(201).json(updatedProduct)
+      let updatedProduct = foundOrder.products.find( product => product.id == req.params.productId)
+      res.send(updatedProduct)
+      //return res.status(201).json(updatedProduct)
     })
     .catch(next);
 })
