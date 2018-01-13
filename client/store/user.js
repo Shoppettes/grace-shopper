@@ -1,52 +1,40 @@
 import axios from 'axios'
 import history from '../history'
 
-/**
- * ACTION TYPES
- */
+// action types
 const SET_CURRENT_USER = 'SET_CURRENT_USER'
 const CLEAR_CURRENT_USER = 'CLEAR_CURRENT_USER'
 
-/**
- * INITIAL STATE
- */
+// initial state
 const defaultUser = {}
 
-/**
- * ACTION CREATORS
- */
+// action creator
  export const setCurrentUser = currentUser => ({type: SET_CURRENT_USER, currentUser});
  export const clearCurrentUser = () => ({type: CLEAR_CURRENT_USER})
 
-/**
- * THUNK CREATORS
- */
-export const fetchCurrentUser = () =>
-  dispatch =>
-    axios.get('/auth/local/me')
-      .then(res =>
-        dispatch(setCurrentUser(res.data || defaultUser)))
-      .catch(err => console.log(err))
+// thunk creator
+export const fetchLoggedInUser = () => dispatch =>
+  axios.get('/auth/local/me')
+    .then(res => dispatch(setCurrentUser(res.data || defaultUser)))
+    .catch(err => console.error('Fetching the current user failed', err))
 
-export const auth = (email, password, method) =>
-  dispatch =>
-    axios.post(`/auth/${method}`, { email, password })
-      .then(res => {
-        dispatch(setCurrentUser(res.data))
-        history.push('/home')
-      }, authError => { // rare example: a good use case for parallel (non-catch) error handler
-        dispatch(setCurrentUser({error: authError}))
-      })
-      .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
+export const signup = credentials => dispatch => // credentials is {email, password}
+  axios.post('auth/local/signup', credentials)
+    .then(res => dispatch(setCurrentUser(res.data)))
+    .catch(err => console.error(`Signing up with ${credentials.email} and ${credentials.password} was unsuccessful.`))
 
-export const logout = () =>
-  dispatch =>
-    axios.post('/auth/logout')
-      .then(_ => {
-        dispatch(clearCurrentUser())
-        history.push('/login')
-      })
-      .catch(err => console.log(err))
+export const login = credentials => dispatch => // credentials is {email, password}
+  axios.put('/auth/local/login', credentials)
+    .then(res => dispatch(setCurrentUser(res.data)))
+    .catch(err => console.error(`Logging in with ${credentials.email} and ${credentials.password} was unsuccessful.`))
+
+export const logout = () => dispatch =>
+  axios.post('/auth/logout')
+    .then(() => {
+      dispatch(clearCurrentUser())
+      history.push('/')
+    })
+    .catch(err => console.error('Logging out was unsuccessful', err))
 
 /**
  * REDUCER
