@@ -39,7 +39,7 @@ class Navbar extends Component {
     return (
       <ul className="nav navbar-nav navbar-right">
         <li>
-          <NavLink to="/signup" activeClassName="active">signup</NavLink>
+          <NavLink to="/signup" activeClassName="active">create an account</NavLink>
         </li>
         <li>
           <NavLink to="/login" activeClassName="active">login</NavLink>
