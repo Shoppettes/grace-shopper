@@ -9,7 +9,7 @@ const OrderProduct = db.define('OrderProducts', {
 },
   quantity: {
     type: Sequelize.INTEGER,
-    defaultValue: 0
+    defaultValue: 1
   }
 })
 
