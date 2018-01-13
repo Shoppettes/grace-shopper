@@ -52,7 +52,8 @@ const createApp = () => {
   app.use(passport.session())
 
   app.use(function(req, res, next) {
-  console.log('SESSION USER: ', req.session)
+  console.log('SESSION: ', req.session)  
+  console.log('SESSION USER: ', req.user)
   next()
 })
 

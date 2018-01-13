@@ -29,7 +29,7 @@ export const login = credentials => dispatch => // credentials is {email, passwo
     .catch(err => console.error(`Logging in with ${credentials.email} and ${credentials.password} was unsuccessful.`))
 
 export const logout = () => dispatch =>
-  axios.post('/auth/logout')
+  axios.post('/auth/local/logout')
     .then(() => {
       dispatch(clearCurrentUser())
       history.push('/')
