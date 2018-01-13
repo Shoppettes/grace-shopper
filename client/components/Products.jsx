@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
-import {updateCartProduct, createOrderProductInstance} from '../store'
+import {updateCartProduct, createOrderProductInstance, getCartByOrder} from '../store'
 /**
  * import React, {Component} from 'react';
 import {connect} from 'react-redux';
@@ -76,7 +76,7 @@ const Products = (props) => {
               <span>{product.name}</span>
               <span>{product.price}</span>
             </h5>
-            <button onClick={clickHandler.bind(currentOrder.id, product.id, cart)}>Add item to cart.</button>
+            <button onClick={clickHandler.bind(this, currentOrder.id, product.id, cart)}>Add item to cart.</button>
             <Link to={`/products/${product.id}`}>See more</Link>
           </div>
         </a>
@@ -102,6 +102,9 @@ const mapDispatch = (dispatch) => {
     clickHandler (orderId, productId, cart) {
       if (!cart.find( product => product.id == productId)) dispatch(createOrderProductInstance({orderId, productId}))
       else dispatch(updateCartProduct(orderId, productId, 'increment'))
+    },
+    getCart (orderId) {
+      dispatch(getCartByOrder(orderId))
     }
     // neither of these functions is defined yet, we are using them as placeholders
     // addToDb() {

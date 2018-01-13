@@ -2,10 +2,16 @@ const router = require('express').Router()
 const {OrderProduct, Order, Product} = require('../db/models')
 module.exports = router
 
-//get an orderProduct by its OrderId
+//get all the cart products by order id!
 router.get('/:orderId', (req, res, next) => {
-
+  Order.findById(req.params.orderId, {include: [Product]})
+    .then( foundOrder => {
+      let productArray = foundOrder.products
+      return res.status(200).json(productArray)
+    })
+    .catch(next)
 })
+
 //res.status(201).json(createdOrderProduct)
 //create an orderproduct
 router.post('/', (req, res, next) => {

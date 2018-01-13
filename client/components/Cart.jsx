@@ -1,14 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
-import {updateCartProduct, createOrderProductInstance} from '../store'
+import {updateCartProduct, getCartByOrder} from '../store'
 
 export const cartView = (props) => {
-  const {cart, currentOrder} = props
+  const {cart, currentOrder, getCart} = props
+
   return (
     <div>
-    {cart && cart.map(product => (
+
+    <h3>You have {cart.length} items in your cart</h3> <br/>
+    {cart.length > 0 && cart.map(product => (
       <div key={product.id}>
+        ----------<br/>
         Name: {product.name} <br/>
         Price: {product.price}<br/>
         Amount: {product.OrderProducts.quantity}<br/>
@@ -21,11 +25,21 @@ export const cartView = (props) => {
   )
 };
 
-const mapState = ({currentOrder, cart}) => {
+const mapState = (state, ownProps) => {
+  console.log(state)
   return {
+    currentOrder: state.currentOrder,
+    cart: getCart(1)
   }
+}
 
+const mapDispatch = dispatch => {
+  return {
+    getCart (orderId) {
+      dispatch(getCartByOrder(orderId))
+    }
+  }
 }
 
 
-export default connect(mapState, null)(cartView);
+export default connect(mapState, mapDispatch)(cartView)

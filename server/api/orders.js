@@ -23,7 +23,7 @@ router.post('/', (req, res, next) => {
   Order.findOrCreate({
     where: {
       userId: req.body.userId,
-      [Op.or]: [{orderStatus: 'pending'}, {orderStatus: 'awaiting payment'}]
+      //[Op.or]: [{orderStatus: 'pending'}, {orderStatus: 'awaiting payment'}]
     }
   })
   .spread(function(foundOrder, createdOrder){

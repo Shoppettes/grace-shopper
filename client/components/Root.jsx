@@ -3,17 +3,16 @@ import {connect} from 'react-redux';
 import {Router, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from '../history';
-import {Navbar, Sidebar, Footer, Home, Products, SingleProduct, Checkout} from '../components';
-import {fetchCurrentUser, getProductsFromDb, getAllCategoriesFromDb, findOrCreateOrder, setCart} from '../store';
+import {Navbar, Sidebar, Footer, Home, Products, SingleProduct, Checkout, Cart} from '../components';
+import {fetchCurrentUser, getProductsFromDb, getAllCategoriesFromDb, findOrCreateOrder} from '../store';
 
 
 class Root extends Component {
   componentDidMount () {
     let user = {id: 1, name: 'John'}
-    this.props.loadInitialData()
-    this.props.initializeOrder(user)
-    //this.props.initializeCart([]);
+    this.props.loadInitialData(user)
   }
+
 
   render () {
     const {isLoggedIn} = this.props
@@ -30,6 +29,7 @@ class Root extends Component {
               <Route exact path="/products" component={Products} />
               <Route path="/products/:productId" component={SingleProduct} />
               <Route path="/checkout" component={Checkout} />
+              <Route path="/cart" component={Cart} />
             </Switch>
           </div>
         </Router>
@@ -44,23 +44,24 @@ const mapState = (state) => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.currentUser,
+    currentOrder: state.currentOrder,
+    products: state.products,
+    categories: state.categories
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData () {
+    loadInitialData (user) {
       dispatch(fetchCurrentUser())
       dispatch(getProductsFromDb())
       dispatch(getAllCategoriesFromDb())
-    },
-    initializeOrder (user) {
       dispatch(findOrCreateOrder(user))
     }
   }
 }
 
-export default connect(null, mapDispatch)(Root)
+export default connect(mapState, mapDispatch)(Root)
 
 /**
  * PROP TYPES
