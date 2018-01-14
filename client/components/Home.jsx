@@ -10,10 +10,10 @@ const Home = (props) => {
   return (
     <div>
       <div id="site-greeting">Welcome to the Modern Dino</div>
-      {children}
-      <div id="dino-landing-image">
+      <div className="welcome-img">
         <img src="/city-of-dino.jpg"></img>
       </div>
+      {children}
     </div>
   )
 }

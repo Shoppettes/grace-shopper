@@ -14,10 +14,11 @@ class Navbar extends Component {
 
   render () {
     return (
-      <div>
-        <span>This is the NavBar component.</span>
-        { this.props.currentUser.id ? this.renderLogout() : this.renderLoginSignup() }
-      </div>
+      <nav>
+        <div>
+          { this.props.currentUser.id ? this.renderLogout() : this.renderLoginSignup() }
+        </div>
+      </nav>
       // <Switch>
         //   {/* Routes placed here are available to all visitors */}
         //   <Route path="/login" component={Login} />
