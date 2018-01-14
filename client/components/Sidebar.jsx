@@ -7,7 +7,11 @@ export const Sidebar = (props) => {
   const {categories} = props
   return (
     <div>
-      {categories && categories.map(category => <div key={category.id}><Link to="/products">{category.name}</Link></div>)}
+      <Link to="/products">All Products</Link>
+      <h6>Product Categories</h6>
+      <div>
+        {categories && categories.map(category => <div key={category.id}><Link to="/products">{category.name}</Link></div>)}
+      </div>
     </div>
   )
 };
