@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import {updateOrderProductInstance, removeOrderProductInstance} from '../store'
 
 export const Cart = (props) => {
-  const {order, productsInCart, updateItemAmountInCart} = props;
+  const {order, productsInCart, updateItemAmountInCart, removeItemFromCart} = props;
 
   return (
     <div>
@@ -17,7 +17,7 @@ export const Cart = (props) => {
             Name: {product.name} <br/>
             Price: {product.price}<br/>
             Quantity: {product.OrderProducts.quantity}<br/>
-            <select className="custom-select" onChange={(event) => updateItemAmountInCart(order, product.id, event.target.value)}>
+          <select className="custom-select" onChange={(event) => updateItemAmountInCart(order.id, product.id, event.target.value)}>
               <option selected>Update Quantity</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -25,6 +25,7 @@ export const Cart = (props) => {
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
+            <button onClick={() => removeItemFromCart(order.id, product.id)}>Remove item from cart.</button>
             ------<br/>
           </div>
         )
@@ -42,12 +43,10 @@ const mapState = (state) => {
 
 const mapDispatch = dispatch => {
   return {
-    updateItemAmountInCart (order, productId, quantity) {
-      let orderId = order.id
+    updateItemAmountInCart (orderId, productId, quantity) {
       dispatch(updateOrderProductInstance(orderId, productId, quantity))
     },
-    removeItemFromCart () {
-      let orderId = order.id
+    removeItemFromCart (orderId, productId) {
       dispatch(removeOrderProductInstance(orderId, productId))
     }
   }

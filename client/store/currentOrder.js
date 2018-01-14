@@ -33,7 +33,7 @@ export function createOrderProductInstance (orderId, productId) {
 
 export function updateOrderProductInstance (orderId, productId, quantity) {
   return function (dispatch) {
-    axios.put(`/api/orderProducts/${orderId}/${productId}?${quantity}`)
+    axios.put(`/api/orderProducts/${orderId}/${productId}/${quantity}`)
       .then(res => dispatch(setCurrentOrder(res.data)))
       .catch(err => console.log(err))
   }
