@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Elements} from 'react-stripe-elements'
-import InjectedCheckoutForm from './InjectedCheckoutForm'
+import InjectedCheckoutForm from './InjectedCheckoutForm.jsx'
 
 /**
  * const {
