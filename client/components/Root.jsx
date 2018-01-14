@@ -3,15 +3,15 @@ import {connect} from 'react-redux';
 import {Router, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from '../history';
-import {Navbar, Sidebar, Footer, Home, Products, SingleProduct, Cart, AuthForm, MyStoreCheckout} from '../components';
+import {Navbar, Sidebar, Footer, Home, Products, CreateAccount,Login, SingleProduct, Cart, Checkout, AuthForm, MyStoreCheckout} from '../components';
 import {fetchCurrentUser, getProductsFromDb, getAllCategoriesFromDb, findOrCreateOrder, getCartByOrder} from '../store';
 
 
 class Root extends Component {
   componentDidMount () {
-    let user = {id: 1, name: 'John'}
-    this.props.loadInitialData(user)
-    this.props.loadCartData(1)
+    this.props.loadInitialData();
+    console.log('!!!!!!', this.props)
+    this.props.isLoggedIn ? this.props.loadOrder(this.props.currentUser) : this.props.loadOrder({})
   }
 
 
@@ -21,14 +21,18 @@ class Root extends Component {
       <div>
         <Router history={history}>
           <div>
-          <Navbar />
+            <Navbar />
             <Sidebar />
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/createaccount" component={CreateAccount} />
+              <Route path="/cart" component={Cart} />
               <Route exact path="/products" component={Products} />
               <Route path="/products/:productId" component={SingleProduct} />
               <Route path="/checkout" component={MyStoreCheckout} />
               <Route path="/cart" component={Cart} />
+              <Route path="/checkout" component={Checkout} />
             </Switch>
             <Footer />
           </div>
@@ -41,9 +45,10 @@ class Root extends Component {
 
 const mapState = (state) => {
   return {
-    // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
+    // Being 'logged in' means state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.currentUser,
+    isLoggedIn: !!state.user.id,
+    currentUser: state.user,
     currentOrder: state.currentOrder,
     products: state.products,
     categories: state.categories
@@ -56,10 +61,9 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchCurrentUser())
       dispatch(getProductsFromDb())
       dispatch(getAllCategoriesFromDb())
-      dispatch(findOrCreateOrder(user))
     },
-    loadCartData (orderId) {
-      dispatch(getCartByOrder(orderId))
+    loadOrder (user) {
+      dispatch(findOrCreateOrder(user))
     }
   }
 }
