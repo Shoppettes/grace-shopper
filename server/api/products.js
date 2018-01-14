@@ -5,7 +5,7 @@ module.exports = router
 
 // get all products
 router.get('/', (req, res, next) => {
-    Product.findAll()
+    Product.findAll({include: [Photo]})
       .then(foundProducts => res.status(200).json(foundProducts))
       .catch(next)
 })

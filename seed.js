@@ -1,5 +1,5 @@
 /* Potentially update line 2 based on final decision on models */
-const { db, User, Product, Category, Order, Review } = require('./server/db/models')
+const { db, User, Product, Category, Order, Review, Photo } = require('./server/db/models')
 
 const users = [{
   email: '12345@gmail.com',
@@ -54,27 +54,7 @@ const users = [{
   CCV: 3456,
   expirationDate: 08/22
 }];
-const photos = [{
-  imgUrl: '<a href="http://tinypic.com?ref=ae9st0" target="_blank"><img src="http://i67.tinypic.com/ae9st0.jpg" border="0" alt="dinosaur with bow tie"></a>'
-}, {
-  imgUrl: '<a href="http://tinypic.com?ref=2nrm1rq" target="_blank"><img src="http://i63.tinypic.com/2nrm1rq.jpg" border="0" alt="dinosaur riding bike"></a>'
-}, {
-  imgUrl: '<a href="http://tinypic.com?ref=21ah4rl" target="_blank"><img src="http://i65.tinypic.com/21ah4rl.jpg" border="0" alt="dino stealing top hat"></a>'
-}, {
-  imgUrl: '<a href="http://tinypic.com?ref=k0k7lk" target="_blank"><img src="http://i64.tinypic.com/k0k7lk.jpg" border="0" alt="dinosaur with top hat 1"></a>'
-}, {
-  imgUrl: '<a href="http://tinypic.com?ref=2s9twty" target="_blank"><img src="http://i66.tinypic.com/2s9twty.jpg" border="0" alt="dinosaurs drinking tea"></a>'
-}, {
-  imgUrl: '<a href="http://tinypic.com?ref=2ltlsnp" target="_blank"><img src="http://i66.tinypic.com/2ltlsnp.jpg" border="0" alt="multiple dino hats"></a>'
-}, {
-  imgUrl: '<a href="http://tinypic.com?ref=ixaxqe" target="_blank"><img src="http://i66.tinypic.com/ixaxqe.jpg" border="0" alt="lady dino beauty products"></a>'
-}, {
-  imgUrl: '<a href="http://tinypic.com?ref=2llko4i" target="_blank"><img src="http://i67.tinypic.com/2llko4i.jpg" border="0" alt="dinosaur eating birthday cake"></a>'
-}, {
-  imgUrl: '<a href="http://tinypic.com?ref=2jbtv2v" target="_blank"><img src="http://i66.tinypic.com/2jbtv2v.jpg" border="0" alt="dinosaur eating chocolate cake"></a>'
-}, {
-  imgUrl: '<a href="http://tinypic.com?ref=107wgol" target="_blank"><img src="http://i65.tinypic.com/107wgol.jpg" border="0" alt="baby dinosaur eating birthday cake"></a>"></a>'
-}];
+
 
 const products = [{
   name: 'Dino bow tie',
@@ -110,7 +90,7 @@ const products = [{
   cartId: 3
 }, {
   name: 'First aid kit',
-  description: 'Accidents happen, especially when you live in the Jurassic age. Help your boo-boos heal faster!',
+  description: 'Oopsies! Accidents happen, especially when you are a dinosaur. Help your boo-boos heal faster!',
   price: 6.00,
   quantity: 31,
   isAvailable: true,
@@ -158,6 +138,29 @@ const products = [{
   isAvailable: true,
   cartId: 1
 }];
+
+const photos = [
+  {imgURL: '/dino-pics/dino-bow-tie.jpeg', productId: 1},
+  {imgURL: '/dino-pics/dino-with-cane.jpeg', productId: 1},
+  {imgURL: '/dino-pics/dino-riding-a-bike.jpeg', productId: 2},
+  {imgURL: '/dino-pics/dino-with-top-hat1.jpeg', productId: 3},
+  {imgURL: '/dino-pics/dinos-with-multiple-hats.jpeg', productId: 3},
+  {imgURL: '/dino-pics/dino-stealing-top-hat.jpeg', productId: 3},
+  {imgURL: '/dino-pics/dinosaur-wearing-top-hat-and-dancing.jpeg', productId: 3},
+  {imgURL: '/dino-pics/dinos-drinking-tea.jpeg', productId: 4},
+  {imgURL: '/dino-pics/dinosaur-eating-cake1.jpeg', productId: 5},
+  {imgURL: '/dino-pics/dinosaur-eating-cake2.jpeg', productId: 5},
+  {imgURL: '/dino-pics/dinosaur-eating-cake3.jpg', productId: 5},
+  {imgURL: '/dino-pics/dinosaur-first-aid-kit.jpg', productId: 6},
+  {imgURL: '/dino-pics/dinosaur-riding-skateboard.jpg', productId: 7},
+  {imgURL: '/dino-pics/dinosaur-wearing-lipstick1.jpg', productId: 8},
+  {imgURL: '/dino-pics/dinosaur-wearing-lipstick2.jpg', productId: 8},
+  {imgURL: '/dino-pics/dinosaurs-riding-motorcycles.jpg', productId: 9},
+  {imgURL: '/dino-pics/happy-trex-dirt-bike.jpg', productId: 9},
+  {imgURL: '/dino-pics/dinosaur-beauty-products1.jpg', productId: 10},
+  {imgURL: '/dino-pics/dinosaur-shaving-cream.jpg', productId: 10},
+  {imgURL: '/dino-pics/dinosaur-socks.jpg', productId: 1}
+];
 
 const categories = [
   {name: 'beauty products' },
@@ -253,7 +256,11 @@ const seed = () =>
   .then(() =>
   Promise.all(reviews.map(review =>
     Review.create(review))
-));
+  )) 
+  .then(() =>
+  Promise.all(photos.map(photo => 
+    Photo.create(photo))
+  ));
 
 const main = () => {
   console.log('Syncing db...');
