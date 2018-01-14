@@ -16,7 +16,7 @@ export const clearCurrentOrder = () => ({type: CLEAR_CURRENT_ORDER});
 // thunk creators
 export function findOrCreateOrder (currentUser) {
   return function (dispatch) {
-  axios.post('api/orders', {userId: currentUser.id})
+  axios.post('/api/orders', {userId: currentUser.id})
     .then(res => dispatch(setCurrentOrder(res.data)))
     .catch(err => console.log(err))
   }
@@ -25,7 +25,7 @@ export function findOrCreateOrder (currentUser) {
 export function createOrderProductInstance (orderId, productId) {
   return function (dispatch) {
     console.log('!!!!', orderId, productId)
-    axios.post(`api/orderProducts/${orderId}/${productId}`)
+    axios.post(`/api/orderProducts/${orderId}/${productId}`)
       .then(res => dispatch(setCurrentOrder(res.data)))
       .catch(err => console.log(err));
   }
@@ -33,7 +33,7 @@ export function createOrderProductInstance (orderId, productId) {
 
 export function updateOrderProductInstance (orderId, productId, actionToTake) {
   return function (dispatch) {
-    axios.put(`api/orderProducts/${orderId}/${productId}?${actionToTake}`)
+    axios.put(`/api/orderProducts/${orderId}/${productId}?${actionToTake}`)
       .then(res => dispatch(setCurrentOrder(res.data)))
       .catch(err => console.log(err))
   }
