@@ -10,7 +10,6 @@ class Login extends Component {
   }
 
   render() {
-    const {message} = this.props;
     return (
       <div className="signin-container">
         <div className="buffer local">
@@ -33,7 +32,7 @@ class Login extends Component {
                   required
                 />
             </div>
-            <button type="submit" className="btn btn-block btn-primary">{message}</button>
+            <button type="submit" className="btn btn-block btn-primary">Login</button>
           </form>
         </div>
         <div className="or buffer">
@@ -48,7 +47,7 @@ class Login extends Component {
               href="/auth/google"
               className="btn btn-social btn-google">
               <i className="fa fa-google" />
-              <span>{message} with Google</span>
+              <span>Login with Google</span>
             </a>
           </p>
         </div>
@@ -67,7 +66,7 @@ class Login extends Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = null
+const mapState = null;
 
 const mapDispatch = function(dispatch) {
   return {

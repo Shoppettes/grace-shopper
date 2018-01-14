@@ -47,7 +47,7 @@ class CreateAccount extends React.Component {
               href="/auth/google"
               className="btn btn-social btn-google">
               <i className="fa fa-google" />
-              <span>{message} with Google</span>
+              <span>Create account with Google</span>
             </a>
           </p>
         </div>
