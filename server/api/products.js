@@ -5,7 +5,7 @@ module.exports = router
 
 // get all products
 router.get('/', (req, res, next) => {
-    Product.findAll()
+    Product.findAll({include: [Photo]})
       .then(foundProducts => res.status(200).json(foundProducts))
       .catch(next)
 })
@@ -19,6 +19,7 @@ router.get('/', (req, res, next) => {
 
 // get single product by id, including assocated categories, photos, and reviews
 router.get('/:productId', (req, res, next) => {
+  console.log('!!!!!Made it to backend')
   Product.findById(req.params.productId, {include: [Photo, Review, Category, Order]} )
     .then(foundProduct => res.status(200).json(foundProduct))
     .catch(next)
@@ -48,4 +49,3 @@ router.delete('/:productId', (req, res, next) => {
       .then( () => res.status(204).end())
       .catch(next)
 })
-

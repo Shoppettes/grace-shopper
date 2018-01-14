@@ -3,16 +3,13 @@ const {User} = require('../db/models')
 module.exports = router
 
 router.post('/login', (req, res, next) => {
-  const {email, password} = req.body
-
-  User.findOne({where: {email, password}})
+  User.findOne({where: {email: req.body.email}})
     .then(user => {
       if (!user) {
         res.status(401).send('User not found')
-      } else if (!user.correctPassword(password)) {
+      } else if (!user.correctPassword(req.body.password)) {
         res.status(401).send('Incorrect password')
       } else {
-        // user is now assigned to req.user on the session
         req.login(user, err => (err ? next(err) : res.json(user)))
       }
     })

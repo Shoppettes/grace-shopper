@@ -22,9 +22,9 @@ export const getAllProducts = (products) => ({type: GET_ALL_PRODUCTS, products})
  /**
  * THUNK CREATORS
  */
-export const getProductsFromDb = () =>
+export const fetchAllProducts = () =>
   dispatch => axios.get('/api/products')
-    .then( res => dispatch(getAllProducts(res.data)))
+    .then(res => dispatch(getAllProducts(res.data)))
     .catch(err => console.log(err))
  /**
  * REDUCER
