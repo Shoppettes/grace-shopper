@@ -48,4 +48,3 @@ router.delete('/:productId', (req, res, next) => {
       .then( () => res.status(204).end())
       .catch(next)
 })
-

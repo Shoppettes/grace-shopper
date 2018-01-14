@@ -49,7 +49,7 @@ export default function (state = defaultCart, action) {
      return action.cart
    case UPDATE_PRODUCT_AMOUNT:
      return state.map( product => {
-       if ( product.id === action.cartProduct.id) return action.cartProduct
+       if (product.id === action.cartProduct.id) return action.cartProduct
        else return product
      })
    default:

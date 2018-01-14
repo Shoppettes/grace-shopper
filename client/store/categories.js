@@ -17,9 +17,10 @@ export const getAllCategories = categories => ({type: GET_CATEGORIES, categories
  * THUNK CREATORS
  */
 
-export const getAllCategoriesFromDb = () => dispatch => axios.get('/api/categories')
+export const fetchAllCategories = () => dispatch =>
+  axios.get('/api/categories')
     .then( res => dispatch(getAllCategories(res.data)))
-    .catch (err => console.log(err))
+    .catch (err => console.log(err));
 
 /**
  * REDUCER
