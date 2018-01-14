@@ -7,6 +7,7 @@ import {Navbar, Sidebar, Footer, Home, Products, CreateAccount,Login, SingleProd
 import {fetchCurrentUser, getProductsFromDb, getAllCategoriesFromDb, findOrCreateOrder, getCartByOrder} from '../store';
 
 
+
 class Root extends Component {
   componentDidMount () {
     this.props.loadInitialData();
@@ -30,9 +31,9 @@ class Root extends Component {
               <Route path="/cart" component={Cart} />
               <Route exact path="/products" component={Products} />
               <Route path="/products/:productId" component={SingleProduct} />
-              <Route path="/checkout" component={MyStoreCheckout} />
-              <Route path="/cart" component={Cart} />
               <Route path="/checkout" component={Checkout} />
+              <Route path="/cart" component={Cart} />
+
             </Switch>
             <Footer />
           </div>
