@@ -9,8 +9,8 @@ const CLEAR_CURRENT_ORDER = 'CLEAR_CURRENT_ORDER';
 const defaultOrder = {}
 
 // action creators
- export const setCurrentOrder = currentOrder => ({type: SET_CURRENT_ORDER, currentOrder});
- export const clearCurrentOrder = () => ({type: CLEAR_CURRENT_ORDER});
+export const setCurrentOrder = currentOrder => ({type: SET_CURRENT_ORDER, currentOrder});
+export const clearCurrentOrder = () => ({type: CLEAR_CURRENT_ORDER});
 
 
 // thunk creators
@@ -24,14 +24,20 @@ export function findOrCreateOrder (currentUser) {
 
 export function createOrderProductInstance (orderId, productId) {
   return function (dispatch) {
-    axios.post('api/orderProducts', {orderId, productId})
-      .then(res => dispatch(setCurrentOrder(res.data)));
+    console.log('!!!!', orderId, productId)
+    axios.post(`api/orderProducts/${orderId}/${productId}`)
+      .then(res => dispatch(setCurrentOrder(res.data)))
       .catch(err => console.log(err));
   }
 }
 
-
-// import {createOrderProductInstance, updateOrderProductInstance} from '../store';
+export function updateOrderProductInstance (orderId, productId, actionToTake) {
+  return function (dispatch) {
+    axios.put(`api/orderProducts/${orderId}/${productId}?${actionToTake}`)
+      .then(res => dispatch(setCurrentOrder(res.data)))
+      .catch(err => console.log(err))
+  }
+}
 
 // reducer
 export default function (state = defaultOrder, action) {

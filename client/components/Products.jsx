@@ -27,7 +27,7 @@ class Products extends Component {
                 <div>
                   <Link to={`/products/${product.id}`}>See more</Link>
                 </div>
-                <button onClick={this.onClick(order, product.id)}>Add item to cart.</button>
+                <button onClick={() => this.onClick(order, product.id)}>Add item to cart.</button>
               </div>
             </div>
           ))}
@@ -50,12 +50,17 @@ const mapState = (state) => {
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, ownProps) => {
   return {
     addItemToCart (order, productId) {
-      if (!order.products.find(product => product.id === productId)) dispatch(createOrderProductInstance({order.id, productId}))
-      else dispatch(updateOrderProductInstance(order.id, productId, 'increment'))
+      if (!order.products.find(product => product.id === productId)) {
+        let orderId = order.id
+        console.log('!!!!!!', orderId)
+        dispatch(createOrderProductInstance(orderId, productId))
+      }
+      else dispatch(updateOrderProductInstance(order.id, productId, {'increment': true}))
     }
+  }
 }
 
 export default connect(mapState, mapDispatch)(Products);

@@ -10,7 +10,6 @@ import {fetchCurrentUser, fetchAllProducts, fetchAllCategories, findOrCreateOrde
 class Root extends Component {
   componentDidMount () {
     this.props.loadInitialData();
-    console.log('!!!!!!', this.props)
     this.props.isLoggedIn ? this.props.loadOrder(this.props.currentUser) : this.props.loadOrder({})
   }
 
