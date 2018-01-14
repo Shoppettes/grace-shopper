@@ -1,15 +1,14 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {signup as signupFromReducer} from '../store'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {signup} from '../store';
 
-class CreateAccount extends React.Component {
+class CreateAccount extends Component {
   constructor(props) {
     super(props);
     this.onSignupSubmit = this.onSignupSubmit.bind(this);
   }
 
   render() {
-    const { message } = this.props;
     return (
       <div className="signin-container">
         <div className="buffer local">
@@ -32,7 +31,7 @@ class CreateAccount extends React.Component {
                 required
               />
             </div>
-            <button type="submit" className="btn btn-block btn-primary">{message}</button>
+            <button type="submit" className="btn btn-block btn-primary">Create account</button>
           </form>
         </div>
         <div className="or buffer">
@@ -66,10 +65,10 @@ class CreateAccount extends React.Component {
 
 const mapState = null;
 
-const mapDispatch = function(dispatch) {
+const mapDispatch = dispatch => {
   return {
     signup (credentials) {
-      dispatch(signupFromReducer(credentials));
+      dispatch(signup(credentials));
     }
   }
 };
