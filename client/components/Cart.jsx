@@ -6,6 +6,7 @@ import {updateOrderProductInstance, removeOrderProductInstance} from '../store'
 class Cart extends Component {
   constructor () {
     super ()
+    this.onChange = this.onChange.bind(this);
     this.onClick = this.onClick.bind(this);
   }
 
@@ -24,7 +25,7 @@ class Cart extends Component {
               Name: {product.name} <br/>
               Price: {product.price}<br/>
               Quantity: {product.OrderProducts.quantity}<br/>
-              <select className="custom-select" onChange={(event) => updateItemAmountInCart(order.id, product.id, event.target.value)}>
+              <select className="custom-select" onChange={(event) => this.onChange(order.id, product.id, event.target.value)}>
                 <option selected>Update Quantity</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -41,11 +42,15 @@ class Cart extends Component {
     )
   }
 
+  onChange(orderId, productId, quantity) {
+    event.preventDefault();
+    this.props.updateItemAmountInCart(orderId, productId, quantity)
+  }
+
   onClick(orderId, productId) {
     event.preventDefault();
     this.props.removeItemFromCart(orderId, productId);
   }
-
 };
 
 const mapState = (state) => {

@@ -24,7 +24,7 @@ router.post('/:orderId/:productId', (req, res, next) => {
   .catch(next);
 })
 
-//update the orderProduct instance quantity
+// update the orderProduct instance quantity
 router.put('/:orderId/:productId/:quantity', (req, res, next) => {
     OrderProduct.findOne({
       where: {
@@ -40,24 +40,6 @@ router.put('/:orderId/:productId/:quantity', (req, res, next) => {
     })
     .catch(next);
 })
-
-// increment the quantity of a particular product in a particular order
-// router.put('/:orderId/:productId', (req, res, next) => {
-//  OrderProduct.findOne({where: {orderId: req.params.orderId, productId: req.params.productId}})
-//    .then(orderProductInstance => {
-//      orderProductInstance.incrementQuantity()
-//    })
-//    .catch(next)
-// })
-
-// // decrement the quantity of a particular product in a particular orders
-// router.put('/:orderId/:productId', (req, res, next) => {
-//  OrderProduct.findOne({where: {orderId: req.params.orderId, productId: req.params.productId}})
-//    .then(orderProductInstance => {
-//      orderProductInstance.decrementQuantity()
-//    })
-//    .catch(next)
-// })
 
 // delete a product from an order (by deleting the orderProduct instance) and return the updated order
 router.delete('/:orderId/:productId', (req, res, next) => {
