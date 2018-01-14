@@ -9,6 +9,7 @@ export const Cart = (props) => {
   return (
     <div>
       <h3>My Cart</h3>
+      <Link to="/checkout" activeClassName="active">checkout</Link>
       {!productsInCart.length ? <span>You do not have any items in your cart.</span> :
       productsInCart.map(product =>
         (
@@ -17,7 +18,7 @@ export const Cart = (props) => {
             Name: {product.name} <br/>
             Price: {product.price}<br/>
             Quantity: {product.OrderProducts.quantity}<br/>
-          <select className="custom-select" onChange={(event) => updateItemAmountInCart(order.id, product.id, event.target.value)}>
+            <select className="custom-select" onChange={(event) => updateItemAmountInCart(order.id, product.id, event.target.value)}>
               <option selected>Update Quantity</option>
               <option value="1">1</option>
               <option value="2">2</option>
