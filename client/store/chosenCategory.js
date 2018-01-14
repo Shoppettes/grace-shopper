@@ -13,7 +13,6 @@ const defaultChosenCategory = {}
  */
 export const setChosenCategory = chosenCategory => ({type: SET_CHOSEN_CATEGORY, chosenCategory})
 
-
 /**
  * REDUCER
  */
