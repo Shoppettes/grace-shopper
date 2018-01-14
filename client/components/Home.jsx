@@ -9,8 +9,11 @@ const Home = (props) => {
 
   return (
     <div>
-      <h1>Welcome to the Modern Dino</h1>
+      <div id="site-greeting">Welcome to the Modern Dino</div>
       {children}
+      <div id="dino-landing-image">
+        <img src="/city-of-dino.jpg"></img>
+      </div>
     </div>
   )
 }

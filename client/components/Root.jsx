@@ -20,9 +20,12 @@ class Root extends Component {
     return (
       <div>
         <Router history={history}>
-          <div>
+          <div id="content">
             <Navbar />
-            <Sidebar />
+              <button>
+                 <i className="glyphicon glyphicon-align-left"></i>
+                <Sidebar />
+              </button>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
