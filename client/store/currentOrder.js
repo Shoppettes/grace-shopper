@@ -31,9 +31,9 @@ export function createOrderProductInstance (orderId, productId) {
   }
 }
 
-export function updateOrderProductInstance (orderId, productId, actionToTake) {
+export function updateOrderProductInstance (orderId, productId, quantity) {
   return function (dispatch) {
-    axios.put(`/api/orderProducts/${orderId}/${productId}?${actionToTake}`)
+    axios.put(`/api/orderProducts/${orderId}/${productId}?${quantity}`)
       .then(res => dispatch(setCurrentOrder(res.data)))
       .catch(err => console.log(err))
   }
@@ -41,8 +41,8 @@ export function updateOrderProductInstance (orderId, productId, actionToTake) {
 
 export function removeOrderProductInstance (orderId, productId) {
   return function (dispatch) {
-    axios.delete(`/api/orderProducts/${orderId}/${productId}?${actionToTake}`)
-      .then(res => dispatch(setCurrentOrder(res.data)))
+    axios.delete(`/api/orderProducts/${orderId}/${productId}`)
+      .then((res) => dispatch(setCurrentOrder(res.data)))
       .catch(err => console.log(err))
   }
 }

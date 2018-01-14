@@ -25,20 +25,16 @@ router.post('/:orderId/:productId', (req, res, next) => {
 })
 
 //update the orderProduct instance quantity
-router.put('/:orderId/:productId', (req, res, next) => {
+router.put('/:orderId/:productId/:quantity', (req, res, next) => {
     OrderProduct.findOne({
       where: {
         orderId: req.params.orderId,
-        productId: req.params.productId
+        productId: req.params.productId,
       }
     })
-    .then(orderProduct => {
-      if (req.query.increment) orderProduct.incrementQuantity()
-      else if (req.query.decrement) orderProduct.decrementQuantity()
-      return Order.findById(req.params.orderId, {include: [Product]})
-    })
+    .then(orderProduct => orderProduct.update({quantity: req.params.quantity}))
+    .then(() => Order.findById(req.params.orderId, {include: [Product]}))
     .then(order => {
-      // let updatedProduct = foundOrder.products.find( product => product.id == req.params.productId)
       res.status(220).json(order)
       //return res.status(201).json(updatedProduct)
     })

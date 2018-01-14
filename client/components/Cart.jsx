@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import {updateOrderProductInstance, removeOrderProductInstance} from '../store'
 
 export const Cart = (props) => {
-  const {order, productsInCart} = props;
+  const {order, productsInCart, updateItemAmountInCart} = props;
 
   return (
     <div>
@@ -16,8 +16,15 @@ export const Cart = (props) => {
             ----------<br/>
             Name: {product.name} <br/>
             Price: {product.price}<br/>
-            Amount: {product.OrderProducts.quantity}<br/>
-
+            Quantity: {product.OrderProducts.quantity}<br/>
+            <select className="custom-select" onChange={(event) => updateItemAmountInCart(order, product.id, event.target.value)}>
+              <option selected>Update Quantity</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
             ------<br/>
           </div>
         )
