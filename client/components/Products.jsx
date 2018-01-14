@@ -2,8 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import {updateCartProduct, createOrderProductInstance, getCartByOrder} from '../store';
+
 const Products = (props) => {
   const {cart, currentOrder, category, products, clickHandler} = props;
+  console.log('products', products)
   // conditionally rendering the clickHandler and assigning first arg based on whether user logged in
   // addToDb (thunk) and addToCart (action) not actually created yet
   //const clickHandler = isLoggedIn ? addToDb : addToCart;
