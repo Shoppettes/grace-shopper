@@ -63,11 +63,13 @@ router.put('/:orderId/:productId', (req, res, next) => {
 //    .catch(next)
 // })
 
-// delete a particular product from a particular order
+// delete a product from an order (by deleting the orderProduct instance) and return the updated order
 router.delete('/:orderId/:productId', (req, res, next) => {
  OrderProduct.findOne({where: {orderId: req.params.orderId, productId: req.params.productId}})
    .then(orderProductInstance => {
      orderProductInstance.destroy()
    })
+   .then(() => Order.findById(req.params.orderId, {include: [Product]}))
+   .then(foundOrder => res.status(201).json(foundOrder))
    .catch(next)
 })

@@ -39,6 +39,14 @@ export function updateOrderProductInstance (orderId, productId, actionToTake) {
   }
 }
 
+export function removeOrderProductInstance (orderId, productId) {
+  return function (dispatch) {
+    axios.delete(`/api/orderProducts/${orderId}/${productId}?${actionToTake}`)
+      .then(res => dispatch(setCurrentOrder(res.data)))
+      .catch(err => console.log(err))
+  }
+}
+
 // reducer
 export default function (state = defaultOrder, action) {
   switch (action.type) {
