@@ -22,6 +22,7 @@ const Products = (props) => {
         <a className="thumbnail" href="#"></a>
           <div className="caption">
             <h5>
+
               <div> 
                 <span>{product.name}</span>
               </div>
