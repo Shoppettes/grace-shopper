@@ -57,7 +57,7 @@ const mapDispatch = (dispatch) => {
         console.log('!!!!!!', orderId)
         dispatch(createOrderProductInstance(orderId, productId))
       }
-      else dispatch(updateOrderProductInstance(order.id, productId, {'increment': true}))
+      else dispatch(updateOrderProductInstance(order.id, productId, 'increment'))
     }
   }
 };

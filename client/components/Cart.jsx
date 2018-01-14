@@ -17,6 +17,7 @@ export const Cart = (props) => {
             Name: {product.name} <br/>
             Price: {product.price}<br/>
             Amount: {product.OrderProducts.quantity}<br/>
+
             ------<br/>
           </div>
         )
@@ -34,8 +35,19 @@ const mapState = (state) => {
 
 const mapDispatch = dispatch => {
   return {
-
+    updateItemAmountInCart (order, productId, quantity) {
+      let orderId = order.id
+      dispatch(updateOrderProductInstance(orderId, productId, quantity))
+    },
+    removeItemFromCart () {
+      let orderId = order.id
+      dispatch(removeOrderProductInstance(orderId, productId))
+    }
   }
 }
+
+
+
+
 
 export default connect(mapState, mapDispatch)(Cart)
