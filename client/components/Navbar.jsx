@@ -17,6 +17,7 @@ class Navbar extends Component {
       <div>
         <span>This is the NavBar component.</span>
         { this.props.currentUser.id ? this.renderLogout() : this.renderLoginSignup() }
+        <NavLink to="/cart" activeClassName="active">view cart</NavLink>
       </div>
       // <Switch>
         //   {/* Routes placed here are available to all visitors */}
@@ -76,4 +77,3 @@ const mapDispatch = (dispatch, ownProps) => {
 }
 
 export default withRouter(connect(mapState, mapDispatch)(Navbar));
-

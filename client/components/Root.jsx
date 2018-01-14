@@ -33,8 +33,7 @@ class Root extends Component {
               <Route exact path="/products" component={Products} />
               <Route path="/products/:productId" component={SingleProduct} />
               <Route path="/checkout" component={MyStoreCheckout} />
-              <Route path="/cart" component={Cart} />
-              <Route path="/checkout" component={Checkout} />
+              // <Route path="/checkout" component={Checkout} />
             </Switch>
             <Footer />
           </div>
