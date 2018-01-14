@@ -108,6 +108,10 @@ button:hover {
   transition: all 150ms ease;
 }
 
+#exp-date, #cvc, #cc-number {
+  padding: 10px;
+}
+
 @media (max-width: 768px) {
   #sidebar {
     margin-left: -250px;

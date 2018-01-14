@@ -49,47 +49,55 @@ class _SplitForm extends Component{
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Card number
-          <CardNumberElement
-            onBlur={handleBlur}
-            onChange={handleChange}
-            onFocus={handleFocus}
-            onReady={handleReady}
-            {...createOptions(this.props.fontSize)}
-          />
-        </label>
-        <label>
-          Expiration date
-          <CardExpiryElement
-            onBlur={handleBlur}
-            onChange={handleChange}
-            onFocus={handleFocus}
-            onReady={handleReady}
-            {...createOptions(this.props.fontSize)}
-          />
-        </label>
-        <label>
-          CVC
-          <CardCVCElement
-            onBlur={handleBlur}
-            onChange={handleChange}
-            onFocus={handleFocus}
-            onReady={handleReady}
-            {...createOptions(this.props.fontSize)}
-          />
-        </label>
-        <label>
-          Postal code
-          <PostalCodeElement
-            onBlur={handleBlur}
-            onChange={handleChange}
-            onFocus={handleFocus}
-            onReady={handleReady}
-            {...createOptions(this.props.fontSize)}
-          />
-        </label>
-        <button>Pay</button>
+          <span id="cc-number">
+            <label>
+              Card number
+              <CardNumberElement
+                onBlur={handleBlur}
+                onChange={handleChange}
+                onFocus={handleFocus}
+                onReady={handleReady}
+                {...createOptions(this.props.fontSize)}
+              />
+            </label>
+            </span>
+            <span id="exp-date">
+              <label>
+                Expiration date
+                <CardExpiryElement
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  onFocus={handleFocus}
+                  onReady={handleReady}
+                  {...createOptions(this.props.fontSize)}
+                />
+              </label>
+            </span>
+            <span id="cvc">
+              <label>
+                CVC
+                <CardCVCElement
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  onFocus={handleFocus}
+                  onReady={handleReady}
+                  {...createOptions(this.props.fontSize)}
+                />
+              </label>
+            </span>
+          <label>
+            Postal code
+            <PostalCodeElement
+              onBlur={handleBlur}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onReady={handleReady}
+              {...createOptions(this.props.fontSize)}
+            />
+          </label>
+          <div>
+         <button id="payment-button">Pay</button>
+        </div>
       </form>
     );
   }

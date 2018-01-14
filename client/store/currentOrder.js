@@ -22,6 +22,14 @@ export function findOrCreateOrder (currentUser) {
   }
 }
 
+export function checkoutCreateOrder (currentUser) {
+  return function (dispatch) {
+  axios.put('/api/orders', {userId: currentUser.id})
+    .then(res => dispatch(setCurrentOrder(res.data)))
+    .catch(err => console.log(err))
+  }
+}
+
 export function createOrderProductInstance (orderId, productId) {
   return function (dispatch) {
     console.log('!!!!', orderId, productId)
