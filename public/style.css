@@ -22,6 +22,15 @@ h1 {
   display:flex;
   align-items: stretch;
 }
+#site-greeting {
+  font-size: 40px;
+  align-self: center;
+}
+
+#dino-landing-image {
+  height: 40px;
+  width: 100%;
+}
 
 #sidebar {
   min-width: 250px;
@@ -36,7 +45,7 @@ h1 {
 #footer {
   bottom: 0;
   width: 100%;
-  position: absolute;
+  position: fixed;
   height: 60px;
   background-color: #73dc7b;
 }
