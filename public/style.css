@@ -1,9 +1,9 @@
-
-
-body, html {
-  background-color: #f6f9fc;
+html, body {
+  background-color: #fcf472;
   font-size: 18px;
+  min-height: 100%;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  display: flex;
 }
 
 a {
@@ -33,6 +33,17 @@ h1 {
   margin-left: -250px;
 }
 
+#footer {
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+  height: 60px;
+  background-color: #73dc7b;
+}
+
+.footer-block {
+  margin: 20px 0;
+}
 .Checkout {
   margin: 0 auto;
   max-width: 800px;
