@@ -10,12 +10,10 @@ export const Sidebar = (props) => {
   return (
       <div id="sidebar-wrapper">
         <div className="sidebar-header">
-          <Link to="/">
-          <img id="sidebar-logo" src="./dino-logo.jpg" alt="modern dino" />
-          </Link>
         </div>
         <ul className="sidebar-nav">
           <div>
+            <li className="sidebar-brand"><Link to="/products">view all products</Link></li>
             {categories && categories.map(category => <li className="sidebar-brand" key={category.id}><Link to="/products">{category.name}</Link></li>)}
           </div>
         </ul>
