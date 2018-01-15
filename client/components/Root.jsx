@@ -22,10 +22,7 @@ class Root extends Component {
         <Router history={history}>
           <div id="content">
             <Navbar />
-              <button>
-                 <i className="glyphicon glyphicon-align-left"></i>
-                <Sidebar />
-              </button>
+            <Sidebar />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
