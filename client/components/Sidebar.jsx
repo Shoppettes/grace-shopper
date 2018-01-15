@@ -6,27 +6,27 @@ import {Link} from 'react-router-dom'
 export const Sidebar = (props) => {
   const {categories} = props
   return (
-    <div className="wrapper">
-      <nav id="sidebar">
+      <div id="sidebar-wrapper">
         <div className="sidebar-header">
-          <h3>Sidebar Header</h3>
+          <Link to="/">
+          <img src="" alt="modern dino" />
+          </Link>
         </div>
-        <Link className="active" to="/products">All Products</Link>
-        <ul className="list-unstyled components">
+        <ul className="sidebar-nav">
           <div>
-            {categories && categories.map(category => <li key={category.id}><Link to="/products">{category.name}</Link></li>)}
+            {categories && categories.map(category => <li className="sidebar-brand" key={category.id}><Link to="/products">{category.name}</Link></li>)}
           </div>
         </ul>
-      </nav>
-    </div>
+      </div>
   )
 };
+
 
 const mapState = (state) => {
   return {
     categories: state.categories
   }
-  
+
 }
 
 
