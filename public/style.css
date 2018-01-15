@@ -36,7 +36,7 @@ h1 {
   transition: all 0.5s ease;
 }
 
-#main-content-wrapper {
+.main-content-wrapper {
   display: flex;
   width: 85%;
   height: 88%;
@@ -46,6 +46,13 @@ h1 {
   padding: 15px;
 }
 
+.sub-content-wrapper {
+  display: flex;
+  flex-grow: 1;
+  margin: 5%;
+  padding: 3%;
+  background-color: #fcf472;
+}
 
 #site-greeting {
   font-size: 40px;
@@ -218,6 +225,8 @@ h1 {
 
 /* ALL PRODUCTS STYLING STARTS HERE */
 #products-wrapper {
+  display: flex;
+  flex-grow: 1;
   margin: 5%;
 }
 
@@ -227,6 +236,11 @@ h1 {
 /* END ALL PRODUCTS */
 
 /* SINGLE PRODUCT STYLING STARTS HERE */
+#single-product-wrapper {
+  display: flex;
+  flex-grow: 1;
+  margin: 5%;
+}
 
 /* END SINGLE PRODUCT*/
 
@@ -238,10 +252,8 @@ h1 {
 #checkout-wrapper {
   display: flex;
   flex-grow: 1;
-  margin: 5%;
-  padding: 3%;
-  background-color: #fcf472;
   flex-direction: column;
+  padding-top: 5%;
 }
 
 #checkout-wrapper h3 {
@@ -255,7 +267,7 @@ h1 {
 
 .checkout-table-container {
   display: flex;
-  flex-grow: 2;
+  flex-grow: 1;
   flex-direction: column;
   justify-content: space-around;
 }
@@ -266,7 +278,6 @@ h1 {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  margin-top: 5%;
 }
 
 .shipping-form-container {
@@ -277,6 +288,7 @@ h1 {
 .payment-container {
   display: flex;
   flex-grow: 1;
+  margin-top: 5%;
 }
 
 .checkout-table {
