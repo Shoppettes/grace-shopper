@@ -14,7 +14,9 @@ class Products extends Component {
   }
 
   render () {
-    const {order, category, products} = this.props;
+    const {order, category} = this.props;
+    const products = !category ? this.props.products : this.props.products.filter(product => product.category === cateogory)
+
     return (
       <Grid>
         <Row>
@@ -33,7 +35,7 @@ class Products extends Component {
                 </div>
                 <button onClick={() => this.onClick(order, product.id)}>Add item to cart.</button>
               </div>
-            
+
           ))}
           </Col>>
         </Row>
