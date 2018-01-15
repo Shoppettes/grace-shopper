@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {NavLink, withRouter} from 'react-router-dom';
+import {NavLink, withRouter, Link} from 'react-router-dom';
 import {logout} from '../store';
 
 // This component is currently throwing an error that id is undefined because there is no current user on state
@@ -14,10 +14,19 @@ class Navbar extends Component {
 
   render () {
     return (
-      <div>
-        <span>This is the NavBar component.</span>
-        { this.props.currentUser.id ? this.renderLogout() : this.renderLoginSignup() }
-        <NavLink to="/cart" activeClassName="active">view cart</NavLink>
+      <div id="nav-bar-wrapper">
+        <div className="nav-container">
+        <div className="nav-item"></div>
+          <div className="nav-item">
+          <NavLink to="/products">All Products</NavLink>
+          </div>
+          <div className="nav-item">
+            { this.props.currentUser.id ? this.renderLogout() : this.renderLoginSignup() }
+          </div>
+          <div className="nav-item">
+            <NavLink to="/cart" activeClassName="active">view cart</NavLink>
+          </div>
+        </div>
       </div>
       // <Switch>
         //   {/* Routes placed here are available to all visitors */}
