@@ -9,7 +9,7 @@ export const Sidebar = (props) => {
       <div id="sidebar-wrapper">
         <div className="sidebar-header">
           <Link to="/">
-          <img src="" alt="modern dino" />
+          <img id="sidebar-logo" src="./dino-logo.jpg" alt="modern dino" />
           </Link>
         </div>
         <ul className="sidebar-nav">
