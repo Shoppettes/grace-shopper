@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {createOrderProductInstance, updateOrderProductInstance} from '../store';
+const Grid = require('react-bootstrap').Grid;
+const Row = require('react-bootstrap').Row;
+const Col = require('react-bootstrap').Col;
+const Thumbnail = require('react-bootstrap').Thumbnail;
 
 class Products extends Component {
   constructor(props) {
@@ -12,12 +16,12 @@ class Products extends Component {
   render () {
     const {order, category, products} = this.props;
     return (
-      <div>
-        <div className="row">
+      <Grid>
+        <Row>
+          <Col>
           {products && products.map(product => (
             <div className="col-xs-4" key={product.id}>
-              <a className="thumbnail" href="#"></a>
-              <div className="caption">
+            <Thumbnail></Thumbnail>
                 <h5>
                   <div>
                     <span>{product.name}</span>
@@ -29,10 +33,11 @@ class Products extends Component {
                 </div>
                 <button onClick={() => this.onClick(order, product.id)}>Add item to cart.</button>
               </div>
-            </div>
+            
           ))}
-        </div>
-      </div>
+          </Col>>
+        </Row>
+      </Grid>
     );
   }
 
