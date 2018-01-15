@@ -39,11 +39,10 @@ class Products extends Component {
                 </div>
                 <button onClick={() => this.onClick(order, product.id)}>Add item to cart.</button>
               </div>
-
+          </div>
           ))}
-          </Col>>
-        </Row>
-      </Grid>
+        </div>
+      </div>
     );
   }
 

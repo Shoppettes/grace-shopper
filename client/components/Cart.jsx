@@ -14,7 +14,7 @@ class Cart extends Component {
     const {order, productsInCart, updateItemAmountInCart, removeItemFromCart} = this.props;
 
     return (
-      <div>
+      <div id="cart-wrapper">
         <h3>My Cart</h3>
         <Link to="/checkout">checkout</Link>
         {(!productsInCart || !productsInCart.length) ? <span>You do not have any items in your cart.</span> :
@@ -48,7 +48,7 @@ class Cart extends Component {
   }
 
 
-  return (
+  /*return (
     <div id="cart-wrapper">
       <h3>My Cart</h3>
       {!productsInCart.length ? <span>You do not have any items in your cart.</span> :
@@ -73,14 +73,14 @@ class Cart extends Component {
         )
       )}
     </div>
-  )
+  )*/
 
   onClick(orderId, productId) {
     event.preventDefault();
     this.props.removeItemFromCart(orderId, productId);
   }
 
-};
+}
 
 const mapState = (state) => {
   return {
