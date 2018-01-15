@@ -16,7 +16,6 @@ class Cart extends Component {
     return (
       <div id="cart-wrapper">
         <h3>My Cart</h3>
-        <Link to="/checkout">checkout</Link>
         {(!productsInCart || !productsInCart.length) ? <span>You do not have any items in your cart.</span> :
         productsInCart.map(product =>
           (
@@ -38,6 +37,8 @@ class Cart extends Component {
             </div>
           )
         )}
+        <br/><br/>
+        <Link to="/checkout">checkout</Link>
       </div>
     )
   }
