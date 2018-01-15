@@ -16,10 +16,7 @@ export const setSearchInput = input => ({type: SET_SEARCH_INPUT, input})
  /**
  * THUNK CREATORS
  */
-export const fetchAllProducts = () =>
-  dispatch => axios.get('/api/products')
-    .then(res => dispatch(getAllProducts(res.data)))
-    .catch(err => console.log(err))
+
 
  /**
  * REDUCER
