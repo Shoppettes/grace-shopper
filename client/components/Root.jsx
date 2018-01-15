@@ -23,7 +23,6 @@ class Root extends Component {
           <div id="content">
             <Navbar />
             <Sidebar />
-
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
