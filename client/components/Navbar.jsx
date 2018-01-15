@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {NavLink, withRouter} from 'react-router-dom';
 import {logout} from '../store';
 
-// This component is currently throwing an error that id is undefined because there is no current user on state
 
 class Navbar extends Component {
   constructor(props) {
@@ -14,36 +13,23 @@ class Navbar extends Component {
 
   render () {
     return (
-      <div>
-        <span>This is the NavBar component.</span>
-        { this.props.currentUser.id ? this.renderLogout() : this.renderLoginSignup() }
-        <NavLink to="/cart" activeClassName="active">view cart</NavLink>
-      </div>
-      // <Switch>
-        //   {/* Routes placed here are available to all visitors */}
-        //   <Route path="/login" component={Login} />
-        //   <Route path="/signup" component={Signup} />
-        //   {
-        //     isLoggedIn &&
-        //       <Switch>
-        //         {/* Routes placed here are only available after logging in */}
-        //         <Route path="/home" component={UserHome} />
-        //       </Switch>
-        //   }
-        //   {/* Displays our Login component as a fallback */}
-        //   <Route component={Login} />
-        // </Switch>
+      <nav className="navbar">
+        {this.props.currentUser.id ? this.renderLogout() : this.renderLoginSignup()}
+      </nav>
     )
   };
 
   renderLoginSignup () {
     return (
-      <ul className="nav navbar-nav navbar-right">
+      <ul className="nav navbar-nav">
         <li>
-          <NavLink to="/createaccount" activeClassName="active">create an account</NavLink>
+          <NavLink to="/createaccount" activeClassName="active">CREATE AN ACCOUNT</NavLink>
         </li>
         <li>
-          <NavLink to="/login" activeClassName="active">login</NavLink>
+          <NavLink to="/login" activeClassName="active">SIGN IN</NavLink>
+        </li>
+        <li>
+          <NavLink to="/cart" activeClassName="active"><img src="/images/cart-icon.jpg" /></NavLink>
         </li>
       </ul>
     );
@@ -54,6 +40,9 @@ class Navbar extends Component {
       <ul className="nav navbar-nav navbar-right">
         <li>
           <button className="navbar-btn btn btn-default" onClick={this.props.logout}>logout</button>
+        </li>
+        <li>
+          <NavLink to="/cart" activeClassName="active"><img src="/images/cart-icon.jpg" /></NavLink>
         </li>
       </ul>
     );
