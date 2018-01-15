@@ -43,6 +43,7 @@ h1 {
   left: 15%;
   margin-top: 5%;
   position: absolute;
+  padding: 15px;
 }
 
 
@@ -158,7 +159,6 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px;
 }
 
 .content-container {
@@ -217,7 +217,13 @@ h1 {
 /* END HOMEPAGE */
 
 /* ALL PRODUCTS STYLING STARTS HERE */
+#products-wrapper {
+  margin: 5%;
+}
 
+.col-xs-4 {
+  padding: 3%;
+}
 /* END ALL PRODUCTS */
 
 /* SINGLE PRODUCT STYLING STARTS HERE */
@@ -229,6 +235,55 @@ h1 {
 /* END CART */
 
 /* CHECKOUT STYLING STARTS HERE */
+#checkout-wrapper {
+  display: flex;
+  flex-grow: 1;
+  margin: 5%;
+  padding: 3%;
+  background-color: #fcf472;
+  flex-direction: column;
+}
+
+#checkout-wrapper h3 {
+  flex-grow: 1;
+  font-family: 'dk_sticky_toffeeregular', Arial, sans-serif;
+  font-weight:normal;
+  font-style:normal;
+  font-size: 26px;
+  justify-content: space-around;
+}
+
+.checkout-table-container {
+  display: flex;
+  flex-grow: 2;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+
+
+.user-form-container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  margin-top: 5%;
+}
+
+.shipping-form-container {
+  display: flex;
+  flex-grow: 1;
+}
+
+.payment-container {
+  display: flex;
+  flex-grow: 1;
+}
+
+.checkout-table {
+  flex-grow: 1;
+}
+
+
 
 /* END CHECKOUT */
 

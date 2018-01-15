@@ -12,11 +12,13 @@ class Products extends Component {
   render () {
     const {order, category, products} = this.props;
     return (
-      <div>
+      <div id="products-wrapper">
         <div className="row">
           {products && products.map(product => (
             <div className="col-xs-4" key={product.id}>
-              <a className="thumbnail" href="#"></a>
+              <div className="thumbnail">
+                <img src={product.photos[0]} />
+              </div>
               <div className="caption">
                 <h5>
                   <div>
