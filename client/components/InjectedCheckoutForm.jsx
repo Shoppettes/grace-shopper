@@ -14,7 +14,7 @@ class CheckoutForm extends React.Component {
   render() {
     return (
       <div className="Checkout">
-        <PaymentRequestForm />
+        <UserInfoForm />
        <Elements>
           <CardSection />
         </Elements>

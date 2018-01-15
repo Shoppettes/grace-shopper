@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import {checkoutCurrentOrder} from '../store'
+
 
 class UserInfoForm extends Component {
     constructor(props) {
@@ -7,19 +9,63 @@ class UserInfoForm extends Component {
         this.onSubmit = this.onSubmit.bind(this)
     }
 
-    render() {
-        const {currentOrder} = this.props;
-         console.log('currentOrder ', currentOrder)
-        return (
-            <h1> future home of a form </h1>
-        )
-    }
     onSubmit(event) {
         event.preventDefault();
     
         this.props.checkoutCurrentOrder({
+            billingAddress: event.target.billingAddress.value,
+            shippingAddress: event.target.shippingAddress.value,
+            user: this.props.user.id,
             orderStatus: 'awaiting shipment'
         })
+    }
+
+    render() {
+        const {currentOrder, user} = this.props;
+         console.log('currentOrder ', currentOrder, 'user ', user)
+        return (
+            <div className="checkout-info-container">
+                <div className="buffer local">
+                <form onSubmit={this.onSubmit}>
+                    <div className="form-group">
+                        <label>First Name</label>
+                            <input 
+                            name="firstName"
+                            type="firstName"
+                            className="form-control"
+                            required
+                            ></input>
+
+                        <label>Last Name</label>
+                            <input 
+                            name="firstName"
+                            type="firstName"
+                            className="form-control"
+                            required
+                            ></input>
+
+                        <label>Billing Address</label>
+                            <input 
+                            name="billingAddress"
+                            type="billingAddress"
+                            className="form-control"
+                            required
+                            ></input>
+                        
+                        <label>Shipping Address</label>
+                            <input 
+                            name="billingAddress"
+                            type="billingAddress"
+                            className="form-control"
+                            required
+                            ></input>
+                        
+                    </div> 
+                    <button type="submit" className="btn btn-block btn-primary">Submit info</button>
+                </form>
+                </div>
+            </div>
+        )
     }
 }
 
@@ -27,13 +73,14 @@ class UserInfoForm extends Component {
 
 const mapState = (state) => {
     return {
-        currentOrder: state.currentOrder
+        currentOrder: state.currentOrder,
+        user: state.user
     }
 }
 
 const mapDispatch = function(dispatch) {
     return {
-        checkoutCurrentOrder(orderInfo) {
+        checkoutCurrentOrder(orderId) {
             dispatch(setCurrentOrder(orderInfo))
         }
     }

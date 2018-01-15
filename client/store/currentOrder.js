@@ -22,9 +22,9 @@ export function findOrCreateOrder (currentUser) {
   }
 }
 
-export function checkoutCreateOrder (currentUser) {
+export function checkoutOrder (orderId) {
   return function (dispatch) {
-  axios.put('/api/orders', {userId: currentUser.id})
+  axios.put(`/api/orders/${orderId}`)
     .then(res => dispatch(setCurrentOrder(res.data)))
     .catch(err => console.log(err))
   }
