@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {NavLink, withRouter} from 'react-router-dom';
+import {NavLink, withRouter, Link} from 'react-router-dom';
 import {logout} from '../store';
 
 class Navbar extends Component {
@@ -12,9 +12,36 @@ class Navbar extends Component {
 
   render () {
     return (
-      <nav className="navbar">
-        {this.props.currentUser.id ? this.renderLogout() : this.renderLoginSignup()}
-      </nav>
+
+      <div id="nav-bar-wrapper">
+        <div className="nav-container">
+        <div className="nav-item"></div>
+          <div className="nav-item">
+          <NavLink to="/products">All Products</NavLink>
+          </div>
+          <div className="nav-item">
+            { this.props.currentUser.id ? this.renderLogout() : this.renderLoginSignup() }
+          </div>
+          <div className="nav-item">
+            <NavLink to="/cart" activeClassName="active">view cart</NavLink>
+          </div>
+        </div>
+      </div>
+      // <Switch>
+        //   {/* Routes placed here are available to all visitors */}
+        //   <Route path="/login" component={Login} />
+        //   <Route path="/signup" component={Signup} />
+        //   {
+        //     isLoggedIn &&
+        //       <Switch>
+        //         {/* Routes placed here are only available after logging in */}
+        //         <Route path="/home" component={UserHome} />
+        //       </Switch>
+        //   }
+        //   {/* Displays our Login component as a fallback */}
+        //   <Route component={Login} />
+        // </Switch>
+
     )
   };
 

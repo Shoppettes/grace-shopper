@@ -68,6 +68,7 @@
     "eslint": "^4.10.0",
     "eslint-config-fullstack": "^3.0.0",
     "eslint-plugin-react": "^7.4.0",
+    "file-loader": "^1.1.6",
     "mocha": "^3.3.0",
     "nodemon": "^1.12.1",
     "react-test-renderer": "^16.0.0",
@@ -75,6 +76,7 @@
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.2.3",
     "supertest": "^3.0.0",
+    "url-loader": "^0.6.2",
     "webpack": "^2.2.1",
     "webpack-livereload-plugin": "^1.0.0"
   }
