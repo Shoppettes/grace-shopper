@@ -20,7 +20,7 @@ class Root extends Component {
     return (
       <div>
         <Router history={history}>
-          <div id="content">
+          <div>
             <Navbar />
             <Sidebar />
 

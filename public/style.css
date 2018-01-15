@@ -8,7 +8,7 @@
 }
 
 html, body {
-  background-color: #fcf472;
+  background-color: #fbf259;
   font-size: 18px;
   min-height: 100%;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -57,7 +57,7 @@ h1 {
   z-index: 1000;
   position: fixed;
   left: 250px;
-  width: 225px;
+  width: 20%;
   top: 0;
   height: 93%;
   margin-left: -250px;
@@ -139,11 +139,67 @@ h1 {
 
 /* ***HOMEPAGE STYLING*** */
 
-#page-content-wrapper {
-  width: 100%;
+#home-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  height: 93%;
+  left: 20%;
   position: absolute;
   padding: 15px;
 }
+
+.content-container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  height: 50%;
+  align-self: flex-end;
+  margin-bottom: 4px;
+}
+
+.title-container {
+  display: flex;
+  flex-grow: 2;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25%;
+  height: 300px;
+  width: 500px;
+  justify-content: space-around;
+}
+
+.bottom-img-container {
+  flex-grow: 1;
+  align-items: center;
+}
+
+.title-logo-img {
+  flex-grow: 1;
+  width: 400px;
+  margin: 5%;
+}
+
+.subtitle-text {
+  flex-grow: 2;
+}
+
+.search-bar-container {
+  flex-grow: 1;
+  margin: 5%;
+}
+
+.form-inline {
+  border: none;
+}
+
+.home-bg-img {
+  width: 100%;
+  height: 70%;
+}
+
 /* END HOMEPAGE */
 
 #footer {
@@ -153,6 +209,7 @@ h1 {
   height: 7%;
   background-color: #73dc7b;
 }
+
 
 .footer-block {
   margin: 20px 0;

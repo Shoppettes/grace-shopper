@@ -12,7 +12,9 @@ export const Sidebar = (props) => {
     <div id="sidebar-wrapper">
     <ListGroup bsClass="list-group">
       <div className="container-logo">
-        <img className="logo-img" src="./dino-logo.jpg" />
+        <Link to="/">
+          <img className="logo-img" src="./dino-logo.jpg" />
+        </Link>
       </div>
 
       {categories && categories.map(category => <ListGroupItem bsClass="list-group-item" key={category.id}><Link to="/products">{category.name}</Link></ListGroupItem>)}

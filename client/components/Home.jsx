@@ -9,13 +9,23 @@ const Home = (props) => {
 
   return (
 
-    <div id="page-content-wrapper">
-    <div className="container-fluid">
-        <h1>Simple Sidebar</h1>
-        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+    <div id="home-content-wrapper">
+      <div className="content-container">
+        <div className="title-container">
+            <img className="title-logo-img" src="./title-logo.jpg" />
+            <div className="subtittle-text">Here goes a line of text that captures our store</div>
+            <div className="search-bar-container">
+              <form className="form-inline">
+              <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+              <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </div>
+        </div>
+        <div className="bottom-img-container">
+          <img className="home-bg-img" src="./city-of-dino.jpg" />
+        </div>
+      </div>
     </div>
-</div>
   )
 }
 
