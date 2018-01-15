@@ -20,7 +20,8 @@ class _PaymentRequestForm extends Component {
   }
     // For full documentation of the available paymentRequest options, see:
     // https://stripe.com/docs/stripe.js#the-payment-request-object
-    ConponentDidMount(){
+    componentDidMount(){
+      console.log("AHHH WERE IN HERE!!!")
     const paymentRequest = this.props.stripe.paymentRequest({
       country: 'US',
       currency: 'usd',
