@@ -13,6 +13,7 @@ export const Sidebar = (props) => {
         </div>
         <ul className="sidebar-nav">
           <div>
+            <li className="sidebar-brand"><Link to="/products">view all products</Link></li>
             {categories && categories.map(category => <li className="sidebar-brand" key={category.id}><Link to="/products">{category.name}</Link></li>)}
           </div>
         </ul>
