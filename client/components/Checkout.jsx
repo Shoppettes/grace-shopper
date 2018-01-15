@@ -25,7 +25,7 @@ class MyStoreCheckout extends Component {
       <div id="checkout-wrapper">
         <div className="checkout-table-container">
           <h3>Checkout</h3>
-          <div className="checkout-table">
+          <div className="checkout-table-container">
             <table className="table">
             <thead>
               <tr>
@@ -43,7 +43,7 @@ class MyStoreCheckout extends Component {
               <tr>
               <td scope="col">Item Name</td>
               <td scope="col">x</td>
-              <td scope="col">$$$</td>
+              <td scope="col">x</td>
               </tr>
               <tr>
               <td scope="col">Item Name</td>

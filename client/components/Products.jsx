@@ -10,7 +10,7 @@ const Thumbnail = require('react-bootstrap').Thumbnail;
 class Products extends Component {
   constructor(props) {
     super(props);
-    this.onClick = this.onClick.bind(this);
+    //this.onClick = this.onClick.bind(this);
   }
 
   render () {
@@ -24,7 +24,7 @@ class Products extends Component {
           {products && products.map(product => (
             <div className="col-xs-4" key={product.id}>
               <div className="thumbnail">
-                <img src={product.photos[0]} />
+                <img src={product.imgURL} />
               </div>
               <div className="caption">
 
@@ -37,21 +37,21 @@ class Products extends Component {
                 <div>
                   <Link to={`/products/${product.id}`}>See more</Link>
                 </div>
-                <button onClick={() => this.onClick(order, product.id)}>Add item to cart.</button>
+                <button onClick={() => this.props.addItemToCart(event, order, product.id)}>Add item to cart.</button>
               </div>
-
+          </div>
           ))}
-          </Col>>
-        </Row>
-      </Grid>
+        </div>
+      </div>
     );
   }
+}
 
-  onClick(order, productId) {
+  /*onClick(order, productId) {
     event.preventDefault();
     this.props.addItemToCart(order, productId)
   }
-};
+}*/
 
 const mapState = (state) => {
   return {
@@ -63,7 +63,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
-    addItemToCart (order, productId) {
+    addItemToCart (eventt, order, productId) {
+      event.preventDefault()
       if (!order.products.find(product => product.id === productId)) {
         let orderId = order.id
         console.log('!!!!!!', orderId)
@@ -75,20 +76,6 @@ const mapDispatch = (dispatch, ownProps) => {
 }
 
 export default connect(mapState, mapDispatch)(Products);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
