@@ -14,6 +14,11 @@ export const clearCurrentOrder = () => ({type: CLEAR_CURRENT_ORDER});
 
 
 // thunk creators
+export const fetchCurrentOrder = () => dispatch =>
+  axios.get('/api/orders/currentOrder')
+    .then(res => dispatch(setCurrentOrder(res.data || defaultOrder)))
+    .catch(err => console.error('Fetching the current order failed', err))
+
 export function findOrCreateOrder (currentUser) {
   return function (dispatch) {
   axios.post('/api/orders', {userId: currentUser.id})
@@ -54,8 +59,6 @@ export default function (state = defaultOrder, action) {
       return action.currentOrder
     case CLEAR_CURRENT_ORDER:
       return {}
-    case 'LOAD_STORED_STATE':
-      return action.storedState;
     default:
       return state
   }

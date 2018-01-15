@@ -20,7 +20,9 @@ router.post('/:orderId/:productId', (req, res, next) => {
   .then(foundOrder => {
     // let productArray = foundOrder.products
     return res.status(201).json(foundOrder)
+    return foundOrder
   })
+  .then((order) => req.session.order = order)
   .catch(next);
 })
 
@@ -36,8 +38,9 @@ router.put('/:orderId/:productId/:quantity', (req, res, next) => {
     .then(() => Order.findById(req.params.orderId, {include: [Product]}))
     .then(order => {
       res.status(220).json(order)
-      //return res.status(201).json(updatedProduct)
+      return order
     })
+    .then((order) => req.session.order = order)
     .catch(next);
 })
 
@@ -48,6 +51,13 @@ router.delete('/:orderId/:productId', (req, res, next) => {
      orderProductInstance.destroy()
    })
    .then(() => Order.findById(req.params.orderId, {include: [Product]}))
-   .then(foundOrder => res.status(201).json(foundOrder))
+   .then(foundOrder => {
+     res.status(201).json(foundOrder)
+     return foundOrder
+   })
+   .then((order) => {
+     req.session.order = order
+     console.log('!!!!!!!', req.session.order) // this works and I could use req.params to do it for all routes here
+   })
    .catch(next)
 })

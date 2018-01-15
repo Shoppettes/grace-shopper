@@ -4,6 +4,28 @@ const Op = Sequelize.Op;
 const {Order, User, Product} = require('../db/models')
 module.exports = router
 
+// get current order on the session
+router.get('/currentOrder', (req, res, next) => {
+//   res.json(req.session.order)
+//   else {
+//     return Order.create()
+//     .then((order) => {
+//       req.session.order = order
+//       res.json(order)
+//     })
+//     .catch(next)
+//   }
+// })
+  return Order.create()
+    .then(order => Order.findById(order.id, {include: [Product]}))
+    .then(order => {
+      res.json(req.session.order)
+      return order
+    })
+    // .then(order => req.session.order = order)
+    .catch(next)
+})
+
 // get all orders, including associated users and products
 router.get('/', (req, res, next) => {
   Order.findAll({include: [User, Product]})
@@ -25,7 +47,11 @@ router.post('/', (req, res, next) => {
     return order;
   })
   .then(order => Order.findById(order.dataValues.id, {include: [User, Product]}))
-  .then(order => res.status(201).json(order))
+  .then(order => {
+    res.status(201).json(order)
+    return order
+  })
+  .then((order) => req.session.order = order)
   .catch(next);
 })
 
@@ -42,7 +68,14 @@ router.put('/:orderId', (req, res, next) => {
     where: {id: req.params.orderId},
     returning: true
   }, {include: [User, Product]})
-  .then(updatedOrder => res.status(201).json(updatedOrder))
+  .then(updatedOrder => {
+    res.status(201).json(updatedOrder)
+    return updatedOrder
+  })
+  .then((order) => {
+    req.session.order = order
+    console.log('!!!!!!!', req.session.order) // this works and I could use req.params to do it for all routes here
+  })
   .catch(next)
 })
 

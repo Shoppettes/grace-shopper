@@ -4,14 +4,14 @@ import {Router, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from '../history';
 import {Navbar, Sidebar, Footer, Home, Products, CreateAccount,Login, SingleProduct, Cart, Checkout, AuthForm, MyStoreCheckout} from '../components';
-import {fetchCurrentUser, fetchAllProducts, fetchAllCategories, findOrCreateOrder, getCartByOrder} from '../store';
+import {fetchCurrentUser, fetchAllProducts, fetchAllCategories, fetchCurrentOrder, findOrCreateOrder, getCartByOrder} from '../store';
 
 
 
 class Root extends Component {
   componentDidMount () {
     this.props.loadInitialData();
-    this.props.isLoggedIn ? this.props.loadOrder(this.props.currentUser) : this.props.loadOrder({})
+    this.props.isLoggedIn && this.props.loadOrder(this.props.currentUser);
   }
 
 
@@ -66,6 +66,7 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchCurrentUser())
       dispatch(fetchAllProducts())
       dispatch(fetchAllCategories())
+      dispatch(fetchCurrentOrder())
     },
     loadOrder (user) {
       dispatch(findOrCreateOrder(user))
