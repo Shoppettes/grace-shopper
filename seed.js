@@ -163,16 +163,11 @@ const photos = [
 ];
 
 const categories = [
-  {name: 'beauty products' },
-  {name: 'food'},
-  {name: 'gentleman dino' },
-  {name: 'modern dino'},,
   {name: 'carnivore'},
   {name: 'herbivore'},
   {name: 'triassic'},
   {name: 'jurassic'},
   {name: 'cretaceous'},
-  {name: 'land-dwelling'},
   {name: 'airborne'},
   {name: 'water-dwelling'}
 ];
@@ -256,9 +251,9 @@ const seed = () =>
   .then(() =>
   Promise.all(reviews.map(review =>
     Review.create(review))
-  )) 
+  ))
   .then(() =>
-  Promise.all(photos.map(photo => 
+  Promise.all(photos.map(photo =>
     Photo.create(photo))
   ));
 

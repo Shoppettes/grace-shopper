@@ -20,18 +20,25 @@ class Root extends Component {
     return (
       <div>
         <Router history={history}>
-          <div id="content">
+          <div>
             <Navbar />
             <Sidebar />
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/createaccount" component={CreateAccount} />
-              <Route path="/cart" component={Cart} />
-              <Route exact path="/products" component={Products} />
-              <Route path="/products/:productId" component={SingleProduct} />
-              <Route path="/checkout" component={Checkout} />
-            </Switch>
+
+
+            <div className="main-content-wrapper">
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/createaccount" component={CreateAccount} />
+                <div className="sub-content-wrapper">
+                  <Route path="/cart" component={Cart} />
+                  <Route exact path="/products" component={Products} />
+                  <Route path="/products/:productId" component={SingleProduct} />
+                  <Route path="/checkout" component={Checkout} />
+                </div>
+              </Switch>
+            </div>
+
             <Footer />
           </div>
         </Router>

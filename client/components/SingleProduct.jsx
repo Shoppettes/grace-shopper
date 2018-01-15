@@ -16,7 +16,7 @@ class SingleProduct extends Component {
   render () {
     const {order, product} = this.props;
     return (
-      <div>
+      <div id="single-product-wrapper">
         <span>Product Name</span>
         <div className="col-xs-4" key={product.id}>
               <a className="thumbnail" href="#">

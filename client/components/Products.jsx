@@ -18,12 +18,16 @@ class Products extends Component {
     const products = !category ? this.props.products : this.props.products.filter(product => product.category === cateogory)
 
     return (
-      <Grid>
-        <Row>
-          <Col>
+
+      <div id="products-wrapper">
+        <div className="row">
           {products && products.map(product => (
             <div className="col-xs-4" key={product.id}>
-            <Thumbnail></Thumbnail>
+              <div className="thumbnail">
+                <img src={product.photos[0]} />
+              </div>
+              <div className="caption">
+
                 <h5>
                   <div>
                     <span>{product.name}</span>
