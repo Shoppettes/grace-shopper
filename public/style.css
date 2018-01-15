@@ -27,17 +27,6 @@ h1 {
   align-self: center;
 }
 
-
-#sidebar {
-  min-width: 250px;
-  max-width: 250px;
-  min-height: 100vh;
-}
-
-#sidebar.active {
-  margin-left: -250px;
-}
-
 #footer {
   bottom: 0;
   width: 100%;
@@ -108,7 +97,7 @@ button:hover {
   transition: all 150ms ease;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   #sidebar {
     margin-left: -250px;
   }
@@ -116,4 +105,4 @@ button:hover {
   #sidebar.active {
     margin-left: 0;
   }
-}
+} */
