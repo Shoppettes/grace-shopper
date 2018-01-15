@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {NavLink, withRouter} from 'react-router-dom';
 import {logout} from '../store';
 
-
 class Navbar extends Component {
   constructor(props) {
     super(props);
