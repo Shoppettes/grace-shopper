@@ -8,22 +8,27 @@ const ListGroupItem = require('react-bootstrap').ListGroupItem;
 export const Sidebar = (props) => {
   const {categories} = props
   return (
-    <div id="sidebar-wrapper">
-      <ListGroup>
-        <ListGroupItem>Sidebar Header </ListGroupItem>
-        <Link to="/products">All Products</Link>
-
-        {categories && categories.map(category => <ListGroupItem key={category.id}><Link to="/products">{category.name}</Link></ListGroupItem>)}
-      </ListGroup>
-    </div>
+      <div id="sidebar-wrapper">
+        <div className="sidebar-header">
+          <Link to="/">
+          <img id="sidebar-logo" src="./dino-logo.jpg" alt="modern dino" />
+          </Link>
+        </div>
+        <ul className="sidebar-nav">
+          <div>
+            {categories && categories.map(category => <li className="sidebar-brand" key={category.id}><Link to="/products">{category.name}</Link></li>)}
+          </div>
+        </ul>
+      </div>
   )
 };
+
 
 const mapState = (state) => {
   return {
     categories: state.categories
   }
-  
+
 }
 
 
