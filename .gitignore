@@ -1,7 +1,6 @@
 node_modules
 public/bundle.js
 public/bundle.js.map
-public/dino-pics
 secrets.js
 .DS_Store
 npm-debug.log
