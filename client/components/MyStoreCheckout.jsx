@@ -90,11 +90,11 @@ const MyStoreCheckout = (props) => {
             </div>
             </form>
           </div>
-          </div>
           <div className="payment-container">
-            <Checkout />
+                 <Checkout />
           </div>
         </div>
+      </div>
       )
     }
   

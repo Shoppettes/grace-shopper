@@ -15,7 +15,7 @@ class Products extends Component {
 
   render () {
     const {order, category} = this.props;
-    const products = !category ? this.props.products : this.props.products.filter(product => product.category === cateogory)
+    const products = !category ? this.props.products : this.props.products.filter(product => product.category === category)
 
     return (
 
@@ -24,7 +24,7 @@ class Products extends Component {
           {products && products.map(product => (
             <div className="col-xs-4" key={product.id}>
               <div className="thumbnail">
-                <img src={product.photos[0]} />
+                <img src={product.photos[0] && product.photos[0].imgURL} />
               </div>
               <div className="caption">
 
@@ -65,7 +65,6 @@ const mapDispatch = (dispatch, ownProps) => {
     addItemToCart (order, productId) {
       if (!order.products.find(product => product.id === productId)) {
         let orderId = order.id
-        console.log('!!!!!!', orderId)
         dispatch(createOrderProductInstance(orderId, productId))
       }
       else dispatch(updateOrderProductInstance(order.id, productId, {'increment': true}))
