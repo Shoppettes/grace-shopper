@@ -54,6 +54,8 @@ export default function (state = defaultOrder, action) {
       return action.currentOrder
     case CLEAR_CURRENT_ORDER:
       return {}
+    case 'LOAD_STORED_STATE':
+      return action.storedState;
     default:
       return state
   }

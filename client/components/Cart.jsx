@@ -23,7 +23,7 @@ class Cart extends Component {
               ----------<br/>
               Name: {product.name} <br/>
               Price: {product.price}<br/>
-              Quantity: {product.OrderProducts.quantity}<br/>
+              Quantity: {product.OrderProducts && product.OrderProducts.quantity}<br/>
               <select className="custom-select" onChange={(event) => this.onChange(order.id, product.id, event.target.value)}>
                 <option selected>Update Quantity</option>
                 <option value="1">1</option>
