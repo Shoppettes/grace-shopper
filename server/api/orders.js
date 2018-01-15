@@ -46,6 +46,16 @@ router.put('/:orderId', (req, res, next) => {
   .catch(next)
 })
 
+//edit and order and create a new user instance
+router.put('/:orderId/newUser', (req, res, next) => {
+  return User.create(req.body)
+  .then(user => {
+    return Order.update({orderStatus: 'awaiting shipment', userId: user.id}, {where: {id: req.params.orderId}, returning: true})
+  })
+  .then(updatedOrder => res.json(updatedOrder[1][0]))
+  .catch(next);
+})
+
 // get all products associated with an order
 router.get('/:orderId/products', (req, res, next) => {
   Order.findById(req.params.orderId, {include: [{model: Product}]})
