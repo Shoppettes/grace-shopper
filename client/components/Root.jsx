@@ -24,6 +24,7 @@ class Root extends Component {
             <Navbar />
             <Sidebar />
 
+            <div id="main-content-wrapper">
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
@@ -33,6 +34,7 @@ class Root extends Component {
               <Route path="/products/:productId" component={SingleProduct} />
               <Route path="/checkout" component={Checkout} />
             </Switch>
+            </div>
             <Footer />
           </div>
         </Router>

@@ -36,6 +36,14 @@ h1 {
   transition: all 0.5s ease;
 }
 
+#main-content-wrapper {
+  display: flex;
+  width: 85%;
+  height: 88%;
+  left: 15%;
+  margin-top: 5%;
+  position: absolute;
+}
 
 
 #site-greeting {
@@ -150,11 +158,6 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 85%;
-  height: 88%;
-  left: 15%;
-  margin-top: 5%;
-  position: absolute;
   padding: 15px;
 }
 
@@ -212,6 +215,22 @@ h1 {
 }
 
 /* END HOMEPAGE */
+
+/* ALL PRODUCTS STYLING STARTS HERE */
+
+/* END ALL PRODUCTS */
+
+/* SINGLE PRODUCT STYLING STARTS HERE */
+
+/* END SINGLE PRODUCT*/
+
+/* CART STYLING STARTS HERE*/
+
+/* END CART */
+
+/* CHECKOUT STYLING STARTS HERE */
+
+/* END CHECKOUT */
 
 #footer {
   bottom: 0;

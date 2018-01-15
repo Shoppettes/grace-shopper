@@ -7,7 +7,7 @@ export const Cart = (props) => {
   const {order, productsInCart, updateItemAmountInCart, removeItemFromCart} = props;
 
   return (
-    <div>
+    <div id="cart-wrapper">
       <h3>My Cart</h3>
       {!productsInCart.length ? <span>You do not have any items in your cart.</span> :
       productsInCart.map(product =>
