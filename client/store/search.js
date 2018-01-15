@@ -3,16 +3,15 @@ import axios from 'axios';
 /**
  * ACTION TYPES
  */
-const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
-const GET_PRODUCT_BY_NAME = 'GET_PRODUCT_BY_NAME'
+const SET_SEARCH_INPUT = 'SET_SEARCH_INPUT'
  /**
  * INITIAL STATE
  */
-const defaultProducts = []
+const defaultInput = ''
  /**
  * ACTION CREATORS
  */
-export const getAllProducts = (products) => ({type: GET_ALL_PRODUCTS, products})
+export const setSearchInput = input => ({type: SET_SEARCH_INPUT, input})
 
  /**
  * THUNK CREATORS
@@ -25,10 +24,10 @@ export const fetchAllProducts = () =>
  /**
  * REDUCER
  */
-export default function (state = defaultProducts, action){
+export default function (state = defaultInput, action){
   switch (action.type) {
-    case GET_ALL_PRODUCTS:
-      return action.products
+    case SET_SEARCH_INPUT:
+      return action.input
     default:
       return state
   }
