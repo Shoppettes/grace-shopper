@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: 'dk_sticky_toffeeregular';
   src: url('fonts/dk_sticky_toffee-webfont.woff2') format('woff2'),
@@ -13,6 +14,7 @@ html, body {
   min-height: 100%;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   display: flex;
+  justify-content: center;
 }
 
 a {
@@ -59,7 +61,7 @@ h1 {
   align-self: center;
 }
 
-/* NAVBAR STYLING */
+/* NAVBAR STYLING STARTS HERE*/
 
 #nav-bar-wrapper {
   display: flex;
@@ -117,6 +119,7 @@ h1 {
   position: fixed;
   left: 250px;
   width: 15%;
+
   top: 0;
   height: 93%;
   margin-left: -250px;
@@ -187,6 +190,7 @@ h1 {
   height: 300px;
   width: 700px;
   justify-content: space-around;
+
 }
 
 .bottom-img-container {
@@ -223,6 +227,7 @@ h1 {
 }
 
 /* END HOMEPAGE */
+
 
 /* ALL PRODUCTS STYLING STARTS HERE */
 #products-wrapper {
@@ -371,7 +376,7 @@ button:hover {
   transition: all 150ms ease;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   #sidebar {
     margin-left: -250px;
   }
@@ -379,4 +384,4 @@ button:hover {
   #sidebar.active {
     margin-left: 0;
   }
-}
+}*/

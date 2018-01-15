@@ -24,6 +24,7 @@ class Root extends Component {
             <Navbar />
             <Sidebar />
 
+
             <div className="main-content-wrapper">
               <Switch>
                 <Route exact path="/" component={Home} />
@@ -37,6 +38,7 @@ class Root extends Component {
                 </div>
               </Switch>
             </div>
+
             <Footer />
           </div>
         </Router>

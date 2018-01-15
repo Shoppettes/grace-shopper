@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 import {NavLink, withRouter, Link} from 'react-router-dom';
 import {logout} from '../store';
 
-// This component is currently throwing an error that id is undefined because there is no current user on state
-
 class Navbar extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +12,7 @@ class Navbar extends Component {
 
   render () {
     return (
+
       <div id="nav-bar-wrapper">
         <div className="nav-container">
         <div className="nav-item"></div>
@@ -42,17 +41,21 @@ class Navbar extends Component {
         //   {/* Displays our Login component as a fallback */}
         //   <Route component={Login} />
         // </Switch>
+
     )
   };
 
   renderLoginSignup () {
     return (
-      <ul className="nav navbar-nav navbar-right">
+      <ul className="nav navbar-nav">
         <li>
-          <NavLink to="/createaccount" activeClassName="active">create an account</NavLink>
+          <NavLink to="/createaccount" activeClassName="active">CREATE AN ACCOUNT</NavLink>
         </li>
         <li>
-          <NavLink to="/login" activeClassName="active">login</NavLink>
+          <NavLink to="/login" activeClassName="active">SIGN IN</NavLink>
+        </li>
+        <li>
+          <NavLink to="/cart" activeClassName="active"><img src="/images/cart-icon.jpg" /></NavLink>
         </li>
       </ul>
     );
@@ -63,6 +66,9 @@ class Navbar extends Component {
       <ul className="nav navbar-nav navbar-right">
         <li>
           <button className="navbar-btn btn btn-default" onClick={this.props.logout}>logout</button>
+        </li>
+        <li>
+          <NavLink to="/cart" activeClassName="active"><img src="/images/cart-icon.jpg" /></NavLink>
         </li>
       </ul>
     );

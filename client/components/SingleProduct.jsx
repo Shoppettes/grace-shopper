@@ -51,10 +51,10 @@ const mapDispatch = (dispatch) => {
     loadChosenProduct(productId) {
       dispatch(getChosenProductFromDb(productId))
     },
+    // I need to update the functionality here to reflect what's been implemented in Cart but didn't have time to put the select quantity button in. It's very hard to see with current CSS.
     addItemToCart (order, productId) {
       if (!order.products.find(product => product.id === productId)) {
         let orderId = order.id
-        console.log('!!!!!!', orderId)
         dispatch(createOrderProductInstance(orderId, productId))
       }
       else dispatch(updateOrderProductInstance(order.id, productId, 'increment'))
