@@ -10,9 +10,9 @@ class Products extends Component {
   }
 
   render () {
-    const {order, category} = this.props;
-    const products = !category ? this.props.products : this.props.products.filter(product => product.category === cateogory)
-
+    const {order, category,search} = this.props;
+    var products = !category ? this.props.products : this.props.products.filter(product => product.category === cateogory)
+    products = products.filter(product => product.name.match(search.searchInp));
     return (
 
       <div id="products-wrapper">
@@ -53,7 +53,8 @@ const mapState = (state) => {
   return {
     products: state.products,
     category: state.category,
-    order: state.currentOrder
+    order: state.currentOrder,
+    search: state.search
   }
 }
 
