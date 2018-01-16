@@ -45,7 +45,7 @@ const mapDispatch = (dispatch) => {
     loadChosenProduct(productId) {
       dispatch(getChosenProductFromDb(productId))
     },
-    addItemToCart (event, order, product) {
+    addItemToCart(event, order, product) {
       dispatch(createOrderProductInstance(order, product))
     }
   }

@@ -38,7 +38,9 @@ export function findOrCreateOrder (currentUser) {
 export function createOrderProductInstance (order, product) {
   console.log('!!!!!!', order, product)
   return function (dispatch) {
-    const updatedOrder = [...order.products, product]
+    const updatedOrder = order
+    const updatedOrderProducts = [...order.products, product]
+    updatedOrder.products = updatedOrderProducts
     console.log('!!!!!!', updatedOrder)
     dispatch(setCurrentOrder(updatedOrder))
     axios.post(`/api/orderProducts/${order.id}/${product.id}`)
