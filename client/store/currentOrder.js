@@ -47,6 +47,18 @@ export function removeOrderProductInstance (orderId, productId) {
   }
 }
 
+export function submitOrder(orderInfo) { //this action also needs to update the order.status to 'awaiting shipment'
+  return function(dispatch) {
+    axios.put(`/api/orders/${orderInfo.id}`, {orderInfo})
+    .then(() => {
+      axios.delete(`/api/orders/${orderInfo.id}`)
+    })
+    // .then(() => history.push('/checkout-confirm')) /**this component is not yet defined */
+    .then(dispatch(clearCurrentOrder()))
+    .catch(err => console.log(err))
+  }
+}
+
 // reducer
 export default function (state = defaultOrder, action) {
   switch (action.type) {
@@ -58,3 +70,36 @@ export default function (state = defaultOrder, action) {
       return state
   }
 }
+
+/**
+ * export const submitCart = orderInfo => (dispatch, getState) =>
+  axios
+    .post('/api/orders', orderInfo)
+    .then(res => {
+      dispatch(getCartOrder(res.data))
+      return res.data
+    })
+    .then(order => history.push(`/checkout-confirm/${order.id}`))
+    .then(axios.delete('/api/cart'))
+    .then(dispatch(resetCart()))
+    .catch(err => console.log(err))
+ 
+
+export default function(state = defaultCart, action) {
+  switch (action.type) {
+    case GET_CART:
+      return Object.assign({}, state, { cart: action.cart })
+    case RESET_CART:
+      return Object.assign({}, defaultCart)
+    case GET_CART_ORDER:
+      return Object.assign({}, defaultCart, { lastOrder: action.lastOrder })
+    case UPDATE_USER_INFO:
+      return Object.assign({}, state, action.userInfo)
+    case UPDATE_ORDER_TOTAL:
+      return Object.assign({}, state, { orderTotal: action.orderTotal })
+    default:
+      return state
+  }
+}
+
+*/

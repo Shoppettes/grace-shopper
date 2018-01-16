@@ -2,6 +2,7 @@ import axios from 'axios'
 import history from '../history'
 
 // action types
+const GET_CURRENT_USER = 'GET_CURRENT_USER'
 const SET_CURRENT_USER = 'SET_CURRENT_USER'
 const CLEAR_CURRENT_USER = 'CLEAR_CURRENT_USER'
 
@@ -9,6 +10,7 @@ const CLEAR_CURRENT_USER = 'CLEAR_CURRENT_USER'
 const defaultUser = {}
 
 // action creator
+ export const getCurrentUser = () => ({type: GET_CURRENT_USER})
  export const setCurrentUser = currentUser => ({type: SET_CURRENT_USER, currentUser});
  export const clearCurrentUser = () => ({type: CLEAR_CURRENT_USER})
 
@@ -41,12 +43,14 @@ export const logout = () => dispatch =>
       history.push('/')
     })
     .catch(err => console.error('Logging out was unsuccessful', err))
-
+    
 /**
  * REDUCER
  */
 export default function (state = defaultUser, action) {
   switch (action.type) {
+    case GET_CURRENT_USER:
+      return action.currentUser;
     case SET_CURRENT_USER:
       return action.currentUser
     case CLEAR_CURRENT_USER:
