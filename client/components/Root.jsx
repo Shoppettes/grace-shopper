@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Router, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from '../history';
-import {Navbar, Sidebar, Footer, Home, Products, CreateAccount,Login, SingleProduct, Cart, Checkout, AuthForm, MyStoreCheckout} from '../components';
+import {Navbar, Sidebar, Footer, Home, Products, CreateAccount,Login, SingleProduct, Cart, Checkout, AuthForm, MyStoreCheckout, AdminPanel} from '../components';
 import {fetchCurrentUser, fetchAllProducts, fetchAllCategories, fetchCurrentOrder, findOrCreateOrder, getCartByOrder} from '../store';
 
 
@@ -24,19 +24,6 @@ class Root extends Component {
             <Navbar />
             <Sidebar />
             <div className="main-content-wrapper">
-<<<<<<< HEAD
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/createaccount" component={CreateAccount} />
-                <div className="sub-content-wrapper">
-                  <Route path="/cart" component={Cart} />
-                  <Route exact path="/products" component={Products} />
-                  <Route path="/products/:productId" component={SingleProduct} />
-                  <Route path="/checkout" component={MyStoreCheckout} />
-                </div>
-              </Switch>
-=======
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
@@ -49,7 +36,6 @@ class Root extends Component {
                 <Route path="/checkout" component={Checkout} />
               </div>
             </Switch>
->>>>>>> 7eb65d57dc71c525e1a4c1fddcc93ae8d67d62cc
             </div>
             <Footer />
           </div>
