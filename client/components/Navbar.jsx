@@ -9,6 +9,7 @@ class Navbar extends Component {
     this.renderWelcome = this.renderWelcome.bind(this);
     this.renderLoginSignup = this.renderLoginSignup.bind(this);
     this.renderLogout = this.renderLogout.bind(this);
+    this.renderNumberCartItems = this.renderNumberCartItems.bind(this);
   }
 
   render () {
@@ -27,6 +28,7 @@ class Navbar extends Component {
           </div>
           <div className="nav-item">
             <NavLink to="/cart" activeClassName="active">view cart</NavLink>
+            {(this.props.currentOrder.products && this.props.currentOrder.products.length) && this.renderNumberCartItems()}
           </div>
         </div>
       </div>
@@ -66,12 +68,20 @@ class Navbar extends Component {
       </ul>
     );
   }
-}
 
+  renderNumberCartItems () {
+    return (
+      <ul className="nav navbar-nav navbar-right">
+        <li>{this.props.currentOrder.products.length}</li>
+      </ul>
+    );
+  }
+}
 
 const mapState = (state, props) => {
   return {
-    currentUser: state.user
+    currentUser: state.user,
+    currentOrder: state.currentOrder
   }
 }
 
