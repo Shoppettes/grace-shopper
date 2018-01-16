@@ -2,20 +2,22 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {createOrderProductInstance, updateOrderProductInstance} from '../store';
-const Grid = require('react-bootstrap').Grid;
-const Row = require('react-bootstrap').Row;
-const Col = require('react-bootstrap').Col;
-const Thumbnail = require('react-bootstrap').Thumbnail;
 
 class Products extends Component {
   constructor(props) {
     super(props);
-    this.onClick = this.onClick.bind(this);
+    //this.onClick = this.onClick.bind(this);
   }
 
   render () {
-    const {order, category} = this.props;
-    const products = !category ? this.props.products : this.props.products.filter(product => product.category === category)
+
+    const {order, category,search} = this.props;
+    var products = !category ? this.props.products : this.props.products.filter(product => product.category === cateogory)
+    if(search.searchInp) {
+      products = products.filter(product => product.name.match(search.searchInp))
+      search.searchInp = ''
+      search.redirect = false
+    }
 
     return (
 
@@ -24,7 +26,7 @@ class Products extends Component {
           {products && products.map(product => (
             <div className="col-xs-4" key={product.id}>
               <div className="thumbnail">
-                <img src={product.photos[0] && product.photos[0].imgURL} />
+               { product.photos[0] && <img src={product.photos[0].imgURL} />}
               </div>
               <div className="caption">
 
@@ -37,32 +39,35 @@ class Products extends Component {
                 <div>
                   <Link to={`/products/${product.id}`}>See more</Link>
                 </div>
-                <button onClick={() => this.onClick(order, product.id)}>Add item to cart.</button>
+                <button onClick={() => this.props.addItemToCart(event, order, product.id)}>Add item to cart.</button>
               </div>
-            </div>
+          </div>
           ))}
-          </div>>
+        </div>
       </div>
     );
   }
+}
 
-  onClick(order, productId) {
+  /*onClick(order, productId) {
     event.preventDefault();
     this.props.addItemToCart(order, productId)
   }
-};
+}*/
 
 const mapState = (state) => {
   return {
     products: state.products,
     category: state.category,
-    order: state.currentOrder
+    order: state.currentOrder,
+    search: state.search
   }
 }
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
-    addItemToCart (order, productId) {
+    addItemToCart (event, order, productId) {
+      event.preventDefault()
       if (!order.products.find(product => product.id === productId)) {
         let orderId = order.id
         dispatch(createOrderProductInstance(orderId, productId))
@@ -73,20 +78,6 @@ const mapDispatch = (dispatch, ownProps) => {
 }
 
 export default connect(mapState, mapDispatch)(Products);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

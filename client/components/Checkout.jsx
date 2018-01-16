@@ -73,6 +73,7 @@ const calcTotal = (cartArr) => {
 }
 
 
+
 const mapState = ({currentOrder}) => { 
   return {
     order: currentOrder, 

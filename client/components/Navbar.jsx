@@ -55,7 +55,7 @@ class Navbar extends Component {
           <NavLink to="/login" activeClassName="active">SIGN IN</NavLink>
         </li>
         <li>
-          <NavLink to="/cart" activeClassName="active"><img src="/images/cart-icon.jpg" /></NavLink>
+          <NavLink to="/cart" activeClassName="active"><img src="images/cart-icon.png" /></NavLink>
         </li>
       </ul>
     );
