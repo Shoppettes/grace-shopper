@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Router, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from '../history';
-import {Navbar, Sidebar, Footer, Home, Products, CreateAccount,Login, SingleProduct, Cart, Checkout, AuthForm, MyStoreCheckout} from '../components';
+import {Navbar, Sidebar, Footer, Home, Products, CreateAccount,Login, SingleProduct, Cart, AdminPanel, Checkout, AuthForm, MyStoreCheckout} from '../components';
 import {fetchCurrentUser, fetchAllProducts, fetchAllCategories, fetchCurrentOrder, findOrCreateOrder, getCartByOrder} from '../store';
 
 

@@ -10,8 +10,9 @@ import chosenCategory from './chosenCategory'
 import currentOrder from './currentOrder'
 import search from './search'
 import admin from './admin'
+import adminItems from './adminItems'
 
-export const reducer = combineReducers({ products, chosenProduct, user, categories, chosenCategory, currentOrder, search})
+export const reducer = combineReducers({ products, chosenProduct, user, categories, chosenCategory, currentOrder, search, admin, adminItems})
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware, loggingMiddleware
@@ -28,3 +29,4 @@ export * from './categories'
 export * from './chosenCategory'
 export * from './search'
 export * from './admin'
+export * from './adminItems'
