@@ -18,7 +18,7 @@ router.post('/:orderId/:productId', (req, res, next) => {
   .then(createdOrderProduct => Order.findById(createdOrderProduct.orderId, {include: [Product]}))
   .then(order => {
     req.session.order = order
-    res.status(201).json(order)
+    res.json(order)
   })
   .catch(next);
 })
@@ -35,7 +35,7 @@ router.put('/:orderId/:productId/:quantity', (req, res, next) => {
     .then(() => Order.findById(req.params.orderId, {include: [Product]}))
     .then(order => {
       req.session.order = order
-      res.status(201).json(order)
+      res.status(220).json(order)
     })
     .catch(next);
 })
@@ -49,7 +49,7 @@ router.delete('/:orderId/:productId', (req, res, next) => {
    .then(() => Order.findById(req.params.orderId, {include: [Product]}))
    .then(order => {
      req.session.order = order
-     res.status(204).json(order)
+     res.status(201).json(order)
    })
    .catch(next)
 })
