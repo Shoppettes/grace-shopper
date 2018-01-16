@@ -29,8 +29,7 @@ const MyStoreCheckout = (props) => {
                       <td>{product.OrderProducts.quantity}</td>
                       <td>${product.price}</td>
                     </tr>
-                  )
-                    
+                  )  
                 })}
               </tbody>
             </table>
