@@ -6,7 +6,6 @@ import {createOrderProductInstance, updateOrderProductInstance} from '../store';
 class Products extends Component {
   constructor(props) {
     super(props);
-    //this.onClick = this.onClick.bind(this);
   }
 
   render () {
@@ -26,7 +25,7 @@ class Products extends Component {
           {products && products.map(product => (
             <div className="col-xs-4" key={product.id}>
               <div className="thumbnail">
-               { product.photos[0] && <img src={product.photos[0].imgURL} />}
+               { <img className="product-img" src={product.imageURL} />}
               </div>
               <div className="caption">
 
@@ -49,11 +48,7 @@ class Products extends Component {
   }
 }
 
-  /*onClick(order, productId) {
-    event.preventDefault();
-    this.props.addItemToCart(order, productId)
-  }
-}*/
+
 
 const mapState = (state) => {
   return {
