@@ -37,9 +37,11 @@ const onToken = (amount, description, order, handleSuccess) => token =>
 
 /**COMPONENT */
 const Checkout = ({order, handleSuccess}) => {
-  let amount = order.products && calcTotal(order.products);
+  let amount = calcTotal(order.products);
   let name = 'Your order: ';
   let description = order.products && createDescription(order.products)
+
+ 
   return (
     <div>
       <StripeCheckout
@@ -62,7 +64,12 @@ const createDescription = (cartArr) => {
 }
 
 const calcTotal = (cartArr) => {
-  return cartArr.map(cartProduct => +cartProduct.price).reduce((prev, curr) => prev + curr).toFixed(2);  
+  if (cartArr && cartArr.length) {
+    return cartArr.map(cartProduct => +cartProduct.price).reduce((prev, curr) => prev + curr).toFixed(2)
+  }
+  else {
+    return 0;
+  }
 }
 
 
