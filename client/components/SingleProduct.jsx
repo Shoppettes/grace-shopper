@@ -20,7 +20,7 @@ class SingleProduct extends Component {
       <div id="single-product-wrapper">
         <div className="col-xs-4" key={product && product.id}>
               <div>
-                <img src={product.photos && product.photos[0].imgURL}></img>
+                <img className="single-product-img" src={product.imageURL} />
               </div>
                 <div className="caption">
                   <h5>

@@ -48,6 +48,7 @@ class Cart extends Component {
     this.props.updateItemAmountInCart(orderId, productId, quantity)
   }
 
+
   onClick(orderId, productId) {
     event.preventDefault();
     this.props.removeItemFromCart(orderId, productId);
