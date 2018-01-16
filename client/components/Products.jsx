@@ -2,10 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {createOrderProductInstance, updateOrderProductInstance} from '../store';
-const Grid = require('react-bootstrap').Grid;
-const Row = require('react-bootstrap').Row;
-const Col = require('react-bootstrap').Col;
-const Thumbnail = require('react-bootstrap').Thumbnail;
 
 class Products extends Component {
   constructor(props) {
@@ -63,11 +59,10 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
-    addItemToCart (eventt, order, productId) {
+    addItemToCart (event, order, productId) {
       event.preventDefault()
       if (!order.products.find(product => product.id === productId)) {
         let orderId = order.id
-        console.log('!!!!!!', orderId)
         dispatch(createOrderProductInstance(orderId, productId))
       }
       else dispatch(updateOrderProductInstance(order.id, productId, {'increment': true}))

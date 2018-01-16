@@ -61,74 +61,86 @@ const products = [{
   description: 'Impress all the lady dinos with this fashionable bow tie.',
   price: 12.99,
   quantity: 82,
-  isAvailable: true
+  isAvailable: true,
+  imgURL: '/dino-pics/dino-bow-tie.jpeg',
 } , {
   name: 'Brontasaurus bike',
   description: 'This classic dino bike will always be in style! Comes with an adjustable seat for all leg lengths.',
   price: 199.99,
   quantity: 68,
   isAvailable: true,
+  imgURL: '/dino-pics/happy-trex-dirt-bike.jpg',
 } , {
   name: 'Triceri-top hat',
   description: 'Perfect for the gentleman dino, carnivore or herbivore.',
   price: 33.99,
   quantity: 54,
-  isAvailable: true
+  isAvailable: true,
+  imgURL: '/dino-pics/dino-stealing-top-hat.jpeg',
 } , {
   name: 'Tea-rex',
   description: 'Entertain your friends or just relax at home with this calming tea blend.',
   price: 5.99,
   quantity: 52,
   isAvailable: true,
-  cartId: 2
+  cartId: 2,
+  imgURL: '/dino-pics/dinos-drinking-tea.jpeg',
 }, {
   name: 'CAKE',
   description: 'Perfect for any and all special occasion! Yum!',
   price: 19.99,
   quantity: 90,
   isAvailable: true,
-  cartId: 3
+  cartId: 3,
+  imgURL: '/dino-pics/dinosaur-eating-cake1.jpeg',
 }, {
   name: 'First aid kit',
   description: 'Oopsies! Accidents happen, especially when you are a dinosaur. Help your boo-boos heal faster!',
   price: 6.00,
   quantity: 31,
   isAvailable: true,
-  cartId: 1
+  cartId: 1,
+  imgURL: '/dino-pics/dinosaur-first-aid-kit.jpg',
 
 },{
   name: 'Stegosaurus skateboard',
   description: 'You need the coolest wheels of any age, and we have them. ',
   price: 48.00,
   quantity: 25,
-  isAvailable: true
+  isAvailable: true,
+  imgURL: '/dino-pics/dinosaur-riding-skateboard.jpg',
 }, {
   name: 'Lovely Lady Dino Lipstick',
   description: 'You need the coolest wheels of any age, and we have them. ',
   price: 48.00,
   quantity: 46,
   isAvailable: true,
-  cartId: 1
+  cartId: 1,
+  imgURL: '/dino-pics/dinosaur-wearing-lipstick1.jpg',
 }, {
   name: 'PIZZA',
   description: 'Need we say more? We think this is the best part of being a dinosaur in the modern age.',
   price: 5.00,
+  imgURL: '/dino-pics/happy-trex-dirt-bike.jpg',
   quantity: 99,
   isAvailable: true,
-  cartId: 2
+  cartId: 2,
+  imgURL: '/dino-pics/happy-trex-dirt-bike.jpg',
 }, {
   name: 'Moto-saurus',
   description: 'Vrrooom vroom party starter! You are the coolest dino and you know it. Show it off with this hot set of two wheels.',
   price: 555.00,
   quantity: 15,
-  isAvailable: true
+  isAvailable: true,
+  imgURL: '/dino-pics/dinosaurs-riding-motorcycles.jpg'
 }, {
   name: 'Beauty kit',
   description: 'Lady and gentleman dinos will both be thrilled with how they look after using this Dino-store beauty kit.',
   price: 25.50,
   quantity: 45,
   isAvailable: true,
-  cartId: 1
+  cartId: 1,
+  imgURL: '/dino-pics/dinosaur-beauty-products1.jpg',
 },
 {
   name: 'Socks',
@@ -136,13 +148,13 @@ const products = [{
   price: 4.50,
   quantity: 67,
   isAvailable: true,
-  cartId: 1
+  cartId: 1,
+  imgURL: '/dino-pics/dinosaur-socks.jpg',
 }];
 
 const photos = [
   {imgURL: '/dino-pics/dino-bow-tie.jpeg', productId: 1},
   {imgURL: '/dino-pics/dino-with-cane.jpeg', productId: 1},
-  {imgURL: '/dino-pics/dino-riding-a-bike.jpeg', productId: 2},
   {imgURL: '/dino-pics/dino-with-top-hat1.jpeg', productId: 3},
   {imgURL: '/dino-pics/dinos-with-multiple-hats.jpeg', productId: 3},
   {imgURL: '/dino-pics/dino-stealing-top-hat.jpeg', productId: 3},

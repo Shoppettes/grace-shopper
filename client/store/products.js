@@ -1,15 +1,10 @@
 import axios from 'axios';
 
 /**
- * GET_ALL_PRODUCTS, SET_CHOSEN_PRODUCT, GET_ALL_CATEGORIES, SET_CHOSEN_CATEGORY,
-    GET_CART, ADD_TO_CART, DELETE_FROM_CART,  ADD_REVIEW, getAllProducts, setChosenProduct,
-    addToCart
- */
-
-/**
  * ACTION TYPES
  */
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
+const GET_PRODUCT_BY_NAME = 'GET_PRODUCT_BY_NAME'
  /**
  * INITIAL STATE
  */
@@ -26,6 +21,7 @@ export const fetchAllProducts = () =>
   dispatch => axios.get('/api/products')
     .then(res => dispatch(getAllProducts(res.data)))
     .catch(err => console.log(err))
+
  /**
  * REDUCER
  */
