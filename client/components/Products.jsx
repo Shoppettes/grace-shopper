@@ -25,7 +25,7 @@ class Products extends Component {
           {products && products.map(product => (
             <div className="col-xs-4" key={product.id}>
               <div className="thumbnail">
-               { <img className="product-img" src={product.imageURL} />}
+                <img className="product-img" src={product.imageURL} />
               </div>
               <div className="caption">
 
