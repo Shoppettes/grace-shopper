@@ -9,7 +9,6 @@ import categories from './categories'
 import chosenCategory from './chosenCategory'
 import currentOrder from './currentOrder'
 import search from './search'
-import admin from './admin'
 
 export const reducer = combineReducers({ products, chosenProduct, user, categories, chosenCategory, currentOrder, search})
 
@@ -27,4 +26,3 @@ export * from './currentOrder'
 export * from './categories'
 export * from './chosenCategory'
 export * from './search'
-export * from './admin'
