@@ -29,7 +29,6 @@ export function findOrCreateOrder (currentUser) {
 
 export function createOrderProductInstance (orderId, productId) {
   return function (dispatch) {
-    console.log('!!!!', orderId, productId)
     axios.post(`/api/orderProducts/${orderId}/${productId}`)
       .then(res => dispatch(setCurrentOrder(res.data)))
       .catch(err => console.log(err));
