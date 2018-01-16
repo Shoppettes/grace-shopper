@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withRouter, Redirect, transitionTo} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getProductByName, setSearch, setSearchInput} from '../store'
+import {setSearch} from '../store'
 
 
 const Home = (props) => {
-  console.log('aaaa');
-  const {chosenProduct, searchForProduct, changeHandler, products, search} = props
+  const { searchForProduct, products, search} = props
   console.log(search);
-  // if(!search) {
   return (
     <div>
-      {search.redirect && <Redirect to='/products'/>}
+      {search.redirect &&
+        <Redirect to="/products" />
+      }
      <div id="home-content-wrapper">
       <div className="content-container">
         <div className="title-container">
@@ -33,10 +33,6 @@ const Home = (props) => {
     </div>
   )
 }
-// else {
-//   return (<Redirect to='/products'/>)
-// }
-// }
 
 const mapState = state => {
   return {
@@ -50,7 +46,6 @@ const mapDispatch = dispatch => {
   return {
 
     searchForProduct(event, products) {
-      console.log('i am here ')
       event.preventDefault();
       const filteredProducts = products.filter(product => product.name.match(event.target.getProduct.value));
       if (filteredProducts) {

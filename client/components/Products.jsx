@@ -12,7 +12,11 @@ class Products extends Component {
   render () {
     const {order, category,search} = this.props;
     var products = !category ? this.props.products : this.props.products.filter(product => product.category === cateogory)
-    products = products.filter(product => product.name.match(search.searchInp));
+    if(search.searchInp) {
+      products = products.filter(product => product.name.match(search.searchInp))
+      search.searchInp = ''
+      search.redirect = false
+    }
     return (
 
       <div id="products-wrapper">
