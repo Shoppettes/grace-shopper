@@ -6,24 +6,16 @@ module.exports = router
 
 // get current order on the session
 router.get('/currentOrder', (req, res, next) => {
-//   res.json(req.session.order)
-//   else {
-//     return Order.create()
-//     .then((order) => {
-//       req.session.order = order
-//       res.json(order)
-//     })
-//     .catch(next)
-//   }
-// })
-  return Order.create()
-    .then(order => Order.findById(order.id, {include: [Product]}))
-    .then(order => {
-      res.json(req.session.order)
-      return order
-    })
-    // .then(order => req.session.order = order)
-    .catch(next)
+  if (req.session.order !== undefined) res.json(req.session.order)
+  else {
+    return Order.create()
+      .then(order => Order.findById(order.id, {include: [Product]}))
+      .then(order => {
+        req.session.order = order
+        res.json(order)
+      })
+      .catch(next)
+  }
 })
 
 // get all orders, including associated users and products
