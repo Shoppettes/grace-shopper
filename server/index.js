@@ -52,8 +52,14 @@ const createApp = () => {
   app.use(passport.session())
 
   app.use(function(req, res, next) {
-  console.log('SESSION: ', req.session)  
+    console.log('!!!!!', req.session.order !== undefined)
+    next()
+  })
+
+  app.use(function(req, res, next) {
+  console.log('SESSION: ', req.session)
   console.log('SESSION USER: ', req.user)
+  console.log('SESSION ORDER: ', req.session.order)
   next()
 })
 
