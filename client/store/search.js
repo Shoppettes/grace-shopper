@@ -3,15 +3,16 @@ import axios from 'axios';
 /**
  * ACTION TYPES
  */
-const SET_SEARCH_INPUT = 'SET_SEARCH_INPUT'
+const SET_SEARCH = 'SET_SEARCH'
  /**
  * INITIAL STATE
  */
-const defaultInput = ''
+const defaultSearch = {redirect: false, searchInp: ''}
+
  /**
  * ACTION CREATORS
  */
-export const setSearchInput = input => ({type: SET_SEARCH_INPUT, input})
+export const setSearch = (redirect, searchInp) => ({type: SET_SEARCH, redirect,  searchInp})
 
  /**
  * THUNK CREATORS
@@ -21,10 +22,10 @@ export const setSearchInput = input => ({type: SET_SEARCH_INPUT, input})
  /**
  * REDUCER
  */
-export default function (state = defaultInput, action){
+export default function (state = defaultSearch, action){
   switch (action.type) {
-    case SET_SEARCH_INPUT:
-      return action.input
+    case SET_SEARCH:
+      return {redirect: action.redirect,  searchInp: action.searchInp}
     default:
       return state
   }
