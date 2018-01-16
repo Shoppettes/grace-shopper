@@ -14,9 +14,8 @@ class Cart extends Component {
     const {order, productsInCart, updateItemAmountInCart, removeItemFromCart} = this.props;
 
     return (
-      <div>
+      <div id="cart-wrapper">
         <h3>My Cart</h3>
-        <Link to="/checkout">checkout</Link>
         {(!productsInCart || !productsInCart.length) ? <span>You do not have any items in your cart.</span> :
         productsInCart.map(product =>
           (
@@ -24,7 +23,7 @@ class Cart extends Component {
               ----------<br/>
               Name: {product.name} <br/>
               Price: {product.price}<br/>
-              Quantity: {product.OrderProducts.quantity}<br/>
+              Quantity: {product.OrderProducts && product.OrderProducts.quantity}<br/>
               <select className="custom-select" onChange={(event) => this.onChange(order.id, product.id, event.target.value)}>
                 <option selected>Update Quantity</option>
                 <option value="1">1</option>
@@ -38,6 +37,8 @@ class Cart extends Component {
             </div>
           )
         )}
+        <br/><br/>
+        <Link to="/checkout">checkout</Link>
       </div>
     )
   }
@@ -47,42 +48,12 @@ class Cart extends Component {
     this.props.updateItemAmountInCart(orderId, productId, quantity)
   }
 
-  render() {
-    return (
-      <div id="cart-wrapper">
-        <h3>My Cart</h3>
-        {!productsInCart.length ? <span>You do not have any items in your cart.</span> :
-        productsInCart.map(product =>
-          (
-            <div key={product.id}>
-              ----------<br/>
-              Name: {product.name} <br/>
-              Price: {product.price}<br/>
-              Quantity: {product.OrderProducts.quantity}<br/>
-            <select className="custom-select" onChange={(event) => updateItemAmountInCart(order.id, product.id, event.target.value)}>
-                <option selected>Update Quantity</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-              <button onClick={() => removeItemFromCart(order.id, product.id)}>Remove item from cart.</button>
-              ------<br/>
-            </div>
-          )
-        )}
-      </div>
-    )
-  }
-  
-
   onClick(orderId, productId) {
     event.preventDefault();
     this.props.removeItemFromCart(orderId, productId);
   }
 
-};
+}
 
 const mapState = (state) => {
   return {
