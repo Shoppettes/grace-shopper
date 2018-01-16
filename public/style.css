@@ -139,9 +139,6 @@ h1 {
   color: #fbf259;
 }
 
-#sidebar-wrapper .list-group {
-
-}
 
 #sidebar-header {
   width: 100px;
@@ -278,12 +275,11 @@ h1 {
   justify-content: space-around;
 }
 
-
-
 .user-form-container {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
+  padding-top: 15%;
 }
 
 .shipping-form-container {
@@ -294,7 +290,7 @@ h1 {
 .payment-container {
   display: flex;
   flex-grow: 1;
-  margin-top: 5%;
+  padding-top: 5%;
 }
 
 .checkout-table {

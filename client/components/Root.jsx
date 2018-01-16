@@ -34,7 +34,7 @@ class Root extends Component {
                   <Route path="/cart" component={Cart} />
                   <Route exact path="/products" component={Products} />
                   <Route path="/products/:productId" component={SingleProduct} />
-                  <Route path="/checkout" component={Checkout} />
+                  <Route path="/checkout" component={MyStoreCheckout} />
                 </div>
               </Switch>
             </div>

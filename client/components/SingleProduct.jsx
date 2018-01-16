@@ -15,18 +15,18 @@ class SingleProduct extends Component {
 
   render () {
     const {order, product} = this.props;
+    console.log(product, 'product')
     return (
       <div id="single-product-wrapper">
-        <span>Product Name</span>
-        <div className="col-xs-4" key={product.id}>
-              <a className="thumbnail" href="#">
-                <img src= "" />
+        <div className="col-xs-4" key={product && product.id}>
+              <div>
+                <img src={product.photos && product.photos[0].imgURL}></img>
+              </div>
                 <div className="caption">
                   <h5>
-                    <span>{product.name}</span>
+                    <span>{product && product.name}</span>
                   </h5>
                 </div>
-              </a>
               <button onClick={() => this.onClick(order, product.id)}>Add item to cart.</button>
             </div>
       </div>

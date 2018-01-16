@@ -159,7 +159,7 @@ const photos = [
   {imgURL: '/dino-pics/happy-trex-dirt-bike.jpg', productId: 9},
   {imgURL: '/dino-pics/dinosaur-beauty-products1.jpg', productId: 10},
   {imgURL: '/dino-pics/dinosaur-shaving-cream.jpg', productId: 10},
-  {imgURL: '/dino-pics/dinosaur-socks.jpg', productId: 1}
+  {imgURL: '/dino-pics/dinosaur-socks.jpg', productId: 11}
 ];
 
 const categories = [
