@@ -17,17 +17,17 @@ class SingleProduct extends Component {
     console.log(product, 'product')
     return (
       <div id="single-product-wrapper">
-        <div className="col-xs-4" key={product && product.id}>
-              <div>
+        <div className="single-product-img-container" key={product && product.id}>
+
                 <img className="single-product-img" src={product.imageURL} />
-              </div>
-                <div className="caption">
-                  <h5>
-                    <span>{product && product.name}</span>
-                  </h5>
-                </div>
-              <button onClick={() => this.props.addItemToCart(event, order.id, product.id)}>Add item to cart.</button>
-            </div>
+        </div>
+        <div className="caption-container">
+            <h5>
+              <span>{product && product.name}</span><br/>
+              <span>${product.price}</span>
+            </h5>
+            <button onClick={() => this.props.addItemToCart(event, order.id, product.id)}>Add item to cart.</button>
+        </div>
       </div>
     )
   }

@@ -19,10 +19,21 @@ import adminItem from './adminItem'
 
 export const reducer = combineReducers({ products, chosenProduct, user, categories, chosenCategory, currentOrder, search, admin, adminItem, adminItems, adminFields})
 
-
+//const NODE_ENV = process.env.NODE_ENV
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware, loggingMiddleware
 ));
+// if ( NODE_ENV === 'development'){
+//   middleware = composeWithDevTools(applyMiddleware(
+//     thunkMiddleware
+//   ));
+// }
+// else {
+//   middleware = composeWithDevTools(applyMiddleware(
+//     thunkMiddleware, loggingMiddleware
+//   ));
+// }
+
 
 const store = createStore(reducer, middleware);
 
