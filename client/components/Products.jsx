@@ -6,13 +6,18 @@ import {createOrderProductInstance, updateOrderProductInstance} from '../store';
 class Products extends Component {
   constructor(props) {
     super(props);
-    //this.onClick = this.onClick.bind(this);
   }
 
   render () {
+
     const {order, category,search} = this.props;
     var products = !category ? this.props.products : this.props.products.filter(product => product.category === cateogory)
-    products = products.filter(product => product.name.match(search.searchInp));
+    if(search.searchInp) {
+      products = products.filter(product => product.name.match(search.searchInp))
+      search.searchInp = ''
+      search.redirect = false
+    }
+
     return (
 
       <div id="products-wrapper">
@@ -20,7 +25,7 @@ class Products extends Component {
           {products && products.map(product => (
             <div className="col-xs-4" key={product.id}>
               <div className="thumbnail">
-               { product.photos[0] && <img src={product.photos[0].imgURL} />}
+                <img className="product-img" src={product.imageURL} />
               </div>
               <div className="caption">
 
@@ -43,11 +48,7 @@ class Products extends Component {
   }
 }
 
-  /*onClick(order, productId) {
-    event.preventDefault();
-    this.props.addItemToCart(order, productId)
-  }
-}*/
+
 
 const mapState = (state) => {
   return {
@@ -69,6 +70,3 @@ const mapDispatch = (dispatch, ownProps) => {
 export default connect(mapState, mapDispatch)(Products);
 
 
-
-
-//

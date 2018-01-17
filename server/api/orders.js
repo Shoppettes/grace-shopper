@@ -60,10 +60,20 @@ router.put('/:orderId', (req, res, next) => {
     returning: true
   }, {include: [User, Product]})
   .then(order => {
-    req.session.order = order
+    req.session.order = order[1][0];
     res.status(201).json(order)
   })
   .catch(next)
+})
+
+//edit and order and create a new user instance
+router.put('/:orderId/newUser', (req, res, next) => {
+  return User.create(req.body)
+  .then(user => {
+    return Order.update({orderStatus: 'awaiting shipment', userId: user.id}, {where: {id: req.params.orderId}, returning: true})
+  })
+  .then(updatedOrder => res.json(updatedOrder[1][0]))
+  .catch(next);
 })
 
 // get all products associated with an order
@@ -71,4 +81,21 @@ router.get('/:orderId/products', (req, res, next) => {
   Order.findById(req.params.orderId, {include: [{model: Product}]})
   .then(orderWithProducts => res.status(200).json(orderWithProducts))
   .catch(next);
+})
+
+//update order with final checkout info
+router.put('/submitOrder/:userId/:orderId/', (req, res, next) => {
+  if (req.body === null) {
+    console.log('in req.body.user')
+    User.create(req.body)
+    .then((newUser) => Order.update({userId: newUser.id, orderStatus: 'awaiting shipment'}, {where: {id: req.params.orderId}, returning: true}))
+    .then((updatedOrder) => res.status(200).json(updatedOrder[1][0]));
+  } else {
+    User.update(req.body, {where: {id: req.params.userId}, returning: true})
+    .then(() => {
+      Order.update({orderStatus: 'awaiting shipment'}, {where: {id: req.params.orderId}, returning: true})
+    })
+    .then((updatedOrder) => res.status(200).json(updatedOrder[1][0]))
+    .catch(next)
+  }
 })
