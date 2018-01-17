@@ -13,17 +13,19 @@ class AdminPanel extends Component {
   }
 
   render () {
-    const {products, categories, orders, users} = this.props;
+    let {products, categories, orders, users, adminItem, adminFields} = this.props;
     const adminData = [{name: 'products', items: products},
                        {name: 'categories', items: categories},
                        {name: 'orders', items: orders},
                        {name: 'users', items: users}];
+     adminItem.redirect = false;
+     adminFields = [];
 
     return (
       <div>
       {adminData.map(data => (
      <div>
-        <Link to="/admin-view" onClick={() => this.props.clickHandler(event, data.items)}> View or edit {data.name} </Link>
+        <Link to="/admin-view" onClick={() => this.props.clickHandler(event, data)}> View or edit {data.name} </Link>
      </div>
     ))}
     </div>
@@ -32,10 +34,12 @@ class AdminPanel extends Component {
 
 const mapState = (state) => {
   return {
-    products: state.products,
-    categories: state.categories,
+    products: state.admin.products,
+    categories: state.admin.categories,
     orders: state.admin.orders,
-    users: state.admin.users
+    users: state.admin.users,
+    adminItem: state.adminItem,
+    adminFields: state.adminFields
   }
 }
 
