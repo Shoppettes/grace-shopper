@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {editAdminData} from '../store';
+import {editAdminData, getAllProducts} from '../store';
 import {Redirect} from 'react-router-dom';
 
 class EditComponent extends Component {
@@ -9,8 +9,8 @@ class EditComponent extends Component {
   }
 
   render() {
-    const {keys, type, submitHandler, redirect,item, changeHandler} = this.props
-    console.log('aaaaa', keys, type,item)
+    const {keys, type, submitHandler, redirect, item, changeHandler, products} = this.props
+    console.log('aaaaa', keys, type, item)
     return (
       <div>
         {redirect &&
@@ -18,7 +18,7 @@ class EditComponent extends Component {
       }
       <div className="signin-container">
         <div className="buffer local">
-          <form onSubmit={(event) => submitHandler(event,type,item)}>
+          <form onSubmit={(event) => submitHandler(event, type, item, products)}>
             {keys.map(key => (
               <div className="form-group">
               <label>{key}</label>
@@ -26,7 +26,7 @@ class EditComponent extends Component {
                 name={key}
                 className="form-control"
                 placeholder={item[key]}
-                onChange={(event)=>changeHandler(event, key, item)}
+                onChange={(event) => changeHandler(event, key, item)}
               />
             </div>
             ))
@@ -47,15 +47,17 @@ const mapState = state => {
     keys: state.adminFields,
     type: state.adminItems.name,
     item: state.adminItem.item,
-    redirect: state.adminItem.redirect
+    redirect: state.adminItem.redirect,
+    products: state.admin.products
   }
 }
 
 
 const mapDispatch = dispatch => {
   return {
-    submitHandler(event, type, item) {
+    submitHandler(event, type, item, products) {
       event.preventDefault();
+      if (type === 'products') {dispatch(getAllProducts(products))}
       dispatch(editAdminData(type, item ))
     },
     changeHandler(event, key, item) {

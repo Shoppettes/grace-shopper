@@ -30,9 +30,9 @@ export  function editAdminData(componentName, editedData){
 }
 
 export  function addAdminData(componentName, newComponent){
-  console.log('add', newComponent, `/${componentName}/${newComponent.id}`)
+  console.log('add', newComponent, `/${componentName}/`)
   return function (dispatch) {
-    axios.post(`/api/${componentName}/jh`, newComponent)
+    axios.post(`/api/${componentName}/`, newComponent)
       .then(res => res.data)
       .then(createdComponent => {
         console.log(createdComponent)
