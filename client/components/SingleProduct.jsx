@@ -6,7 +6,6 @@ import {getChosenProductFromDb, createOrderProductInstance, updateOrderProductIn
 class SingleProduct extends Component {
   constructor(props) {
     super(props);
-    //this.onClick = this.onClick.bind(this);
   }
 
   componentDidMount () {
@@ -33,11 +32,6 @@ class SingleProduct extends Component {
     )
   }
 }
-  /*onClick(order, productId) {
-    event.preventDefault();
-    this.props.addItemToCart(order, productId)
-  }
-};*/
 
 const mapState = (state) => {
   return {
@@ -51,7 +45,7 @@ const mapDispatch = (dispatch) => {
     loadChosenProduct(productId) {
       dispatch(getChosenProductFromDb(productId))
     },
-    // I need to update the functionality here to reflect what's been implemented in Cart but didn't have time to put the select quantity button in. It's very hard to see with current CSS.
+
     addItemToCart (event, order, productId) {
       if (!order.products.find(product => product.id === productId)) {
         let orderId = order.id

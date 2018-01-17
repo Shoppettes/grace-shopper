@@ -30,7 +30,7 @@ const MyStoreCheckout = (props) => {
                       <td>${product.price}</td>
                     </tr>
                   )
-                    
+
                 })}
               </tbody>
             </table>
@@ -42,21 +42,21 @@ const MyStoreCheckout = (props) => {
             <form>
             <div className="form-group">
               <label for="inputAddress">Shipping Address</label>
-              <input type="text" 
-              name="inputAddress" 
+              <input type="text"
+              name="inputAddress"
               value={props.user.billingAddress}
-              className="form-control" 
-              id="inputAddress" 
-              placeholder="1234 Main St. New York, NY 10023" 
-              onChange = {props.handleChange}/>
+              className="form-control"
+              id="inputAddress"
+              placeholder="1234 Main St. New York, NY 10023"
+              onChange = {(event) => props.handleChange(event, user)}/>
             </div>
             <div className="form-group">
               <label for="inputAddress2">Billing Address</label>
-              <input type="text" 
+              <input type="text"
               name="inputAddress2"
-              value={props.user.shippingAddress} 
-              className="form-control" 
-              id="inputAddress2" 
+              value={props.user.shippingAddress}
+              className="form-control"
+              id="inputAddress2"
               placeholder="555 Maple Ln. San Francisco, CA 94123" />
             </div>
             <div className="form-group">
@@ -76,8 +76,8 @@ const MyStoreCheckout = (props) => {
       </div>
       )
     }
-  
-  
+
+
   const mapState = ({currentOrder, user}) => {
     return {
       order: currentOrder,
@@ -85,28 +85,29 @@ const MyStoreCheckout = (props) => {
       user: user
     }
   }
-  
+
   const mapDispatch = (dispatch)=> {
     return {
-     
-      handleChange(evt) {
+
+      handleChange(evt, user) {
         evt.preventDefault();
-        dispatch(setCurrentUser({[evt.target.name] : evt.target.value}))
+        user.shippingAddress = evt.target.inputAddress.value
+        dispatch(setCurrentUser(user))
       },
 
       handleClick(evt) {
         evt.preventDefault();
         dispatch(getCurrentUser());
-      }, 
+      },
       handlePromoSubmit(evt) {
         evt.preventDefault();
         dispatch(updateOrder({})) //**update order total on state
       }
-      
+
     }
   }
-  
-  
+
+
 export default connect(mapState, mapDispatch)(MyStoreCheckout)
 
 /*
@@ -143,7 +144,7 @@ const MyStoreCheckout = (props) => {
                       <td>${product.price}</td>
                     </tr>
                   )
-                    
+
                 })}
                 </tr>
               </tbody>
@@ -156,24 +157,24 @@ const MyStoreCheckout = (props) => {
             <form>
             <div className="form-group">
               <label for="inputAddress">Shipping Address</label>
-              <input type="text" 
-              name="inputAddress" 
+              <input type="text"
+              name="inputAddress"
               value={props.user.billingAddress}
-              className="form-control" 
-              id="inputAddress" 
-              placeholder="1234 Main St. New York, NY 10023" 
+              className="form-control"
+              id="inputAddress"
+              placeholder="1234 Main St. New York, NY 10023"
               onChange = {props.handleChange}/>
             </div>
             <div className="form-group">
               <label for="inputAddress2">Billing Address</label>
-              <input type="text" 
+              <input type="text"
               name="inputAddress2"
-              value={props.user.shippingAddress} 
-              className="form-control" 
-              id="inputAddress2" 
+              value={props.user.shippingAddress}
+              className="form-control"
+              id="inputAddress2"
               placeholder="555 Maple Ln. San Francisco, CA 94123" />
             </div>
-          
+
             </form>
           </div>
           <div className="payment-container">
@@ -183,8 +184,8 @@ const MyStoreCheckout = (props) => {
       </div>
       )
     }
-  
-  
+
+
   const mapState = ({currentOrder, user}) => {
     return {
       order: currentOrder,
@@ -192,10 +193,10 @@ const MyStoreCheckout = (props) => {
       user: user
     }
   }
-  
+
   const mapDispatch = (dispatch)=> {
     return {
-     
+
       handleChange(evt) {
         evt.preventDefault();
         dispatch(setCurrentUser({[evt.target.name] : evt.target.value}))
@@ -204,16 +205,16 @@ const MyStoreCheckout = (props) => {
       handleClick(evt) {
         evt.preventDefault();
         dispatch(getCurrentUser());
-      }, 
+      },
       handlePromoSubmit(evt) {
         evt.preventDefault();
         dispatch(updateOrder({})) //**update order total on state
       }
-      
+
     }
   }
-  
-  
+
+
 export default connect(mapState, mapDispatch)(MyStoreCheckout)
 
 /**
@@ -230,7 +231,7 @@ export default connect(mapState, mapDispatch)(MyStoreCheckout)
               <div className="form-check" onClick={props.handleClick}>
                 <input className="form-check-input" type="checkbox" id="gridCheck" />
                 <label className="form-check-label" for="gridCheck">
-                  
+
                 </label>
               </div>
             </div>

@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import {withRouter, Redirect, transitionTo} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {setSearch} from '../store'
+import notification from 'toastr'
 
 
 const Home = (props) => {
+  notification.options.positionClass = "toast-top-right"
   const { searchForProduct, products, search} = props
   console.log(search);
   return (
@@ -48,9 +50,9 @@ const mapDispatch = dispatch => {
     searchForProduct(event, products) {
       event.preventDefault();
       const filteredProducts = products.filter(product => product.name.match(event.target.getProduct.value));
-      if (filteredProducts) {
-        console.log(filteredProducts)
+      if (filteredProducts.length > 0) {
         return dispatch(setSearch(true, event.target.getProduct.value))}
+      else notification.error('Product does not exist')
   }
 
  }
