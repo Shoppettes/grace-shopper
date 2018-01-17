@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {fetchAllProducts, createOrderProductInstance, updateOrderProductInstance} from '../store';
+import {fetchAllProducts, createOrderProductInstance} from '../store';
 
 class Products extends Component {
   constructor(props) {
@@ -11,12 +11,9 @@ componentDidMount(){
   fetchAllProducts();
 }
   render () {
-<<<<<<< HEAD
-    const {order, category, search} = this.props;
-=======
 
-    const {order, category,search} = this.props;
->>>>>>> 3f5f31230877657dd0d2b3da1b3a08de68b50b6d
+    const {order, category, search} = this.props;
+
     var products = !category ? this.props.products : this.props.products.filter(product => product.category === cateogory)
     if(search.searchInp) {
       products = products.filter(product => product.name.match(search.searchInp))
