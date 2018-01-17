@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Promise from 'bluebird';
+import history from '../history'
 //import { currentId } from 'async_hooks';
 
 // action types
@@ -73,6 +74,7 @@ return function(dispatch) {
     })
     .catch(err => console.log(err))
 
+    history.push('/')
 
 
   }

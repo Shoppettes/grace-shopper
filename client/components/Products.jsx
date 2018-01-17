@@ -43,7 +43,7 @@ class Products extends Component {
                   <div>
                     <span>{product.name}</span>
                   </div>
-                  <span>{product.price}</span>
+                  <span>${product.price}</span>
                 </h5>
                 <div>
                   <Link to={`/products/${product.id}`}>See more</Link>
@@ -74,6 +74,7 @@ const mapDispatch = (dispatch, ownProps) => {
     addItemToCart (event, orderId, productId) {
       event.preventDefault()
       dispatch(createOrderProductInstance(orderId, productId))
+      notification.success('Item added to cart!')
     },
     resetCategory () {
       dispatch(clearChosenCategory())
