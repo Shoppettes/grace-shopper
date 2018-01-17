@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div id="footer">
       <div className="container">
-        <p className="footer-block">Footer content here</p>
+        <p className="footer-block"></p>
       </div>
     </div>
   )
