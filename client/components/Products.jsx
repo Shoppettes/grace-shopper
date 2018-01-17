@@ -6,21 +6,21 @@ import {fetchAllProducts, createOrderProductInstance} from '../store';
 class Products extends Component {
   constructor(props) {
     super(props);
+    //this.onClick = this.onClick.bind(this);
   }
 componentDidMount(){
   fetchAllProducts();
 }
   render () {
 
-    const {order, category, search} = this.props;
 
+    const {order, category, search} = this.props;
     var products = !category ? this.props.products : this.props.products.filter(product => product.category === cateogory)
     if(search.searchInp) {
       products = products.filter(product => product.name.match(search.searchInp))
       search.searchInp = ''
       search.redirect = false
     }
-
     return (
 
       <div id="products-wrapper">
@@ -28,7 +28,7 @@ componentDidMount(){
           {products && products.map(product => (
             <div className="col-xs-4" key={product.id}>
               <div className="thumbnail">
-                <img className="product-img" src={product.imageURL} />
+               { product.photos[0] && <img src={product.photos[0].imgURL} />}
               </div>
               <div className="caption">
 
@@ -41,7 +41,7 @@ componentDidMount(){
                 <div>
                   <Link to={`/products/${product.id}`}>See more</Link>
                 </div>
-                <button onClick={() => this.props.addItemToCart(event, order, product)}>Add item to cart.</button>
+                <button onClick={() => this.props.addItemToCart(event, order, product.id)}>Add item to cart.</button>
               </div>
           </div>
           ))}
@@ -51,7 +51,11 @@ componentDidMount(){
   }
 }
 
-
+  /*onClick(order, productId) {
+    event.preventDefault();
+    this.props.addItemToCart(order, productId)
+  }
+}*/
 
 const mapState = (state) => {
   return {
@@ -64,8 +68,13 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
-    addItemToCart(event, order, product) {
-      dispatch(createOrderProductInstance(order, product))
+    addItemToCart (event, order, productId) {
+      event.preventDefault()
+      if (!order.products.find(product => product.id === productId)) {
+        let orderId = order.id
+        dispatch(createOrderProductInstance(orderId, productId))
+      }
+      else dispatch(updateOrderProductInstance(order.id, productId, {'increment': true}))
     }
   }
 }
@@ -73,3 +82,6 @@ const mapDispatch = (dispatch, ownProps) => {
 export default connect(mapState, mapDispatch)(Products);
 
 
+
+
+//
