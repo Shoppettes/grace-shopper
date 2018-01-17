@@ -26,7 +26,7 @@ class SingleProduct extends Component {
                     <span>{product && product.name}</span>
                   </h5>
                 </div>
-              <button onClick={() => this.props.addItemToCart(event, order, product)}>Add item to cart.</button>
+              <button onClick={() => this.props.addItemToCart(event, order.id, product.id)}>Add item to cart.</button>
             </div>
       </div>
     )
@@ -45,8 +45,8 @@ const mapDispatch = (dispatch) => {
     loadChosenProduct(productId) {
       dispatch(getChosenProductFromDb(productId))
     },
-    addItemToCart(event, order, product) {
-      dispatch(createOrderProductInstance(order, product))
+    addItemToCart(event, orderId, productId) {
+      dispatch(createOrderProductInstance(orderId, productId))
     }
   }
 };
