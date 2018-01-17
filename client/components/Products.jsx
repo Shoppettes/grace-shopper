@@ -35,7 +35,7 @@ class Products extends Component {
           {products && products.map(product => (
             <div className="col-xs-4" key={product.id}>
               <div className="thumbnail">
-               { product.photos[0] && <img src={product.photos[0].imgURL} />}
+                <img className="product-img" src={product.imageURL}/>
               </div>
               <div className="caption">
 
@@ -48,7 +48,7 @@ class Products extends Component {
                 <div>
                   <Link to={`/products/${product.id}`}>See more</Link>
                 </div>
-                <button onClick={() => this.props.addItemToCart(event, order.id, product.id)}>Add item to cart.</button>
+                <button onClick={() => this.props.addItemToCart(event, order, product.id)}>Add item to cart.</button>
               </div>
           </div>
           ))}
@@ -58,11 +58,6 @@ class Products extends Component {
   }
 }
 
-  /*onClick(order, productId) {
-    event.preventDefault();
-    this.props.addItemToCart(order, productId)
-  }
-}*/
 
 const mapState = (state) => {
   return {
@@ -76,7 +71,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
-    addItemToCart (event, orderId, productId) {
+    addItemToCart (event, order, productId) {
       event.preventDefault()
 
       if (!order.products.find(product => product.id === productId)) {

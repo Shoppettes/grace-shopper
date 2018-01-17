@@ -61,7 +61,7 @@ const products = [{
   description: 'Impress all the lady dinos with this fashionable bow tie.',
   price: 12.99,
   quantity: 82,
-  imageURL: './dino-pics/dino-bow-tie.jpeg',
+  imageURL: '/dino-pics/dino-bow-tie.jpeg',
   isAvailable: true,
   categoryId: 1
 } , {
