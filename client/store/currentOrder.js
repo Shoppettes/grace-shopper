@@ -1,9 +1,11 @@
 import axios from 'axios'
+import Promise from 'bluebird';
 //import { currentId } from 'async_hooks';
 
 // action types
 const SET_CURRENT_ORDER = 'SET_CURRENT_ORDER';
 const CLEAR_CURRENT_ORDER = 'CLEAR_CURRENT_ORDER';
+const UPDATE_CURRENT_ORDER = 'UPDATE_CURRENT_ORDER'
 
 // initial state
 const defaultOrder = {}
@@ -27,11 +29,24 @@ export function findOrCreateOrder (currentUser) {
   }
 }
 
-export function createOrderProductInstance (orderId, productId) {
+// export function createOrderProductInstance (orderId, productId) {
+//   return function (dispatch) {
+//     axios.post(`/api/orderProducts/${orderId}/${productId}`)
+//       .then(res => dispatch(setCurrentOrder(res.data)))
+//       .catch(err => console.log(err));
+//   }
+// }
+
+
+export function createOrderProductInstance (order, product) {
+  console.log('!!!!!!', order, product)
   return function (dispatch) {
-    console.log('!!!!', orderId, productId)
-    axios.post(`/api/orderProducts/${orderId}/${productId}`)
-      .then(res => dispatch(setCurrentOrder(res.data)))
+    const updatedOrder = order
+    const updatedOrderProducts = [...order.products, product]
+    updatedOrder.products = updatedOrderProducts
+    console.log('!!!!!!', updatedOrder)
+    dispatch(setCurrentOrder(updatedOrder))
+    axios.post(`/api/orderProducts/${order.id}/${product.id}`)
       .catch(err => console.log(err));
   }
 }
@@ -52,6 +67,24 @@ export function removeOrderProductInstance (orderId, productId) {
   }
 }
 
+// submitOrder({billingAddress: highor, shippingL adhi}, {email: hjjr, n})
+
+export function submitOrder(userInfo, orderInfo) { //this action also needs to update the order.status to 'awaiting shipment'
+console.log('order,', orderInfo, 'user',userInfo)  
+return function(dispatch) {
+  if (userInfo.id) {
+    updateUser = axios.put(`/api/users/${userInfo.id}`, userInfo )
+  }
+    
+    let updateOrder = axios.put(`/api/orders/${orderInfo.id}`, orderInfo)
+    Promise.all([updateOrder, updateUser])
+    .spread((updatedUser, updatedOrder) => {
+      console.log('order submission successful', updatedUser, updatedOrder)
+    })
+    .catch(err => console.log(err))
+  }
+}
+
 // reducer
 export default function (state = defaultOrder, action) {
   switch (action.type) {
@@ -63,3 +96,4 @@ export default function (state = defaultOrder, action) {
       return state
   }
 }
+
