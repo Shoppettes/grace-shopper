@@ -60,7 +60,7 @@ router.put('/:orderId', (req, res, next) => {
     returning: true
   }, {include: [User, Product]})
   .then(order => {
-    req.session.order = order
+    req.session.order = order[1][0];
     res.status(201).json(order)
   })
   .catch(next)

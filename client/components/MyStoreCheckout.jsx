@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Checkout from './Checkout.jsx'
-import {setCurrentOrder} from '../store'
+import {setCurrentUser, submitOrder} from '../store'
 
 const MyStoreCheckout = (props) => {
-    const {order, productsInCart, handleChange, handlePromoSubmit, user} = props;
+    const {order, productsInCart, handleSubmit, handleChangeShippingAddress, handleChangeBillingAddress,
+       user} = props;
     let amount = calcTotal(productsInCart);
-    
+    console.log(props.user, 'user props' )
     console.log('amount ', amount)
       return (
         <div id="checkout-wrapper">
@@ -43,26 +44,57 @@ const MyStoreCheckout = (props) => {
           <div className="user-form-container">
           <h3>Order Info</h3>
           <div className="shipping-form-container">
-            <form>
+            <form onSubmit={(evt) => props.handleSubmit(evt, user, order)}>
             <div className="form-group">
               <label for="inputAddress">Shipping Address</label>
               <input type="text" 
               name="shippingAddress" 
-              value={props.order.shippingAddress}
+              value={props.user.shippingAddress}
               className="form-control" 
-              id="inputAddress" 
+              id="shippingAddress"
               placeholder="1234 Main St. New York, NY 10023" 
-              onChange = {props.handleChange}/>
+              onChange = {(event) => props.handleChangeShippingAddress(event, user) }/>
             </div>
             <div className="form-group">
               <label for="inputAddress2">Billing Address</label>
               <input type="text" 
               name="billingAddress"
-              value={props.order.billingAddress} 
-              className="form-control" 
-              id="inputAddress2" 
-              placeholder="555 Maple Ln. San Francisco, CA 94123" />
+              value={props.user.billingAddress} 
+              className="form-control"
+              id="billingAddress" 
+              placeholder="555 Maple Ln. San Francisco, CA 94123" 
+              onChange= {(event) => props.handleChangeBillingAddress(event, user)}/>
             </div>
+            <div className="form-group">
+              <label for="ccNum">Credit Card</label>
+              <input type="text" 
+              name="creditCardNumber" 
+              value={props.user.creditCardNumber}
+              className="form-control" 
+              id="creditCardNumber"
+              placeholder="XXXXXXXXXXXXXXXX" 
+              onChange = {(event) => props.handleChangeCreditCard(event, user) }/>
+              </div>
+              <div className="form-group">
+              <label for="ccv">CCV</label>
+              <input type="text" 
+              name="creditCardCCV" 
+              value={props.user.creditCardNumber}
+              className="form-control" 
+              id="creditCardCCV"
+              placeholder="XXX" 
+              onChange = {(event) => props.handleChangeCreditCardCCV(event, user) }/>
+            </div>
+            <div className="form-group">
+            <label for="expDate">Expiration Date</label>
+            <input type="text" 
+            name="expDate" 
+            value={props.user.creditCardExpDate}
+            className="form-control" 
+            id="expDate"
+            placeholder="01/19" 
+            onChange = {(event) => props.handleChangeCCExpDate(event, user) }/>
+          </div>
             <div className="form-group">
               <div className="promo-code" onSubmit={props.handlePromoSubmit}>
                 <label for="promo-code">Enter promo code</label>
@@ -74,10 +106,8 @@ const MyStoreCheckout = (props) => {
                 />
               </div>
             </div>
+            <button>Submit payment</button>
             </form>
-          </div>
-          <div className="payment-container">
-                 <Checkout />
           </div>
         </div>
       </div>
@@ -103,18 +133,40 @@ const MyStoreCheckout = (props) => {
   
   const mapDispatch = (dispatch, ownProps)=> {
     return {
-     
-      handleChange(evt) {
+      handleChangeShippingAddress(evt, user) {
         evt.preventDefault();
-        const shippingAddress = evt.target.shippingAddress.value
-        const billingAddress = evt.target.billingAddress.value
-        // ownProps.order.shippingAddress = shippingAddress
-        // ownProps.order.billingAddress = billingAddresss
-        dispatch(setCurrentOrder(ownProps.order))
+        user.shippingAddress = evt.target.value
+        dispatch(setCurrentUser(user))
+      },
+      handleChangeBillingAddress(evt, user) {
+        evt.preventDefault();
+        user.billingAddress = evt.target.value
+        dispatch(setCurrentUser(user))
+      },
+      handleChangeCreditCard(evt, user) {
+        evt.preventDefault();
+        user.creditCardNumber = evt.target.value
+        dispatch(setCurrentUser(user))
+      },
+      handleChangeCreditCardCCV(evt, user) {
+        evt.preventDefault();
+        user.creditCardCCV = evt.target.value
+        dispatch(setCurrentUser(user))
+      },
+      handleChangeCCExpDate(evt, user) {
+        evt.preventDefault();
+        user.creditCardExpDate = evt.target.value
+        dispatch(setCurrentUser(user))
       },
       handlePromoSubmit(evt) {
         evt.preventDefault();
         dispatch(setCurrentUser(evt.target.value)) //**update order total on state
+      },
+
+      handleSubmit(evt, user, order) {
+        evt.preventDefault();
+        order.userId = user.id
+        dispatch(submitOrder(user, order))
       }
       
     }
