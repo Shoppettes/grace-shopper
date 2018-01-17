@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Router, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from '../history';
-import {Navbar, Sidebar, Footer, Home, Products, CreateAccount,Login, SingleProduct, Cart, AdminPanel, AdminView, Checkout, EditComponent, AddComponent, DeleteComponent, AuthForm, MyStoreCheckout} from '../components';
+import {Navbar, Sidebar, Footer, Home, Products, PastOrders, CreateAccount,Login, SingleProduct, Cart, AdminPanel, AdminView, Checkout, EditComponent, AddComponent, DeleteComponent, AuthForm, MyStoreCheckout} from '../components';
 import {fetchCurrentUser, fetchAllProducts, fetchAllCategories, fetchCurrentOrder, findOrCreateOrder, getCartByOrder} from '../store';
 
 
@@ -38,6 +38,7 @@ class Root extends Component {
                 <Route path="/editComponent/:componentId" component={EditComponent} />
                 <Route path="/addComponent/" component={AddComponent} />
                 <Route path="/deleteComponent/:componentId" component={DeleteComponent} />
+                <Route exact path="/past-orders" component={PastOrders} />
               </div>
             </Switch>
             </div>

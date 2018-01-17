@@ -1,10 +1,12 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Order} = require('../db/models')
 module.exports = router
 
 router.post('/login', (req, res, next) => {
   User.findOne({where: {email: req.body.email}})
+    .then(user => User.findById(user.id, {include: [Order]}))
     .then(user => {
+      console.log('!!!!!!!!!!!!!!!!!!', user)
       if (!user) {
         res.status(401).send('User not found')
       } else if (!user.correctPassword(req.body.password)) {
