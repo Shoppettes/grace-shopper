@@ -29,24 +29,10 @@ export function findOrCreateOrder (currentUser) {
   }
 }
 
-// export function createOrderProductInstance (orderId, productId) {
-//   return function (dispatch) {
-//     axios.post(`/api/orderProducts/${orderId}/${productId}`)
-//       .then(res => dispatch(setCurrentOrder(res.data)))
-//       .catch(err => console.log(err));
-//   }
-// }
-
-
-export function createOrderProductInstance (order, product) {
-  console.log('!!!!!!', order, product)
+export function createOrderProductInstance (orderId, productId) {
   return function (dispatch) {
-    const updatedOrder = order
-    const updatedOrderProducts = [...order.products, product]
-    updatedOrder.products = updatedOrderProducts
-    console.log('!!!!!!', updatedOrder)
-    dispatch(setCurrentOrder(updatedOrder))
-    axios.post(`/api/orderProducts/${order.id}/${product.id}`)
+    axios.post(`/api/orderProducts/${orderId}/${productId}`)
+      .then(res => dispatch(setCurrentOrder(res.data)))
       .catch(err => console.log(err));
   }
 }
@@ -70,12 +56,12 @@ export function removeOrderProductInstance (orderId, productId) {
 // submitOrder({billingAddress: highor, shippingL adhi}, {email: hjjr, n})
 
 export function submitOrder(userInfo, orderInfo) { //this action also needs to update the order.status to 'awaiting shipment'
-console.log('order,', orderInfo, 'user',userInfo)  
+console.log('order,', orderInfo, 'user',userInfo)
 return function(dispatch) {
   if (userInfo.id) {
     updateUser = axios.put(`/api/users/${userInfo.id}`, userInfo )
   }
-    
+
     let updateOrder = axios.put(`/api/orders/${orderInfo.id}`, orderInfo)
     Promise.all([updateOrder, updateUser])
     .spread((updatedUser, updatedOrder) => {
@@ -96,4 +82,3 @@ export default function (state = defaultOrder, action) {
       return state
   }
 }
-
