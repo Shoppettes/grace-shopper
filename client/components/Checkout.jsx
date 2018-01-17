@@ -34,6 +34,7 @@ const onToken = (amount, description, order, handleSuccess, user) => token =>
       amount: fromDollarToCent(amount)
     })
     .then(() => {
+      console.log('on success order and user', order, user)
       handleSuccess(order, user)
       alert('Payment successful!')
     })
@@ -90,7 +91,7 @@ const mapState = ({currentOrder, user}) => {
 
 const mapDispatch = dispatch => {
   return {
-    handleSuccess: (order, user) => {
+    handleSuccess(order, user) {
       dispatch(submitOrder(order, user))
     }
   }
