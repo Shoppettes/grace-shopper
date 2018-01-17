@@ -71,7 +71,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
-    addItemToCart (event, order, productId) {
+    addItemToCart (event, orderId, productId) {
       event.preventDefault()
       dispatch(createOrderProductInstance(orderId, productId))
     },
