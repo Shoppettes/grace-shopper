@@ -38,7 +38,7 @@ class Cart extends Component {
           )
         )}
         <br/><br/>
-        <Link to="/checkout">checkout</Link>
+        <Link to="/checkout"><button>checkout</button></Link>
       </div>
     )
   }
