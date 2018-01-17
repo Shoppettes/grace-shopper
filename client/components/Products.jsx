@@ -6,14 +6,13 @@ import {fetchAllProducts, createOrderProductInstance} from '../store';
 class Products extends Component {
   constructor(props) {
     super(props);
-    //this.onClick = this.onClick.bind(this);
   }
-componentDidMount(){
+
+componentDidMount () {
   fetchAllProducts();
 }
+
   render () {
-
-
     const {order, category, search} = this.props;
     var products = !category ? this.props.products : this.props.products.filter(product => product.category === cateogory)
     if(search.searchInp) {
@@ -68,7 +67,9 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
-    addItemToCart(event, orderId, productId) {
+    addItemToCart (event, orderId, productId) {
+      event.preventDefault()
+      dispatch(createOrderProductInstance(orderId, productId))
     }
   }
 }
