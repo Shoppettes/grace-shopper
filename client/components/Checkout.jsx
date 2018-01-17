@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
 import {connect} from 'react-redux';
@@ -21,7 +21,7 @@ const errorPayment = data => {
   alert('Payment Error');
 }
 
-const onToken = (amount, description, order, handleSuccess) => token => 
+const onToken = (amount, description, order, handleSuccess, user) => token => 
   axios.post(PAYMENT_SERVER_URL, 
     {
       description, 
@@ -30,17 +30,16 @@ const onToken = (amount, description, order, handleSuccess) => token =>
       amount: fromDollarToCent(amount)
     })
     .then(() => {
-      handleSuccess(order)
+      handleSuccess(order, user)
       alert('Payment successful!')
     })
     // .catch(() => alert('Payment error'))
 
 /**COMPONENT */
-const Checkout = ({order, handleSuccess}) => {
+const Checkout = ({order, user, handleSuccess}) => {
   let amount = calcTotal(order.products);
   let name = 'Your order: ';
-  let description = order.products && createDescription(order.products)
-
+  let description = order.products && createDescription(order.products);
  
   return (
     <div>
@@ -48,13 +47,15 @@ const Checkout = ({order, handleSuccess}) => {
         name={name}
         description={description} /**this is a description of all the items in the order */
         amount={fromDollarToCent(amount)} /**this is the total of the order */
-        token={onToken(amount, description, order, handleSuccess)}
+        token={onToken(amount, description, order, handleSuccess, user)}
         currency={CURRENCY}
         stripeKey={STRIPE_PUBLISHABLE}
       />
     </div>
   )
 }
+
+
     
 
 const createDescription = (cartArr) => { 
@@ -74,17 +75,18 @@ const calcTotal = (cartArr) => {
 
 
 
-const mapState = ({currentOrder}) => { 
+const mapState = ({currentOrder, user}) => { 
   return {
     order: currentOrder, 
-    products: currentOrder.products
+    products: currentOrder.products,
+    user: user
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    handleSuccess: order => {
-      dispatch(submitOrder(order))
+    handleSuccess: (order, user) => {
+      dispatch(submitOrder(order, user))
     }
   }
 }

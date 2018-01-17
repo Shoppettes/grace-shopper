@@ -82,3 +82,20 @@ router.get('/:orderId/products', (req, res, next) => {
   .then(orderWithProducts => res.status(200).json(orderWithProducts))
   .catch(next);
 })
+
+//update order with final checkout info
+router.put('/submitOrder/:userId/:orderId/', (req, res, next) => {
+  if (req.body === null) {
+    console.log('in req.body.user')
+    User.create(req.body)
+    .then((newUser) => Order.update({userId: newUser.id, orderStatus: 'awaiting shipment'}, {where: {id: req.params.orderId}, returning: true}))
+    .then((updatedOrder) => res.status(200).json(updatedOrder[1][0]));
+  } else {
+    User.update(req.body, {where: {id: req.params.userId}, returning: true})
+    .then(() => {
+      Order.update({orderStatus: 'awaiting shipment'}, {where: {id: req.params.orderId}, returning: true})
+    })
+    .then((updatedOrder) => res.status(200).json(updatedOrder[1][0]))
+    .catch(next)
+  }
+})
