@@ -69,7 +69,6 @@ const mapState = (state) => {
 const mapDispatch = (dispatch, ownProps) => {
   return {
     addItemToCart(event, orderId, productId) {
-      dispatch(createOrderProductInstance(orderId, productId))
     }
   }
 }
