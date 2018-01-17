@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {createOrderProductInstance, updateOrderProductInstance} from '../store';
+import {fetchAllProducts, createOrderProductInstance, updateOrderProductInstance} from '../store';
 
 class Products extends Component {
   constructor(props) {
     super(props);
   }
-
+componentDidMount(){
+  fetchAllProducts();
+}
   render () {
 
     const {order, category,search} = this.props;

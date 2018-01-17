@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Router, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from '../history';
-import {Navbar, Sidebar, Footer, Home, Products, CreateAccount, Login, PastOrders, SingleProduct, Cart, Checkout, AuthForm, MyStoreCheckout, AdminPanel} from '../components';
+import {Navbar, Sidebar, Footer, Home, Products, PastOrders, CreateAccount,Login, SingleProduct, Cart, AdminPanel, AdminView, Checkout, EditComponent, AddComponent, DeleteComponent, AuthForm, MyStoreCheckout} from '../components';
 import {fetchCurrentUser, fetchAllProducts, fetchAllCategories, fetchCurrentOrder, findOrCreateOrder, getCartByOrder} from '../store';
 
 
@@ -24,19 +24,23 @@ class Root extends Component {
             <Navbar />
             <Sidebar />
             <div className="main-content-wrapper">
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/createaccount" component={CreateAccount} />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/createaccount" component={CreateAccount} />
+              <div className="sub-content-wrapper">
+                <Route path="/admin-panel" component={AdminPanel} />
+                <Route path="/admin-view" component={AdminView} />
+                <Route path="/cart" component={Cart} />
+                <Route exact path="/products" component={Products} />
+                <Route path="/products/:productId" component={SingleProduct} />
+                <Route path="/checkout" component={Checkout} />
+                <Route path="/editComponent/:componentId" component={EditComponent} />
+                <Route path="/addComponent/" component={AddComponent} />
+                <Route path="/deleteComponent/:componentId" component={DeleteComponent} />
                 <Route exact path="/past-orders" component={PastOrders} />
-                <div className="sub-content-wrapper">
-                  <Route path="/admin-panel" component={AdminPanel} />
-                  <Route path="/cart" component={Cart} />
-                  <Route exact path="/products" component={Products} />
-                  <Route path="/products/:productId" component={SingleProduct} />
-                  <Route path="/checkout" component={Checkout} />
-                </div>
-              </Switch>
+              </div>
+            </Switch>
             </div>
             <Footer />
           </div>
