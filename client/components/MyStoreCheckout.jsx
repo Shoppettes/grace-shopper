@@ -31,6 +31,7 @@ const MyStoreCheckout = (props) => {
                       <td>${product.price}</td>
                     </tr>
                   )  
+
                 })}
                 <tr>
                   <td>Order Total:</td>
@@ -47,6 +48,7 @@ const MyStoreCheckout = (props) => {
             <form onSubmit={(evt) => props.handleSubmit(evt, user, order)}>
             <div className="form-group">
               <label for="inputAddress">Shipping Address</label>
+
               <input type="text" 
               name="shippingAddress" 
               value={props.user.shippingAddress}
@@ -84,6 +86,7 @@ const MyStoreCheckout = (props) => {
               id="creditCardCCV"
               placeholder="XXX" 
               onChange = {(event) => props.handleChangeCreditCardCCV(event, user) }/>
+
             </div>
             <div className="form-group">
             <label for="expDate">Expiration Date</label>
@@ -130,16 +133,19 @@ const MyStoreCheckout = (props) => {
       user: user
     }
   }
+
   
   const mapDispatch = (dispatch, ownProps)=> {
     return {
       handleChangeShippingAddress(evt, user) {
         evt.preventDefault();
         user.shippingAddress = evt.target.value
+
         dispatch(setCurrentUser(user))
       },
       handleChangeBillingAddress(evt, user) {
         evt.preventDefault();
+
         user.billingAddress = evt.target.value
         dispatch(setCurrentUser(user))
       },
@@ -149,14 +155,17 @@ const MyStoreCheckout = (props) => {
         dispatch(setCurrentUser(user))
       },
       handleChangeCreditCardCCV(evt, user) {
+
         evt.preventDefault();
         user.creditCardCCV = evt.target.value
         dispatch(setCurrentUser(user))
       },
       handleChangeCCExpDate(evt, user) {
         evt.preventDefault();
+
         user.creditCardExpDate = evt.target.value
         dispatch(setCurrentUser(user))
+
       },
       handlePromoSubmit(evt) {
         evt.preventDefault();
@@ -168,11 +177,11 @@ const MyStoreCheckout = (props) => {
         order.userId = user.id
         dispatch(submitOrder(user, order))
       }
-      
+
     }
   }
-  
-  
+
+
 export default connect(mapState, mapDispatch)(MyStoreCheckout)
 
 

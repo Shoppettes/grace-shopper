@@ -29,8 +29,10 @@ class Root extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/createaccount" component={CreateAccount} />
               <div className="sub-content-wrapper">
+
                 <Route path="/admin-panel" component={AdminPanel} />
                 <Route path="/admin-view" component={AdminView} />
+
                 <Route path="/cart" component={Cart} />
                 <Route exact path="/products" component={Products} />
                 <Route path="/products/:productId" component={SingleProduct} />

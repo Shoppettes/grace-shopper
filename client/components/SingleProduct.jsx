@@ -45,8 +45,15 @@ const mapDispatch = (dispatch) => {
     loadChosenProduct(productId) {
       dispatch(getChosenProductFromDb(productId))
     },
-    addItemToCart(event, orderId, productId) {
-      dispatch(createOrderProductInstance(orderId, productId))
+
+
+    addItemToCart (event, order, productId) {
+      if (!order.products.find(product => product.id === productId)) {
+        let orderId = order.id
+        dispatch(createOrderProductInstance(orderId, productId))
+      }
+      else dispatch(updateOrderProductInstance(order.id, productId, 'increment'))
+
     }
   }
 };

@@ -6,6 +6,7 @@ const Photo = require('./photo')
 const db = require('../db.js')
 const Review = require('./review')
 const OrderProduct = require('./orderProduct')
+const ProductCategory = require('./productCategory')
 
 //one to many : user to order
 User.hasMany(Order);
@@ -16,8 +17,8 @@ Order.belongsToMany(Product, {through: OrderProduct});
 Product.belongsToMany(Order, {through: OrderProduct});
 
 //many to many
-Category.belongsToMany(Product, {through: 'ProductCategories'});
-Product.belongsToMany(Category, {through: 'ProductCategories'});
+Product.belongsToMany(Category, {through: ProductCategory});
+Category.belongsToMany(Product, {through: ProductCategory});
 
 //one to many: product to review
 Product.hasMany(Review);
@@ -28,5 +29,5 @@ Product.hasMany(Photo);
 Photo.belongsTo(Product);
 
 module.exports = {
-Category, Order, Photo, Product, Review, User, OrderProduct, db
+Category, Order, Photo, Product, Review, User, OrderProduct, ProductCategory, db
 }

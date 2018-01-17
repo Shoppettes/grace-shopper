@@ -1,5 +1,5 @@
 /* Potentially update line 2 based on final decision on models */
-const { db, User, Product, Category, Order, Review, Photo } = require('./server/db/models')
+const { db, User, Product, Category, Order, Review, Photo, ProductCategory } = require('./server/db/models')
 
 const users = [{
   email: '12345@gmail.com',
@@ -62,7 +62,8 @@ const products = [{
   price: 12.99,
   quantity: 82,
   imageURL: './dino-pics/dino-bow-tie.jpeg',
-  isAvailable: true
+  isAvailable: true,
+  categoryId: 1
 } , {
   name: 'Brontasaurus bike',
   description: 'This classic dino bike will always be in style! Comes with an adjustable seat for all leg lengths.',
@@ -175,7 +176,8 @@ const photos = [
 ];
 
 const categories = [
-  {name: 'carnivore'},
+  {name: 'carnivore',
+    productId: 1},
   {name: 'herbivore'},
   {name: 'triassic'},
   {name: 'jurassic'},
@@ -183,6 +185,49 @@ const categories = [
   {name: 'airborne'},
   {name: 'water-dwelling'}
 ];
+
+const ProductCategories = [
+  {
+    productId:  1,
+    categoryId: 1
+  },
+  {
+    productId:  2,
+    categoryId: 2
+  },
+  {
+    productId:  3,
+    categoryId: 3
+  },
+  {
+    productId:  4,
+    categoryId: 4
+  },
+  {
+    productId:  5,
+    categoryId: 5
+  },
+  {
+    productId:  6,
+    categoryId: 6
+  },
+  {
+    productId:  7,
+    categoryId: 7
+  },
+  {
+    productId:  8,
+    categoryId: 7
+  },
+  {
+    productId:  9,
+    categoryId: 5
+  },
+  {
+    productId:  10,
+    categoryId: 2
+  }
+]
 
 const reviews = [{
   text: 'helloo',
@@ -268,6 +313,10 @@ const seed = () =>
   .then(() =>
   Promise.all(photos.map(photo =>
     Photo.create(photo))
+  ))
+  .then(() =>
+  Promise.all(ProductCategories.map(ProdCat =>
+    ProductCategory.create(ProdCat))
   ));
 
 const main = () => {

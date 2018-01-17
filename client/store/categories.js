@@ -13,7 +13,7 @@ export const getAllCategories = categories => ({type: GET_CATEGORIES, categories
 export const fetchAllCategories = () => dispatch =>
   axios.get('/api/categories')
     .then( res => dispatch(getAllCategories(res.data)))
-    .catch (err => console.log(err));
+    .catch(err => console.log(err));
 
 // reducer
 export default function( state = defaultCategories, action) {
