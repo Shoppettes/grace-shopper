@@ -57,7 +57,7 @@ export function removeOrderProductInstance (orderId, productId) {
 
 export function submitOrder(userInfo, orderInfo) { //this action also needs to update the order.status to 'awaiting shipment'
 return function(dispatch) {
-  if (userInfo === {}) {
+  if (!userInfo.id) {
     axios.post(`/api/users/`, userInfo )
       .then((res) => {
         userInfo = res.data
