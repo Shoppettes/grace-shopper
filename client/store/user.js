@@ -43,7 +43,7 @@ export const logout = () => dispatch =>
       history.push('/')
     })
     .catch(err => console.error('Logging out was unsuccessful', err))
-    
+
 /**
  * REDUCER
  */
