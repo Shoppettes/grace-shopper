@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getChosenProductFromDb, createOrderProductInstance, updateOrderProductInstance} from '../store'
+import notification from 'toastr'
 
 
 class SingleProduct extends Component {
@@ -13,6 +14,7 @@ class SingleProduct extends Component {
   }
 
   render () {
+    notification.options.positionClass = "toast-top-right"
     const {order, product} = this.props;
     console.log(product, 'product')
     return (
@@ -47,6 +49,7 @@ const mapDispatch = (dispatch) => {
     },
     addItemToCart (event, orderId, productId) {
       dispatch(createOrderProductInstance(orderId, productId))
+      notification.success('Item added to cart!')
     }
   }
 };
