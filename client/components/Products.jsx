@@ -33,7 +33,7 @@ class Products extends Component {
                 <div>
                   <Link to={`/products/${product.id}`}>See more</Link>
                 </div>
-                <button onClick={() => this.props.addItemToCart(event, order, product.id)}>Add item to cart.</button>
+                <button onClick={() => this.props.addItemToCart(event, order, product)}>Add item to cart.</button>
               </div>
           </div>
           ))}
@@ -60,13 +60,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
-    addItemToCart (event, order, productId) {
-      event.preventDefault()
-      if (!order.products.find(product => product.id === productId)) {
-        let orderId = order.id
-        dispatch(createOrderProductInstance(orderId, productId))
-      }
-      else dispatch(updateOrderProductInstance(order.id, productId, {'increment': true}))
+    addItemToCart(event, order, product) {
+      dispatch(createOrderProductInstance(order, product))
     }
   }
 }

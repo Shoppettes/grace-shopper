@@ -8,7 +8,7 @@ class Navbar extends Component {
     super(props);
     this.renderWelcome = this.renderWelcome.bind(this);
     this.renderLoginSignup = this.renderLoginSignup.bind(this);
-    this.renderLogout = this.renderLogout.bind(this);
+    this.renderLoggedInUser = this.renderLoggedInUser.bind(this);
     this.renderNumberCartItems = this.renderNumberCartItems.bind(this);
   }
 
@@ -16,18 +16,14 @@ class Navbar extends Component {
     return (
       <div id="nav-bar-wrapper">
         <div className="nav-container">
-        <div className="nav-item"></div>
           <div className="nav-item">
-          <NavLink to="/products">All Products</NavLink>
+            <NavLink to="/products">All Products</NavLink>
           </div>
           <div className="nav-item">
-            { this.props.currentUser.id && this.renderWelcome() }
+            { this.props.currentUser.id ? this.renderLoggedInUser() : this.renderLoginSignup() }
           </div>
           <div className="nav-item">
-            { this.props.currentUser.id ? this.renderLogout() : this.renderLoginSignup() }
-          </div>
-          <div className="nav-item">
-            <NavLink to="/cart" activeClassName="active">view cart</NavLink>
+            <NavLink to="/cart" activeClassName="active">view cart</NavLink><br/>
             {(this.props.currentOrder.products && this.props.currentOrder.products.length) && this.renderNumberCartItems()}
           </div>
         </div>
@@ -52,16 +48,19 @@ class Navbar extends Component {
         <li>
           <NavLink to="/login" activeClassName="active">SIGN IN</NavLink>
         </li>
-        <li>
-          <NavLink to="/cart" activeClassName="active"><img src="images/cart-icon.png" /></NavLink>
-        </li>
       </ul>
     );
   }
 
-  renderLogout() {
+  renderLoggedInUser () {
     return (
-      <ul className="nav navbar-nav navbar-right">
+      <ul className="nav navbar-nav">
+        <ul className="nav navbar-nav">
+          <li>Welcome {this.props.currentUser.firstName}</li>
+        </ul>
+        <li>
+          <Link to='/past-orders'>View past orders</Link>
+        </li>
         <li>
           <button className="navbar-btn btn btn-default" onClick={this.props.logout}>logout</button>
         </li>
@@ -77,6 +76,7 @@ class Navbar extends Component {
     );
   }
 }
+
 
 const mapState = (state, props) => {
   return {
