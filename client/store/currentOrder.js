@@ -56,18 +56,25 @@ export function removeOrderProductInstance (orderId, productId) {
 // submitOrder({billingAddress: highor, shippingL adhi}, {email: hjjr, n})
 
 export function submitOrder(userInfo, orderInfo) { //this action also needs to update the order.status to 'awaiting shipment'
-console.log('order,', orderInfo, 'user',userInfo)
 return function(dispatch) {
-  if (userInfo.id) {
-    updateUser = axios.put(`/api/users/${userInfo.id}`, userInfo )
-  }
+  if (userInfo === {}) {
+    axios.post(`/api/users/`, userInfo )
+      .then((res) => {
+        userInfo = res.data
+      })
+    }
+  let updateUser = axios.put(`/api/users/${userInfo.id}`, userInfo )
 
-    let updateOrder = axios.put(`/api/orders/${orderInfo.id}`, orderInfo)
+  let updateOrder = axios.put(`/api/orders/${orderInfo.id}`, orderInfo)
+
     Promise.all([updateOrder, updateUser])
     .spread((updatedUser, updatedOrder) => {
       console.log('order submission successful', updatedUser, updatedOrder)
     })
     .catch(err => console.log(err))
+
+
+
   }
 }
 

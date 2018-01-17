@@ -14,17 +14,17 @@ class Products extends Component {
 
   render () {
     notification.options.positionClass = "toast-top-right"
-    const {order, category, search, resetCategory} = this.props;
-    let {chosenCategory} = this.props
-    var products = this.props.products
+    const {order, category, search, resetCategory, products} = this.props;
+    let chosenCategory = this.props.selectedCategory
+    var allProducts = products
     if(chosenCategory !== null) {
       console.log('in here')
-      products = chosenCategory.products
+      allProducts = chosenCategory.products
       resetCategory()
     }
 
     if(search.searchInp) {
-      products = products.filter(product => product.name.match(search.searchInp))
+      allProducts = products.filter(product => product.name.match(search.searchInp))
       search.searchInp = ''
       search.redirect = false
     }
@@ -32,7 +32,7 @@ class Products extends Component {
 
       <div id="products-wrapper">
         <div className="row">
-          {products && products.map(product => (
+          {allProducts && allProducts.map(product => (
             <div className="col-xs-4" key={product.id}>
               <div className="thumbnail">
                 <img className="product-img" src={product.imageURL}/>
@@ -48,7 +48,7 @@ class Products extends Component {
                 <div>
                   <Link to={`/products/${product.id}`}>See more</Link>
                 </div>
-                <button onClick={() => this.props.addItemToCart(event, order, product.id)}>Add item to cart.</button>
+                <button onClick={(event) => this.props.addItemToCart(event, order, product.id)}>Add item to cart.</button>
               </div>
           </div>
           ))}
@@ -65,7 +65,7 @@ const mapState = (state) => {
     category: state.category,
     order: state.currentOrder,
     search: state.search,
-    chosenCategory: state.chosenCategory
+    selectedCategory: state.chosenCategory
   }
 }
 
