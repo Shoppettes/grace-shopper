@@ -19,10 +19,19 @@ export const setChosenProduct = chosenProduct => ({type: SET_CHOSEN_PRODUCT, cho
 /**
  * THUNK CREATORS
  */
-export const getChosenProductFromDb = productId => dispatch =>
-  axios.get(`/api/products/${productId}`)
+export const getProductByName = productName => dispatch =>
+  axios.get(`/api/products/${productName}`)
     .then(res => dispatch(setChosenProduct(res.data)))
     .catch(err => console.log(err))
+
+export function getChosenProductFromDb (productId) {
+  return function thunk (dispatch) {
+    axios.get(`/api/products/${productId}`)
+      .then(res => dispatch(setChosenProduct(res.data)))
+      .catch(err => console.log(err))
+  }
+}
+
 
 /**
  * REDUCER

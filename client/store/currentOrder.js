@@ -29,10 +29,24 @@ export function findOrCreateOrder (currentUser) {
   }
 }
 
-export function createOrderProductInstance (orderId, productId) {
+// export function createOrderProductInstance (orderId, productId) {
+//   return function (dispatch) {
+//     axios.post(`/api/orderProducts/${orderId}/${productId}`)
+//       .then(res => dispatch(setCurrentOrder(res.data)))
+//       .catch(err => console.log(err));
+//   }
+// }
+
+
+export function createOrderProductInstance (order, product) {
+  console.log('!!!!!!', order, product)
   return function (dispatch) {
-    axios.post(`/api/orderProducts/${orderId}/${productId}`)
-      .then(res => dispatch(setCurrentOrder(res.data)))
+    const updatedOrder = order
+    const updatedOrderProducts = [...order.products, product]
+    updatedOrder.products = updatedOrderProducts
+    console.log('!!!!!!', updatedOrder)
+    dispatch(setCurrentOrder(updatedOrder))
+    axios.post(`/api/orderProducts/${order.id}/${product.id}`)
       .catch(err => console.log(err));
   }
 }

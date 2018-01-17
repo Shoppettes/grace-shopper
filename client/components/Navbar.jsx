@@ -6,44 +6,38 @@ import {logout} from '../store';
 class Navbar extends Component {
   constructor(props) {
     super(props);
+    this.renderWelcome = this.renderWelcome.bind(this);
     this.renderLoginSignup = this.renderLoginSignup.bind(this);
-    this.renderLogout = this.renderLogout.bind(this);
+    this.renderLoggedInUser = this.renderLoggedInUser.bind(this);
+    this.renderNumberCartItems = this.renderNumberCartItems.bind(this);
   }
 
   render () {
     return (
-
       <div id="nav-bar-wrapper">
         <div className="nav-container">
-        <div className="nav-item"></div>
           <div className="nav-item">
-          <NavLink to="/products">All Products</NavLink>
+            <NavLink to="/products">All Products</NavLink>
           </div>
           <div className="nav-item">
-            { this.props.currentUser.id ? this.renderLogout() : this.renderLoginSignup() }
+            { this.props.currentUser.id ? this.renderLoggedInUser() : this.renderLoginSignup() }
           </div>
           <div className="nav-item">
-            <NavLink to="/cart" activeClassName="active">view cart</NavLink>
+            <NavLink to="/cart" activeClassName="active">view cart</NavLink><br/>
+            {(this.props.currentOrder.products && this.props.currentOrder.products.length) && this.renderNumberCartItems()}
           </div>
         </div>
       </div>
-      // <Switch>
-        //   {/* Routes placed here are available to all visitors */}
-        //   <Route path="/login" component={Login} />
-        //   <Route path="/signup" component={Signup} />
-        //   {
-        //     isLoggedIn &&
-        //       <Switch>
-        //         {/* Routes placed here are only available after logging in */}
-        //         <Route path="/home" component={UserHome} />
-        //       </Switch>
-        //   }
-        //   {/* Displays our Login component as a fallback */}
-        //   <Route component={Login} />
-        // </Switch>
-
     )
   };
+
+  renderWelcome () {
+    return (
+      <ul className="nav navbar-nav">
+        <li>Welcome {this.props.currentUser.firstName}</li>
+      </ul>
+    )
+  }
 
   renderLoginSignup () {
     return (
@@ -54,22 +48,30 @@ class Navbar extends Component {
         <li>
           <NavLink to="/login" activeClassName="active">SIGN IN</NavLink>
         </li>
+      </ul>
+    );
+  }
+
+  renderLoggedInUser () {
+    return (
+      <ul className="nav navbar-nav">
+        <ul className="nav navbar-nav">
+          <li>Welcome {this.props.currentUser.firstName}</li>
+        </ul>
         <li>
-          <NavLink to="/cart" activeClassName="active"><img src="images/cart-icon.png" /></NavLink>
+          <Link to='/past-orders'>View past orders</Link>
+        </li>
+        <li>
+          <button className="navbar-btn btn btn-default" onClick={this.props.logout}>logout</button>
         </li>
       </ul>
     );
   }
 
-  renderLogout() {
+  renderNumberCartItems () {
     return (
       <ul className="nav navbar-nav navbar-right">
-        <li>
-          <button className="navbar-btn btn btn-default" onClick={this.props.logout}>logout</button>
-        </li>
-        <li>
-          <NavLink to="/cart" activeClassName="active"><img src="/images/cart-icon.jpg" /></NavLink>
-        </li>
+        <li>{this.props.currentOrder.products.length}</li>
       </ul>
     );
   }
@@ -78,7 +80,8 @@ class Navbar extends Component {
 
 const mapState = (state, props) => {
   return {
-    currentUser: state.user
+    currentUser: state.user,
+    currentOrder: state.currentOrder
   }
 }
 

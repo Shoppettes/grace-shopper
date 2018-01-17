@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Router, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from '../history';
-import {Navbar, Sidebar, Footer, Home, Products, CreateAccount,Login, SingleProduct, Cart, Checkout, AuthForm, MyStoreCheckout, AdminPanel} from '../components';
+import {Navbar, Sidebar, Footer, Home, Products, CreateAccount, Login, PastOrders, SingleProduct, Cart, Checkout, AuthForm, MyStoreCheckout, AdminPanel} from '../components';
 import {fetchCurrentUser, fetchAllProducts, fetchAllCategories, fetchCurrentOrder, findOrCreateOrder, getCartByOrder} from '../store';
 
 
@@ -24,18 +24,19 @@ class Root extends Component {
             <Navbar />
             <Sidebar />
             <div className="main-content-wrapper">
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/createaccount" component={CreateAccount} />
-              <div className="sub-content-wrapper">
-                <Route path="/admin-panel" component={AdminPanel} />
-                <Route path="/cart" component={Cart} />
-                <Route exact path="/products" component={Products} />
-                <Route path="/products/:productId" component={SingleProduct} />
-                <Route path="/checkout" component={MyStoreCheckout} />
-              </div>
-            </Switch>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/createaccount" component={CreateAccount} />
+                <Route exact path="/past-orders" component={PastOrders} />
+                <div className="sub-content-wrapper">
+                  <Route path="/admin-panel" component={AdminPanel} />
+                  <Route path="/cart" component={Cart} />
+                  <Route exact path="/products" component={Products} />
+                  <Route path="/products/:productId" component={SingleProduct} />
+                  <Route path="/checkout" component={Checkout} />
+                </div>
+              </Switch>
             </div>
             <Footer />
           </div>
