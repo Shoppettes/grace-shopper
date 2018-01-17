@@ -36,7 +36,7 @@ class Root extends Component {
                 <Route path="/cart" component={Cart} />
                 <Route exact path="/products" component={Products} />
                 <Route path="/products/:productId" component={SingleProduct} />
-                <Route path="/checkout" component={Checkout} />
+                <Route path="/checkout" component={MyStoreCheckout} />
                 <Route path="/editComponent/:componentId" component={EditComponent} />
                 <Route path="/addComponent/" component={AddComponent} />
                 <Route path="/deleteComponent/:componentId" component={DeleteComponent} />

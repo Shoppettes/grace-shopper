@@ -5,10 +5,11 @@ import {setCurrentUser, submitOrder} from '../store'
 
 const MyStoreCheckout = (props) => {
     const {order, productsInCart, handleSubmit, handleChangeShippingAddress, handleChangeBillingAddress,
-       user} = props;
+       user, calcTotal} = props;
     let amount = calcTotal(productsInCart);
     console.log(props.user, 'user props' )
     console.log('amount ', amount)
+
       return (
         <div id="checkout-wrapper">
           <div className="checkout-table-container">
@@ -30,7 +31,7 @@ const MyStoreCheckout = (props) => {
                       <td>{product.OrderProducts.quantity}</td>
                       <td>${product.price}</td>
                     </tr>
-                  )  
+                  )
 
                 })}
                 <tr>
@@ -49,53 +50,53 @@ const MyStoreCheckout = (props) => {
             <div className="form-group">
               <label for="inputAddress">Shipping Address</label>
 
-              <input type="text" 
-              name="shippingAddress" 
+              <input type="text"
+              name="shippingAddress"
               value={props.user.shippingAddress}
-              className="form-control" 
+              className="form-control"
               id="shippingAddress"
-              placeholder="1234 Main St. New York, NY 10023" 
+              placeholder="1234 Main St. New York, NY 10023"
               onChange = {(event) => props.handleChangeShippingAddress(event, user) }/>
             </div>
             <div className="form-group">
               <label for="inputAddress2">Billing Address</label>
-              <input type="text" 
+              <input type="text"
               name="billingAddress"
-              value={props.user.billingAddress} 
+              value={props.user.billingAddress}
               className="form-control"
-              id="billingAddress" 
-              placeholder="555 Maple Ln. San Francisco, CA 94123" 
+              id="billingAddress"
+              placeholder="555 Maple Ln. San Francisco, CA 94123"
               onChange= {(event) => props.handleChangeBillingAddress(event, user)}/>
             </div>
             <div className="form-group">
               <label for="ccNum">Credit Card</label>
-              <input type="text" 
-              name="creditCardNumber" 
+              <input type="text"
+              name="creditCardNumber"
               value={props.user.creditCardNumber}
-              className="form-control" 
+              className="form-control"
               id="creditCardNumber"
-              placeholder="XXXXXXXXXXXXXXXX" 
+              placeholder="XXXXXXXXXXXXXXXX"
               onChange = {(event) => props.handleChangeCreditCard(event, user) }/>
               </div>
               <div className="form-group">
               <label for="ccv">CCV</label>
-              <input type="text" 
-              name="creditCardCCV" 
+              <input type="text"
+              name="creditCardCCV"
               value={props.user.creditCardNumber}
-              className="form-control" 
+              className="form-control"
               id="creditCardCCV"
-              placeholder="XXX" 
+              placeholder="XXX"
               onChange = {(event) => props.handleChangeCreditCardCCV(event, user) }/>
 
             </div>
             <div className="form-group">
             <label for="expDate">Expiration Date</label>
-            <input type="text" 
-            name="expDate" 
+            <input type="text"
+            name="expDate"
             value={props.user.creditCardExpDate}
-            className="form-control" 
+            className="form-control"
             id="expDate"
-            placeholder="01/19" 
+            placeholder="01/19"
             onChange = {(event) => props.handleChangeCCExpDate(event, user) }/>
           </div>
             <div className="form-group">
@@ -116,16 +117,9 @@ const MyStoreCheckout = (props) => {
       </div>
       )
     }
-  
-  const calcTotal = (cartArr) => {
-      if (cartArr && cartArr.length) {
-        return cartArr.map(cartProduct => +cartProduct.price).reduce((prev, curr) => prev + curr).toFixed(2)
-      }
-      else {
-        return 0;
-      }
-    }
-  
+
+
+
   const mapState = ({currentOrder, user}) => {
     return {
       order: currentOrder,
@@ -134,9 +128,17 @@ const MyStoreCheckout = (props) => {
     }
   }
 
-  
+
   const mapDispatch = (dispatch, ownProps)=> {
     return {
+      calcTotal (cartArr) {
+        if (cartArr && cartArr.length) {
+          return cartArr.map(cartProduct => +cartProduct.price).reduce((prev, curr) => prev + curr).toFixed(2)
+        }
+        else {
+          return 0;
+        }
+      },
       handleChangeShippingAddress(evt, user) {
         evt.preventDefault();
         user.shippingAddress = evt.target.value
