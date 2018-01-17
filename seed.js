@@ -12,7 +12,7 @@ const users = [{
   shippingAddress: '156 Main Street, Hampersville, MN, 70809',
   billingAddress: '183 Hello Street, Hampersville, MN, 70809',
   creditCardNumber: 6789123457891234,
-  CCV: 123,
+  creditCardCCV: 123,
   expirationDate: 08/18
 }, {
   email: '23456@gmail.com',
@@ -25,7 +25,7 @@ const users = [{
   shippingAddress: '123 Main Street, Hampersville, MN, 70615',
   billingAddress: '192 Hello Street, Hampersville, MN, 70615',
   creditCardNumber: 6798123457891243,
-  CCV: 234,
+  creditCardCCV: 234,
   expirationDate: 08/19
 }, {
   email: '34567@gmail.com',
@@ -38,7 +38,7 @@ const users = [{
   shippingAddress: '182 75th Street, Hampersville, IA, 70243',
   billingAddress: '194 Hiya Street, Hampersville, IA, 70243',
   creditCardNumber: 6798123443291243,
-  CCV: 345,
+  creditCardCCV: 345,
   expirationDate: 08/21
 } , {
   email: '45678@gmail.com',
@@ -51,7 +51,7 @@ const users = [{
   shippingAddress: '127 86th Street, Hampersville, RI, 70678',
   billingAddress: '128 Hey Street, Hampersville, RI, 73243',
   creditCardNumber: 6776523443291243,
-  CCV: 3456,
+  CCV: 346,
   expirationDate: 08/22
 }];
 

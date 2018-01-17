@@ -4,7 +4,7 @@ import Checkout from './Checkout.jsx'
 import {setCurrentUser, submitOrder} from '../store'
 
 const MyStoreCheckout = (props) => {
-    const {order, productsInCart, handleSubmit, handleChangeShippingAddress, handleChangeBillingAddress,
+    const {order, productsInCart, handleSubmit, handleChangeEmail, handleChangeShippingAddress, handleChangeBillingAddress,
        user, calcTotal} = props;
     let amount = calcTotal(productsInCart);
     console.log(props.user, 'user props' )
@@ -48,7 +48,18 @@ const MyStoreCheckout = (props) => {
           <div className="shipping-form-container">
             <form onSubmit={(evt) => props.handleSubmit(evt, user, order)}>
             <div className="form-group">
-              <label for="inputAddress">Shipping Address</label>
+              <label for="inputAddress">email</label>
+
+              <input type="text"
+              name="email-address"
+              value={props.user.email}
+              className="form-control"
+              id="emailAddress"
+              placeholder="email@me.com"
+              onChange = {(event) => props.handleChangeEmail(event, user) }/>
+            </div>
+            <div className="form-group">
+              <label for="inputAddress">*Shipping Address</label>
 
               <input type="text"
               name="shippingAddress"
@@ -138,6 +149,10 @@ const MyStoreCheckout = (props) => {
         else {
           return 0;
         }
+      },
+      handleChangeEmail(evt, user) {
+        evt.preventDefault();
+        user.email = evt.target.value
       },
       handleChangeShippingAddress(evt, user) {
         evt.preventDefault();
