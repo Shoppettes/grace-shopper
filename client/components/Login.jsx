@@ -39,23 +39,18 @@ class Login extends Component {
     );
   }
 
-  onLoginSubmit() {
+  onLoginSubmit(event) {
     event.preventDefault()
-          this.props.login({
-          email: event.target.email.value,
-          password: event.target.password.value
-        })
-
+    this.props.login({
+      email: event.target.email.value,
+      password: event.target.password.value
+    })
   }
 }
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = function({user}) {
-  return {
-
-  }
-}
+const mapState = null;
 
 const mapDispatch = function(dispatch) {
   return {
@@ -66,5 +61,3 @@ const mapDispatch = function(dispatch) {
 }
 
 export default connect(mapState, mapDispatch)(Login)
-
-

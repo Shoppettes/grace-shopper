@@ -48,7 +48,7 @@ class Products extends Component {
                 <div>
                   <Link to={`/products/${product.id}`}>See more</Link>
                 </div>
-                <button onClick={(event) => this.props.addItemToCart(event, order, product.id)}>Add item to cart.</button>
+                <button onClick={(event) => this.props.addItemToCart(event, order.id, product.id)}>Add item to cart.</button>
               </div>
           </div>
           ))}
@@ -73,13 +73,7 @@ const mapDispatch = (dispatch, ownProps) => {
   return {
     addItemToCart (event, order, productId) {
       event.preventDefault()
-
-      if (!order.products.find(product => product.id === productId)) {
-        let orderId = order.id
-        dispatch(createOrderProductInstance(orderId, productId))
-        notification.success('Item added to cart!')
-      }
-      else dispatch(updateOrderProductInstance(order.id, productId, {'increment': true}))
+      dispatch(createOrderProductInstance(orderId, productId))
     },
     resetCategory () {
       dispatch(clearChosenCategory())
