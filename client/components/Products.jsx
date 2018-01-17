@@ -1,23 +1,26 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {createOrderProductInstance, updateOrderProductInstance} from '../store';
+import {fetchAllProducts, createOrderProductInstance} from '../store';
 
 class Products extends Component {
   constructor(props) {
     super(props);
+    //this.onClick = this.onClick.bind(this);
   }
-
+componentDidMount(){
+  fetchAllProducts();
+}
   render () {
 
-    const {order, category,search} = this.props;
+
+    const {order, category, search} = this.props;
     var products = !category ? this.props.products : this.props.products.filter(product => product.category === cateogory)
     if(search.searchInp) {
       products = products.filter(product => product.name.match(search.searchInp))
       search.searchInp = ''
       search.redirect = false
     }
-
     return (
 
       <div id="products-wrapper">
@@ -25,7 +28,7 @@ class Products extends Component {
           {products && products.map(product => (
             <div className="col-xs-4" key={product.id}>
               <div className="thumbnail">
-                <img className="product-img" src={product.imageURL} />
+               { product.photos[0] && <img src={product.photos[0].imgURL} />}
               </div>
               <div className="caption">
 
@@ -48,7 +51,11 @@ class Products extends Component {
   }
 }
 
-
+  /*onClick(order, productId) {
+    event.preventDefault();
+    this.props.addItemToCart(order, productId)
+  }
+}*/
 
 const mapState = (state) => {
   return {

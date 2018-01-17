@@ -55,6 +55,7 @@ router.delete('/:orderId', (req, res, next) => {
 
 // edit an order by id
 router.put('/:orderId', (req, res, next) => {
+  console.log(req.body)
   Order.update(req.body, {
     where: {id: req.params.orderId},
     returning: true
