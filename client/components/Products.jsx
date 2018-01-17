@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+
 import notification from 'toastr'
 import {createOrderProductInstance, updateOrderProductInstance, clearChosenCategory} from '../store';
+
 
 class Products extends Component {
   constructor(props) {
     super(props);
   }
+
 
   render () {
     notification.options.positionClass = "toast-top-right"
@@ -19,12 +22,12 @@ class Products extends Component {
       products = chosenCategory.products
       resetCategory()
     }
+
     if(search.searchInp) {
       products = products.filter(product => product.name.match(search.searchInp))
       search.searchInp = ''
       search.redirect = false
     }
-
     return (
 
       <div id="products-wrapper">
@@ -32,7 +35,7 @@ class Products extends Component {
           {products && products.map(product => (
             <div className="col-xs-4" key={product.id}>
               <div className="thumbnail">
-                <img className="product-img" src={product.imageURL} />
+               { product.photos[0] && <img src={product.photos[0].imgURL} />}
               </div>
               <div className="caption">
 
@@ -45,7 +48,7 @@ class Products extends Component {
                 <div>
                   <Link to={`/products/${product.id}`}>See more</Link>
                 </div>
-                <button onClick={() => this.props.addItemToCart(event, order, product.id)}>Add item to cart.</button>
+                <button onClick={() => this.props.addItemToCart(event, order.id, product.id)}>Add item to cart.</button>
               </div>
           </div>
           ))}
@@ -55,7 +58,11 @@ class Products extends Component {
   }
 }
 
-
+  /*onClick(order, productId) {
+    event.preventDefault();
+    this.props.addItemToCart(order, productId)
+  }
+}*/
 
 const mapState = (state) => {
   return {
@@ -69,8 +76,9 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
-    addItemToCart (event, order, productId) {
+    addItemToCart (event, orderId, productId) {
       event.preventDefault()
+
       if (!order.products.find(product => product.id === productId)) {
         let orderId = order.id
         dispatch(createOrderProductInstance(orderId, productId))
@@ -80,13 +88,9 @@ const mapDispatch = (dispatch, ownProps) => {
     },
     resetCategory () {
       dispatch(clearChosenCategory())
+
     }
  }
 }
 
 export default connect(mapState, mapDispatch)(Products);
-
-
-
-
-//

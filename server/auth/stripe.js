@@ -14,6 +14,7 @@ const postStripeCharge = res => (stripeErr, stripeRes) => {
 
 
 router.post('/', (req, res, next) => {
+    console.log(req.body, 'request in stripe post')
     const {amount, source, description, currency} = req.body
     console.log('request ', req.body)
     stripe.charges.create({

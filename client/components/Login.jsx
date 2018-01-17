@@ -35,22 +35,6 @@ class Login extends Component {
             <button type="submit" className="btn btn-block btn-primary">Login</button>
           </form>
         </div>
-        <div className="or buffer">
-          <div className="back-line">
-            <span>OR</span>
-          </div>
-        </div>
-        <div className="buffer oauth">
-          <p>
-            <a
-              target="_self"
-              href="/auth/google"
-              className="btn btn-social btn-google">
-              <i className="fa fa-google" />
-              <span>Login with Google</span>
-            </a>
-          </p>
-        </div>
       </div>
     );
   }

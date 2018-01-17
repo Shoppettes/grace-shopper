@@ -250,7 +250,8 @@ const orders = [{
   CCV: 123,
   orderDate:new Date(),
   expirationDate: 08/18,
-  userId: 1
+  userId: 1,
+  orderStatus: 'awaiting shipment'
 }, {
   subTotal: 13.99,
   // total: 15.99,
@@ -262,8 +263,8 @@ const orders = [{
   CCV: 234,
   expirationDate: 08/19,
   orderDate:new Date() + 1,
-  userId: 2,
-  orderStatus: 'pending'
+  userId: 1,
+  orderStatus: 'completed'
 } , {
   subTotal: 15.99,
   // total: 17.99,
