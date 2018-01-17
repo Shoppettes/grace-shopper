@@ -46,9 +46,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     clickHandler(event, keys, type, item) {
-
       event.preventDefault();
-      console.log('aaaa')
       dispatch(deleteAdminData(type, item ))
 
     }

@@ -12,7 +12,7 @@ componentDidMount(){
   fetchAllProducts();
 }
   render () {
-    const {order, category,search} = this.props;
+    const {order, category, search} = this.props;
     var products = !category ? this.props.products : this.props.products.filter(product => product.category === cateogory)
     if(search.searchInp) {
       products = products.filter(product => product.name.match(search.searchInp))

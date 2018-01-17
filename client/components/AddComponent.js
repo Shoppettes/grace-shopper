@@ -9,7 +9,8 @@ class AddComponent extends Component {
   }
 
   render() {
-    const {keys, type, submitHandler, redirect} = this.props
+    let {keys, type, submitHandler, redirect} = this.props
+    keys = keys.filter(key => key!=='id')
     console.log('aaaaa', keys, type)
     return (
       <div>
