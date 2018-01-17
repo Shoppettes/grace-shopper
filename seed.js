@@ -61,22 +61,22 @@ const products = [{
   description: 'Impress all the lady dinos with this fashionable bow tie.',
   price: 12.99,
   quantity: 82,
-  isAvailable: true,
-  imgURL: '/dino-pics/dino-bow-tie.jpeg',
+  imageURL: './dino-pics/dino-bow-tie.jpeg',
+  isAvailable: true
 } , {
   name: 'Brontasaurus bike',
   description: 'This classic dino bike will always be in style! Comes with an adjustable seat for all leg lengths.',
   price: 199.99,
   quantity: 68,
   isAvailable: true,
-  imgURL: '/dino-pics/happy-trex-dirt-bike.jpg',
+  imageURL: '/dino-pics/happy-trex-dirt-bike.jpg'
 } , {
   name: 'Triceri-top hat',
   description: 'Perfect for the gentleman dino, carnivore or herbivore.',
   price: 33.99,
   quantity: 54,
   isAvailable: true,
-  imgURL: '/dino-pics/dino-stealing-top-hat.jpeg',
+  imageURL: '/dino-pics/dino-stealing-top-hat.jpeg'
 } , {
   name: 'Tea-rex',
   description: 'Entertain your friends or just relax at home with this calming tea blend.',
@@ -84,7 +84,7 @@ const products = [{
   quantity: 52,
   isAvailable: true,
   cartId: 2,
-  imgURL: '/dino-pics/dinos-drinking-tea.jpeg',
+  imageURL: '/dino-pics/dinos-drinking-tea.jpeg'
 }, {
   name: 'CAKE',
   description: 'Perfect for any and all special occasion! Yum!',
@@ -92,7 +92,7 @@ const products = [{
   quantity: 90,
   isAvailable: true,
   cartId: 3,
-  imgURL: '/dino-pics/dinosaur-eating-cake1.jpeg',
+  imageURL: '/dino-pics/dinosaur-eating-cake1.jpeg',
 }, {
   name: 'First aid kit',
   description: 'Oopsies! Accidents happen, especially when you are a dinosaur. Help your boo-boos heal faster!',
@@ -100,7 +100,7 @@ const products = [{
   quantity: 31,
   isAvailable: true,
   cartId: 1,
-  imgURL: '/dino-pics/dinosaur-first-aid-kit.jpg',
+  imageURL: '/dino-pics/dinosaur-first-aid-kit.jpg'
 
 },{
   name: 'Stegosaurus skateboard',
@@ -108,7 +108,7 @@ const products = [{
   price: 48.00,
   quantity: 25,
   isAvailable: true,
-  imgURL: '/dino-pics/dinosaur-riding-skateboard.jpg',
+  imageURL: '/dino-pics/dinosaur-riding-skateboard.jpg'
 }, {
   name: 'Lovely Lady Dino Lipstick',
   description: 'You need the coolest wheels of any age, and we have them. ',
@@ -116,23 +116,23 @@ const products = [{
   quantity: 46,
   isAvailable: true,
   cartId: 1,
-  imgURL: '/dino-pics/dinosaur-wearing-lipstick1.jpg',
+  imageURL: '/dino-pics/dinosaur-wearing-lipstick1.jpg'
 }, {
   name: 'PIZZA',
   description: 'Need we say more? We think this is the best part of being a dinosaur in the modern age.',
   price: 5.00,
-  imgURL: '/dino-pics/happy-trex-dirt-bike.jpg',
+  imageURL: '/dino-pics/happy-trex-dirt-bike.jpg',
   quantity: 99,
   isAvailable: true,
   cartId: 2,
-  imgURL: '/dino-pics/happy-trex-dirt-bike.jpg',
+  imageURL: '/dino-pics/happy-trex-dirt-bike.jpg'
 }, {
   name: 'Moto-saurus',
   description: 'Vrrooom vroom party starter! You are the coolest dino and you know it. Show it off with this hot set of two wheels.',
   price: 555.00,
   quantity: 15,
   isAvailable: true,
-  imgURL: '/dino-pics/dinosaurs-riding-motorcycles.jpg'
+  imageURL: '/dino-pics/dinosaurs-riding-motorcycles.jpg'
 }, {
   name: 'Beauty kit',
   description: 'Lady and gentleman dinos will both be thrilled with how they look after using this Dino-store beauty kit.',
@@ -140,7 +140,7 @@ const products = [{
   quantity: 45,
   isAvailable: true,
   cartId: 1,
-  imgURL: '/dino-pics/dinosaur-beauty-products1.jpg',
+  imageURL: '/dino-pics/dinosaur-beauty-products1.jpg'
 },
 {
   name: 'Socks',
@@ -149,7 +149,7 @@ const products = [{
   quantity: 67,
   isAvailable: true,
   cartId: 1,
-  imgURL: '/dino-pics/dinosaur-socks.jpg',
+  imageURL: '/dino-pics/dinosaur-socks.jpg'
 }];
 
 const photos = [

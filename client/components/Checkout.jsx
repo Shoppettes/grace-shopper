@@ -2,13 +2,17 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
 import {connect} from 'react-redux';
+
 import {submitOrder} from '../store'
+
 
 const STRIPE_PUBLISHABLE = 'pk_test_4j8nxKms5tgqYitAFPPjBZ01';
 
 const PAYMENT_SERVER_URL = process.env.NODE_ENV === 'production'
+
   ? 'https://dino-store.herokuapp.com/auth/stripe'
   : 'http://localhost:8080/auth/stripe'; //what is this?
+
 
 const CURRENCY = 'USD'
 const fromDollarToCent = amount => amount * 100;
@@ -63,6 +67,7 @@ const createDescription = (cartArr) => {
     return cartItem.name
   }).join(', ');
 }
+
 
 const calcTotal = (cartArr) => {
   if (cartArr && cartArr.length) {
