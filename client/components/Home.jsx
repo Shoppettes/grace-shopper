@@ -17,7 +17,7 @@ const Home = (props) => {
       <div className="content-container">
         <div className="title-container">
             <img className="title-logo-img" src="./title-logo.jpg" />
-            <div className="subtitle-text">A realy short catchphase that captures the essence of our store.</div>
+            <div className="subtitle-text">Useful products for the modern and discerning dinosaur</div>
             <div className="search-bar-container">
               <form onSubmit={(event) => searchForProduct(event, products)} className="form-inline">
               <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="getProduct"  />

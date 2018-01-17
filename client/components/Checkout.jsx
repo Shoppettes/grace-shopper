@@ -25,10 +25,10 @@ const errorPayment = data => {
   alert('Payment Error');
 }
 
-const onToken = (amount, description, order, handleSuccess, user) => token => 
-  axios.post(PAYMENT_SERVER_URL, 
+const onToken = (amount, description, order, handleSuccess, user) => token =>
+  axios.post(PAYMENT_SERVER_URL,
     {
-      description, 
+      description,
       source: token.id,
       currency: CURRENCY,
       amount: fromDollarToCent(amount)
@@ -45,7 +45,7 @@ const Checkout = ({order, user, handleSuccess}) => {
   let amount = calcTotal(order.products);
   let name = 'Your order: ';
   let description = order.products && createDescription(order.products);
- 
+
   return (
     <div>
       <StripeCheckout
@@ -61,9 +61,9 @@ const Checkout = ({order, user, handleSuccess}) => {
 }
 
 
-    
 
-const createDescription = (cartArr) => { 
+
+const createDescription = (cartArr) => {
  return cartArr.map(cartItem => {
     return cartItem.name
   }).join(', ');
@@ -81,9 +81,9 @@ const calcTotal = (cartArr) => {
 
 
 
-const mapState = ({currentOrder, user}) => { 
+const mapState = ({currentOrder, user}) => {
   return {
-    order: currentOrder, 
+    order: currentOrder,
     products: currentOrder.products,
     user: user
   }

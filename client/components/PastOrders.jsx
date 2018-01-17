@@ -10,7 +10,7 @@ const PastOrders = (props) => {
 
   return (
     <div>
-      <span>Welcome {currentUser.firstName}</span>
+      <span>Welcome {currentUser.firstName}</span><br/>
       Your Past Orders
       {
         orders.length && orders.map(order =>
